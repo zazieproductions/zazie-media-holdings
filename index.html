@@ -54,7 +54,7 @@
     </div>
     <div class="flex items-center gap-2">
       <button onclick="openPalette()" class="hidden md:flex items-center gap-2 btn-ghost rounded-lg px-3 py-2 font-mono text-[11px] text-mute">
-        <span>⌘K</span><span class="hidden xl:inline">Search 39 assets...</span>
+        <span>⌘K</span><span class="hidden xl:inline">Search holdings...</span>
       </button>
       <button onclick="toggleCart(true)" class="relative btn-ghost rounded-lg px-3 py-2 font-mono text-[11px]">
         CART <span id="cartCount" class="ml-1 bg-lime text-black px-1.5 py-0.5 rounded font-bold">0</span>
@@ -160,7 +160,7 @@
       <div onclick="scrollToId('audiences')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-lime border-lime/30"><div class="text-2xl mb-1">◎</div><div class="font-bold text-[13px]">ZAZIE<br>AUDIENCES</div><div class="font-mono text-[10px] text-mute mt-1">57K FANS</div></div>
       <div onclick="scrollToId('products')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-amber-300 border-amber-300/30"><div class="text-2xl mb-1">⬣</div><div class="font-bold text-[13px]">ZAZIE<br>SOUNDS</div><div class="font-mono text-[10px] text-mute mt-1">4 PRODUCTS</div></div>
       <div onclick="scrollToId('music')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-viol border-viol/30"><div class="text-2xl mb-1">♪</div><div class="font-bold text-[13px]">ZAZIE<br>PRODUCTIONS</div><div class="font-mono text-[10px] text-mute mt-1">20 RELEASES</div></div>
-      <div onclick="scrollToId('software')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-emerald-300 border-emerald-300/30"><div class="text-2xl mb-1">⚙</div><div class="font-bold text-[13px]">ZAZIE<br>LABS</div><div class="font-mono text-[10px] text-mute mt-1">3 APPS</div></div>
+      <div onclick="scrollToId('software')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-emerald-300 border-emerald-300/30"><div class="text-2xl mb-1">⚙</div><div class="font-bold text-[13px]">ZAZIE<br>LABS</div><div class="font-mono text-[10px] text-mute mt-1">3 PREVIEWS + 12 CANDIDATES</div></div>
       <div onclick="scrollToId('institute')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-orange-300 border-orange-300/30"><div class="text-2xl mb-1">✦</div><div class="font-bold text-[13px]">ZAZIE<br>INSTITUTE</div><div class="font-mono text-[10px] text-mute mt-1">R&D</div></div>
     </div>
     <div class="mt-6 flex flex-wrap gap-2 justify-center font-mono text-[10px] text-mute"><span>→ CLICK ANY DIVISION TO AUDIT</span><span class="text-lime">• ALL REVENUE FLOWS UPSTREAM TO HOLDINGS</span></div>
@@ -353,19 +353,19 @@
 
 <!-- SOFTWARE -->
 <section id="software" class="max-w-[1400px] mx-auto px-5 md:px-8 py-20">
-  <div class="eyebrow text-emerald-300 mb-3 reveal">07 — ZAZIE LABS • SOFTWARE • TRY LIVE IN BROWSER</div>
+  <div class="eyebrow text-emerald-300 mb-3 reveal">07 — ZAZIE LABS • SOFTWARE & SOURCE-CODE IP</div>
   <h2 class="font-grot font-bold text-4xl md:text-6xl mb-2 reveal">Software <span class="font-serif italic font-normal text-mute">you can touch.</span></h2>
-  <p class="text-mute max-w-xl mb-10 reveal">Three fully-owned applications. No vaporware — every demo below actually runs. Audio on recommended. 🔊</p>
+  <p class="text-mute max-w-3xl mb-10 reveal">The in-page controls below are lightweight sketches, not commercial releases. Explore the linked source projects and additional GitHub candidates further down. Repository visibility does not establish company ownership, exclusivity, or commercial rights; each entry includes a rights signal for follow-up diligence.</p>
 
   <!-- FORM-909 -->
   <div class="card-line rounded-3xl bg-panel overflow-hidden mb-4 reveal">
     <div class="grid lg:grid-cols-5">
       <div class="p-8 lg:col-span-2 border-b lg:border-b-0 lg:border-r border-white/10">
-        <div class="chip text-lime border-lime/40 mb-3">APP 01 — BROWSER IDM DRUM MACHINE</div>
+        <div class="chip text-lime border-lime/40 mb-3">IN-PAGE SKETCH 01 — BROWSER IDM DRUM MACHINE</div>
         <h3 class="font-bold text-3xl">Form-909 <span class="text-lime">Warp</span></h3>
-        <p class="text-mute text-sm mt-2 leading-relaxed">A warping 909-style sequencer for glitch, IDM & breakcore. Program 16 steps, trigger pads, warp the swing. All synthesis is live Web Audio — no samples.</p>
-        <ul class="font-mono text-[11px] text-mute mt-4 space-y-1"><li>✓ 4-voice synth engine (kick/snare/hat/perc)</li><li>✓ 16-step sequencer + 8 performance pads</li><li>✓ Swing, BPM & pattern presets</li></ul>
-        <div class="flex gap-2 mt-5"><button onclick="toast('Form-909 Warp license added. Check cart.')" class="btn-lime rounded-lg px-4 py-2 text-sm font-bold">License — $49</button><button onclick="toast('Documentation opened in new tab (sim).')" class="btn-ghost rounded-lg px-4 py-2 text-sm">Docs</button></div>
+        <p class="text-mute text-sm mt-2 leading-relaxed">A simplified in-page drum-machine sketch. The separate public repository describes a six-voice sequencer with pattern generation, live recording, and offline WAV rendering.</p>
+        <ul class="font-mono text-[11px] text-mute mt-4 space-y-1"><li>✓ This page: four simple synthesized voices</li><li>✓ Standalone project: six synthesis voices</li><li>✓ MIT license reported in the repository</li></ul>
+        <div class="flex flex-wrap gap-2 mt-5"><a href="https://github.com/zazieproductions/Form-909-Warp-IDM-Drum-Machine" target="_blank" rel="noopener noreferrer" class="btn-lime rounded-lg px-4 py-2 text-sm font-bold">SOURCE REPOSITORY ↗</a><a href="https://zazieproductions.github.io/Form-909-Warp-IDM-Drum-Machine/Form-909%20Warp%20IDM%20Drum%20Machine.html" target="_blank" rel="noopener noreferrer" class="btn-ghost rounded-lg px-4 py-2 text-sm">FULL LIVE DEMO ↗</a></div>
       </div>
       <div class="p-6 md:p-8 lg:col-span-3 bg-[#0a0a13]">
         <div class="flex flex-wrap items-center gap-3 mb-4">
@@ -390,9 +390,9 @@
     <!-- SIGNAL ROT -->
     <div class="card-line rounded-3xl bg-panel overflow-hidden reveal">
       <div class="p-8">
-        <div class="chip text-mag border-mag/40 mb-3">APP 02 — MASTERING SUITE</div>
+        <div class="chip text-mag border-mag/40 mb-3">IN-PAGE SKETCH 02 — TEST-TONE EFFECT</div>
         <h3 class="font-bold text-2xl">Signal Rot <span class="font-serif italic font-normal text-mute">Mastering Suite</span></h3>
-        <p class="text-mute text-sm mt-2">Audio processing & mastering software. Degrade beautifully: bit-rot, tape melt, ghost limiter. Drag the rot — hear it decay live.</p>
+        <p class="text-mute text-sm mt-2">This small control is a synthesized test tone with a low-pass filter and modulation — it is not a mastering engine. The separate public project describes a browser-native mastering and immersive-audio workstation.</p>
         <div class="mt-6 card-line rounded-2xl p-5 bg-[#0a0a13]">
           <div class="flex items-center justify-between mb-4">
             <div class="flex items-center gap-3"><button id="rotPower" onclick="toggleRot()" class="w-12 h-12 rounded-full border border-white/20 font-bold hover:border-lime">⏻</button><div><div class="font-bold text-sm">ROT ENGINE</div><div id="rotState" class="font-mono text-[10px] text-mute">OFFLINE</div></div></div>
@@ -404,14 +404,16 @@
             <div><div class="flex justify-between font-mono text-[11px] mb-1"><span>WIDTH / HAUNT</span><span id="rotWidthVal" class="text-cy">65%</span></div><input type="range" id="rotWidth" min="0" max="100" value="65" class="w-full" oninput="updateRot()"></div>
           </div>
         </div>
+        <div class="flex flex-wrap items-center gap-3 mt-5"><a href="https://github.com/zazieproductions/Signal-Rot-Audio-Mastering-Suite-" target="_blank" rel="noopener noreferrer" class="btn-ghost rounded-lg px-4 py-2 text-sm">SOURCE REPOSITORY ↗</a><span class="font-mono text-[10px] text-mute">MIT license reported in repo</span></div>
       </div>
     </div>
     <!-- NOETIC -->
     <div class="card-line rounded-3xl bg-black overflow-hidden reveal flex flex-col">
       <div class="p-8 pb-4">
-        <div class="chip text-cy border-cy/40 mb-3">APP 03 — SYNTHETIC THOUGHT OS</div>
+        <div class="chip text-cy border-cy/40 mb-3">IN-PAGE MOCK 03 — FICTIONAL CREATIVE OS</div>
         <h3 class="font-bold text-2xl">NOETIC <span class="font-mono text-sm text-cy">Cognitive-Command-Deck</span></h3>
-        <p class="text-mute text-sm mt-2">An operating system for synthetic thought. Query the holdings mind. Type <span class="font-mono text-lime">help</span> to begin.</p>
+        <p class="text-mute text-sm mt-2">This is a scripted local mock, not an AI or diligence system. The separate NOETIC project is a generative interactive-fiction desktop that runs in the browser.</p>
+        <div class="flex flex-wrap gap-2 mt-4"><a href="https://github.com/zazieproductions/NOETIC-Cognitive-Command-Deck" target="_blank" rel="noopener noreferrer" class="btn-ghost rounded-lg px-4 py-2 text-sm">SOURCE REPOSITORY ↗</a><a href="https://zazieproductions.github.io/NOETIC-Cognitive-Command-Deck/" target="_blank" rel="noopener noreferrer" class="btn-lime rounded-lg px-4 py-2 text-sm font-bold">FULL LIVE DEMO ↗</a></div><div class="font-mono text-[10px] text-mute mt-2">No project license identified in the repository metadata reviewed.</div>
       </div>
       <div class="mx-4 mb-4 rounded-2xl border border-cy/20 bg-[#05070d] flex-1 flex flex-col overflow-hidden">
         <div class="flex gap-1.5 px-4 py-3 border-b border-white/10"><div class="browser-dot bg-mag"></div><div class="browser-dot bg-amber-400"></div><div class="browser-dot bg-emerald-400"></div><span class="font-mono text-[10px] text-mute ml-2">noetic://command-deck — v2.6.1</span></div>
@@ -419,6 +421,18 @@
         <div class="flex items-center gap-2 p-3 border-t border-white/10 terminal text-[12px]"><span class="text-cy">noetic&gt;</span><input id="noeticIn" placeholder="type command..." class="flex-1 !bg-transparent !border-none text-[12px] terminal" style="box-shadow:none!important"></div>
       </div>
     </div>
+  </div>
+
+  <div id="software-ip" class="mt-16 pt-10 border-t border-white/10">
+    <div class="flex flex-wrap items-end justify-between gap-5 mb-8">
+      <div>
+        <div class="eyebrow text-lime mb-3">GITHUB SCAN • 12 ADDITIONAL ASSETS</div>
+        <h3 class="font-grot font-bold text-3xl md:text-5xl">More code &amp; research <span class="font-serif italic font-normal text-mute">in the pipeline.</span></h3>
+      </div>
+      <p class="text-mute text-sm max-w-xl leading-relaxed">A curated shortlist of public repositories and research data with product, creative-IP, or licensing potential. These are candidates for the portfolio—not an appraisal or a statement that ZMH owns every contribution or commercial right.</p>
+    </div>
+    <div id="codeHoldingsGrid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+    <p class="font-mono text-[10px] text-mute leading-relaxed mt-6">Rights signals were checked against each repository’s visible README and license files on 2026-10-13. Verify chain of title, contributor assignments, third-party assets, dependencies, and current licensing before using, selling, or licensing any project.</p>
   </div>
 </section>
 
@@ -487,7 +501,7 @@
           <button onclick="subscribe()" class="btn-lime rounded-lg px-4 font-bold text-sm">→</button>
         </div>
       </div>
-      <div class="font-mono text-[12px] space-y-2"><div class="text-mute text-[10px] tracking-widest mb-3">DIVISIONS</div><a href="#films" class="block hover:text-lime">Zazie Pictures (4)</a><a href="#domains" class="block hover:text-lime">Zazie Domains (5)</a><a href="#audiences" class="block hover:text-lime">Zazie Audiences (2)</a><a href="#products" class="block hover:text-lime">Zazie Sounds (4)</a><a href="#music" class="block hover:text-lime">Zazie Productions (20)</a><a href="#software" class="block hover:text-lime">Zazie Labs (3)</a></div>
+      <div class="font-mono text-[12px] space-y-2"><div class="text-mute text-[10px] tracking-widest mb-3">DIVISIONS</div><a href="#films" class="block hover:text-lime">Zazie Pictures (4)</a><a href="#domains" class="block hover:text-lime">Zazie Domains (5)</a><a href="#audiences" class="block hover:text-lime">Zazie Audiences (2)</a><a href="#products" class="block hover:text-lime">Zazie Sounds (4)</a><a href="#music" class="block hover:text-lime">Zazie Productions (20)</a><a href="#software" class="block hover:text-lime">Zazie Labs (software portfolio)</a></div>
       <div class="font-mono text-[12px] space-y-2"><div class="text-mute text-[10px] tracking-widest mb-3">PROPERTIES</div><div class="text-mute">zazieinstitute.org</div><div class="text-mute">globalparadigmscorp.com</div><div class="text-mute">kypo6.com</div><div class="text-mute">radioreach.us</div><div class="text-mute">zazieproductions.com</div></div>
       <div class="font-mono text-[12px] space-y-2"><div class="text-mute text-[10px] tracking-widest mb-3">HOLDINGS</div><a href="#investors" class="block hover:text-lime">Acquire / Sell to us</a><a href="#investors" class="block hover:text-lime">Investor relations</a><button onclick="openDeck()" class="block hover:text-lime">Investor deck</button><button onclick="toast('Cap table: Zazie (100%). That is the cap table.')" class="block hover:text-lime">Cap table</button></div>
     </div>
@@ -539,7 +553,7 @@
 <!-- COMMAND PALETTE -->
 <div id="palette" class="fixed inset-0 modal-bg z-[80] hidden justify-center pt-[12vh] px-4" onclick="if(event.target===this)closePalette()">
   <div class="bg-panel border border-lime/30 rounded-2xl w-full max-w-xl overflow-hidden h-fit glow-lime">
-    <div class="flex items-center gap-3 p-4 border-b border-white/10"><span class="text-lime">⌘</span><input id="paletteIn" placeholder="Search all 39 assets... (films, domains, tracks, software)" class="flex-1 !bg-transparent !border-none text-sm" style="box-shadow:none!important"><span class="font-mono text-[10px] text-mute">ESC</span></div>
+    <div class="flex items-center gap-3 p-4 border-b border-white/10"><span class="text-lime">⌘</span><input id="paletteIn" placeholder="Search holdings... (films, domains, music, software)" class="flex-1 !bg-transparent !border-none text-sm" style="box-shadow:none!important"><span class="font-mono text-[10px] text-mute">ESC</span></div>
     <div id="paletteList" class="max-h-[320px] overflow-y-auto p-2"></div>
   </div>
 </div>
