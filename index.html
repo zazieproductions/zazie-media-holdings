@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zazie Media Holdings — Own Everything. License Anything.</title>
+<meta name="description" content="Zazie Media Holdings is a miniature Sony Group / Bertelsmann: acquiring, owning and monetizing films, domains, audiences, products, music and software.">
+<link rel="stylesheet" href="/src/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+</head>
+<body class="noise antialiased">
+
+<div id="cursor"></div>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="font-mono text-[11px] tracking-[.3em] text-mute mb-4">ZAZIE MEDIA HOLDINGS</div>
+  <div class="font-grot font-bold text-4xl md:text-6xl mb-2">Z<span class="text-lime">MH</span>▚</div>
+  <div class="font-serif italic text-xl text-mute mb-8">Consolidating the weird...</div>
+  <div class="loader-bar mb-4"><div class="loader-fill" id="loaderFill"></div></div>
+  <div class="font-mono text-xs text-mute"><span id="loaderPct">0</span>% — <span id="loaderMsg">Auditing catalogs</span></div>
+</div>
+
+<!-- TOP TICKER -->
+<div class="bg-lime text-black font-mono text-[11px] font-bold tracking-wide marquee py-1.5 border-b border-black/10 relative z-40">
+  <div class="marquee-track" id="topTicker"></div>
+</div>
+
+<!-- NAV -->
+<nav class="sticky top-0 z-50 glass border-b border-white/10">
+  <div id="scrollProgress" class="absolute top-0 left-0 h-[2px] bg-lime" style="width:0%"></div>
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 h-[64px] flex items-center justify-between gap-4">
+    <a href="#top" class="flex items-center gap-3 group">
+      <div class="w-9 h-9 bg-lime text-black font-bold flex items-center justify-center rounded-lg text-lg group-hover:rotate-6 transition">Z</div>
+      <div class="leading-none">
+        <div class="font-bold tracking-tight text-[15px]">ZAZIE MEDIA <span class="text-lime">HOLDINGS</span></div>
+        <div class="font-mono text-[9px] tracking-[.25em] text-mute">MINIATURE CONGLOMERATE • EST. 2019</div>
+      </div>
+    </a>
+    <div class="hidden lg:flex items-center gap-6 font-mono text-[12px] tracking-wide">
+      <a href="#holdings" class="nav-link">STRUCTURE</a>
+      <a href="#films" class="nav-link">FILMS</a>
+      <a href="#domains" class="nav-link">DOMAINS</a>
+      <a href="#audiences" class="nav-link">AUDIENCES</a>
+      <a href="#products" class="nav-link">PRODUCTS</a>
+      <a href="#music" class="nav-link">MUSIC</a>
+      <a href="#software" class="nav-link">SOFTWARE</a>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="openPalette()" class="hidden md:flex items-center gap-2 btn-ghost rounded-lg px-3 py-2 font-mono text-[11px] text-mute">
+        <span>⌘K</span><span class="hidden xl:inline">Search 39 assets...</span>
+      </button>
+      <button onclick="toggleCart(true)" class="relative btn-ghost rounded-lg px-3 py-2 font-mono text-[11px]">
+        CART <span id="cartCount" class="ml-1 bg-lime text-black px-1.5 py-0.5 rounded font-bold">0</span>
+      </button>
+      <a href="#investors" class="hidden sm:inline-flex btn-lime rounded-lg px-4 py-2 font-bold text-[13px]">INVEST / ACQUIRE →</a>
+      <button id="mobileBtn" class="lg:hidden btn-ghost rounded-lg px-3 py-2">☰</button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden lg:hidden border-t border-white/10 px-6 py-4 flex flex-col gap-3 font-mono text-sm glass">
+    <a href="#holdings">STRUCTURE</a><a href="#films">FILMS</a><a href="#domains">DOMAINS</a><a href="#audiences">AUDIENCES</a><a href="#products">PRODUCTS</a><a href="#music">MUSIC</a><a href="#software">SOFTWARE</a><a href="#investors" class="text-lime">INVEST / ACQUIRE →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header id="top" class="relative overflow-hidden grid-bg">
+  <canvas id="heroCanvas" class="absolute inset-0 w-full h-full opacity-60"></canvas>
+  <div class="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-viol/20 blur-[140px] pointer-events-none"></div>
+  <div class="absolute top-1/2 -left-40 w-[500px] h-[500px] rounded-full bg-mag/10 blur-[140px] pointer-events-none"></div>
+
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 pt-14 md:pt-20 pb-10 relative z-10">
+    <div class="grid lg:grid-cols-12 gap-10 items-end">
+      <div class="lg:col-span-7">
+        <div class="flex flex-wrap items-center gap-2 mb-6">
+          <span class="chip bg-lime text-black border-lime font-bold">◉ HOLDING COMPANY</span>
+          <span class="chip">SONY / BERTELSMANN MODEL — AT 1:1000 SCALE</span>
+          <span class="chip text-lime border-lime/40">39 ASSETS UNDER MANAGEMENT</span>
+        </div>
+        <h1 class="font-grot font-bold leading-[.9] tracking-tight text-[13vw] sm:text-7xl md:text-8xl xl:text-[110px]">
+          ZAZIE<br><span class="outline-text">MEDIA</span><br>
+          <span class="font-serif italic font-normal text-lime text-glow">Holdings.</span>
+        </h1>
+        <p class="mt-6 text-mute text-base md:text-lg max-w-xl leading-relaxed">
+          We acquire, own, manage & monetize <span class="text-cream">media properties</span> — music catalogs, films, domains, viral audiences, digital products, software & original IP. One parent. Seven divisions. Infinite licensing.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#holdings" class="btn-lime rounded-xl px-6 py-3.5 font-bold">Explore the Portfolio ↓</a>
+          <a href="#music" class="btn-ghost rounded-xl px-6 py-3.5 font-bold flex items-center gap-2"><span class="w-2 h-2 bg-mag rounded-full pulse-dot"></span> Listen to Vault</a>
+          <button onclick="openDeck()" class="font-mono text-xs text-mute underline underline-offset-4 hover:text-lime px-2">Download Investor Deck (PDF) ↗</button>
+        </div>
+        <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-2xl">
+          <div class="card-line rounded-xl p-4 bg-panel/60"><div class="font-mono text-[10px] text-mute tracking-widest">PORTFOLIO VALUE</div><div class="font-bold text-2xl text-lime">$<span class="counter" data-target="4.2" data-dec="1">0</span>M</div><div class="font-mono text-[10px] text-emerald-400">▲ +212% YoY</div></div>
+          <div class="card-line rounded-xl p-4 bg-panel/60"><div class="font-mono text-[10px] text-mute tracking-widest">OWNED AUDIENCE</div><div class="font-bold text-2xl"><span class="counter" data-target="57">0</span>K+</div><div class="font-mono text-[10px] text-mute">+10M views</div></div>
+          <div class="card-line rounded-xl p-4 bg-panel/60"><div class="font-mono text-[10px] text-mute tracking-widest">MUSIC WORKS</div><div class="font-bold text-2xl"><span class="counter" data-target="20">0</span></div><div class="font-mono text-[10px] text-mute">Singles • EPs • LPs</div></div>
+          <div class="card-line rounded-xl p-4 bg-panel/60"><div class="font-mono text-[10px] text-mute tracking-widest">DOMAINS</div><div class="font-bold text-2xl"><span class="counter" data-target="5">0</span></div><div class="font-mono text-[10px] text-mute">100% owned</div></div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 space-y-4">
+        <div class="card-line rounded-2xl overflow-hidden bg-panel">
+          <div class="flex items-center justify-between px-5 py-3 border-b border-white/10">
+            <div class="font-mono text-[10px] tracking-[.2em] text-mute">● LIVE HOLDINGS TERMINAL</div>
+            <div class="font-mono text-[10px] text-lime">NASDAQ: ZMH (SIM)</div>
+          </div>
+          <div class="p-5">
+            <div class="flex items-end justify-between mb-2">
+              <div><div class="font-mono text-[10px] text-mute">ZMH INDEX</div><div class="font-bold text-4xl">$<span id="zmhPrice">284.12</span> <span id="zmhChg" class="text-sm text-emerald-400 font-mono">+1.24%</span></div></div>
+              <canvas id="miniSpark" width="140" height="50"></canvas>
+            </div>
+            <div id="terminalFeed" class="terminal text-[11px] leading-relaxed h-[132px] overflow-hidden text-mute"></div>
+            <div class="grid grid-cols-3 gap-2 mt-4">
+              <button onclick="simulateTrade('ACQUIRE')" class="btn-lime rounded-lg py-2 font-mono text-[11px] font-bold">+ ACQUIRE</button>
+              <button onclick="simulateTrade('LICENSE')" class="btn-ghost rounded-lg py-2 font-mono text-[11px]">⇄ LICENSE</button>
+              <button onclick="document.getElementById('investors').scrollIntoView()" class="btn-ghost rounded-lg py-2 font-mono text-[11px]">⊕ PITCH US</button>
+            </div>
+          </div>
+        </div>
+        <div class="card-line rounded-2xl p-5 bg-gradient-to-br from-viol/20 to-mag/10 relative overflow-hidden">
+          <div class="absolute top-3 right-4 font-mono text-[10px] text-mute">DIVISION 06 // ON AIR</div>
+          <div class="eyebrow text-lime mb-2">★ Featured Asset</div>
+          <div class="font-bold text-xl">KYPO6 — Infamous 2026 Tabloid</div>
+          <div class="font-serif italic text-mute">2.1M monthly readers. Zero chill. Pure signal.</div>
+          <div class="flex gap-2 mt-3"><a href="#domains" class="btn-lime rounded-lg px-4 py-2 text-sm font-bold">Inspect Asset</a><button onclick="openDomain(2)" class="btn-ghost rounded-lg px-4 py-2 text-sm">Live Preview</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-y border-white/10 bg-panel/80 backdrop-blur marquee py-3 font-mono text-[12px] tracking-wide">
+    <div class="marquee-track" id="assetTicker"></div>
+  </div>
+</header>
+
+<!-- HOLDINGS STRUCTURE -->
+<section id="holdings" class="max-w-[1400px] mx-auto px-5 md:px-8 py-20">
+  <div class="flex flex-wrap items-end justify-between gap-4 mb-10 reveal">
+    <div>
+      <div class="eyebrow text-lime mb-3">01 — CORPORATE STRUCTURE</div>
+      <h2 class="font-grot font-bold text-4xl md:text-6xl tracking-tight">One parent.<br><span class="font-serif italic font-normal text-mute">Seven money machines.</span></h2>
+    </div>
+    <p class="max-w-md text-mute text-sm leading-relaxed">Modelled on Sony Group & Bertelsmann: a central holding company that owns operating divisions outright. Every stream, license, sale and sync flows back to ZMH.</p>
+  </div>
+
+  <!-- Org chart -->
+  <div class="card-line rounded-2xl bg-panel p-6 md:p-10 mb-8 reveal relative overflow-hidden">
+    <div class="text-center mb-2">
+      <div class="inline-block bg-lime text-black font-bold px-8 py-4 rounded-2xl text-xl glow-lime">ZAZIE MEDIA HOLDINGS <span class="font-mono text-xs block font-normal">PARENT • 100% OWNERSHIP • DELAWARE C-CORP (SIM)</span></div>
+    </div>
+    <div class="hidden md:block w-px h-8 bg-white/20 mx-auto"></div>
+    <div class="hidden md:block h-px bg-white/20 mx-10 mb-0"></div>
+    <div class="grid md:grid-cols-7 gap-3 mt-6">
+      <div onclick="scrollToId('films')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-mag border-mag/30"><div class="text-2xl mb-1">◈</div><div class="font-bold text-[13px]">ZAZIE<br>PICTURES</div><div class="font-mono text-[10px] text-mute mt-1">4 FILMS</div></div>
+      <div onclick="scrollToId('domains')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-cy border-cy/30"><div class="text-2xl mb-1">⬢</div><div class="font-bold text-[13px]">ZAZIE<br>DOMAINS</div><div class="font-mono text-[10px] text-mute mt-1">5 SITES</div></div>
+      <div onclick="scrollToId('audiences')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-lime border-lime/30"><div class="text-2xl mb-1">◎</div><div class="font-bold text-[13px]">ZAZIE<br>AUDIENCES</div><div class="font-mono text-[10px] text-mute mt-1">57K FANS</div></div>
+      <div onclick="scrollToId('products')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-amber-300 border-amber-300/30"><div class="text-2xl mb-1">⬣</div><div class="font-bold text-[13px]">ZAZIE<br>SOUNDS</div><div class="font-mono text-[10px] text-mute mt-1">4 PRODUCTS</div></div>
+      <div onclick="scrollToId('music')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-viol border-viol/30"><div class="text-2xl mb-1">♪</div><div class="font-bold text-[13px]">ZAZIE<br>PRODUCTIONS</div><div class="font-mono text-[10px] text-mute mt-1">20 RELEASES</div></div>
+      <div onclick="scrollToId('software')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-emerald-300 border-emerald-300/30"><div class="text-2xl mb-1">⚙</div><div class="font-bold text-[13px]">ZAZIE<br>LABS</div><div class="font-mono text-[10px] text-mute mt-1">3 APPS</div></div>
+      <div onclick="scrollToId('institute')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-orange-300 border-orange-300/30"><div class="text-2xl mb-1">✦</div><div class="font-bold text-[13px]">ZAZIE<br>INSTITUTE</div><div class="font-mono text-[10px] text-mute mt-1">R&D</div></div>
+    </div>
+    <div class="mt-6 flex flex-wrap gap-2 justify-center font-mono text-[10px] text-mute"><span>→ CLICK ANY DIVISION TO AUDIT</span><span class="text-lime">• ALL REVENUE FLOWS UPSTREAM TO HOLDINGS</span></div>
+  </div>
+
+  <div class="grid lg:grid-cols-3 gap-4">
+    <div class="card-line rounded-2xl bg-panel p-6 reveal">
+      <div class="eyebrow text-mute mb-4">REVENUE MIX 2026 (SIMULATED)</div>
+      <div class="h-[240px]"><canvas id="mixChart"></canvas></div>
+      <div class="mt-4 grid grid-cols-2 gap-2 font-mono text-[11px]">
+        <div><span class="text-lime">■</span> Sync & Licensing 32%</div><div><span class="text-viol">■</span> Digital Products 24%</div><div><span class="text-mag">■</span> Streaming 21%</div><div><span class="text-cy">■</span> Domains & Ads 23%</div>
+      </div>
+    </div>
+    <div class="card-line rounded-2xl bg-panel p-6 reveal lg:col-span-2">
+      <div class="flex items-center justify-between mb-4"><div class="eyebrow text-mute">HOLDINGS GROWTH — 2019 → 2026</div><div class="flex gap-2"><button onclick="updateGrowth('rev')" class="chip hover:border-lime">REVENUE</button><button onclick="updateGrowth('assets')" class="chip hover:border-lime">ASSETS</button><button onclick="updateGrowth('audience')" class="chip hover:border-lime">AUDIENCE</button></div></div>
+      <div class="h-[240px]"><canvas id="growthChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-4 gap-4 mt-4">
+    <div class="card-line rounded-2xl p-6 bg-gradient-to-b from-panel to-panel2 reveal card-hover"><div class="font-mono text-[10px] text-lime tracking-widest mb-2">ACQUIRE</div><div class="font-bold mb-1">Buy distressed IP</div><p class="text-sm text-mute">We hunt abandoned catalogs, dead domains, forgotten films & under-monetized audiences.</p></div>
+    <div class="card-line rounded-2xl p-6 bg-gradient-to-b from-panel to-panel2 reveal card-hover"><div class="font-mono text-[10px] text-viol tracking-widest mb-2">OWN</div><div class="font-bold mb-1">Hold 100% outright</div><p class="text-sm text-mute">No messy splits. Masters, publishing, code, trademarks — all under one cap table.</p></div>
+    <div class="card-line rounded-2xl p-6 bg-gradient-to-b from-panel to-panel2 reveal card-hover"><div class="font-mono text-[10px] text-mag tracking-widest mb-2">MANAGE</div><div class="font-bold mb-1">Operate like a label</div><p class="text-sm text-mute">Reissue, remix, re-skin, re-package. Deluxe editions, SEO, funnels & sync pitches.</p></div>
+    <div class="card-line rounded-2xl p-6 bg-gradient-to-b from-panel to-panel2 reveal card-hover"><div class="font-mono text-[10px] text-cy tracking-widest mb-2">MONETIZE</div><div class="font-bold mb-1">License everything</div><p class="text-sm text-mute">Sample packs, placements, merch, subs, ads, stems, patents. Every asset pays rent.</p></div>
+  </div>
+</section>
+
+<!-- FILMS -->
+<section id="films" class="border-y border-white/10 bg-[#0a0a12] grid-bg">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 py-20">
+    <div class="flex flex-wrap items-end justify-between gap-4 mb-8 reveal">
+      <div><div class="eyebrow text-mag mb-3">02 — ZAZIE PICTURES • 4 FEATURES</div>
+      <h2 class="font-grot font-bold text-4xl md:text-6xl">Film <span class="font-serif italic font-normal">Archive</span></h2></div>
+      <div class="flex gap-2 font-mono text-[11px]">
+        <button class="filmFilter chip tab-active" data-f="all">ALL</button>
+        <button class="filmFilter chip" data-f="Horror">HORROR</button>
+        <button class="filmFilter chip" data-f="Sci-Fi">SCI-FI</button>
+        <button class="filmFilter chip" data-f="Arthouse">ARTHOUSE</button>
+      </div>
+    </div>
+    <div id="filmGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+    <div class="mt-6 card-line rounded-2xl p-5 bg-panel flex flex-wrap items-center justify-between gap-4 reveal">
+      <div class="font-mono text-[11px] text-mute">DISTRIBUTION RIGHTS AVAILABLE FOR ALL TITLES • FESTIVAL SCREENER ROOM • <span class="text-lime">SYNC & REMAKE OPTIONS OPEN</span></div>
+      <button onclick="openFilm(0)" class="btn-lime rounded-lg px-5 py-2.5 font-bold text-sm">Request Screener Access →</button>
+    </div>
+  </div>
+</section>
+
+<!-- DOMAINS -->
+<section id="domains" class="max-w-[1400px] mx-auto px-5 md:px-8 py-20">
+  <div class="flex flex-wrap items-end justify-between gap-4 mb-8 reveal">
+    <div><div class="eyebrow text-cy mb-3">03 — ZAZIE DOMAINS • 5 PROPERTIES • 100% OWNED</div>
+    <h2 class="font-grot font-bold text-4xl md:text-6xl">Domain <span class="font-serif italic font-normal text-mute">Empire</span></h2></div>
+    <div class="font-mono text-[11px] text-mute text-right">COMBINED TRAFFIC<br><span class="text-2xl font-bold text-cream">2.6M</span> visits / yr (sim)</div>
+  </div>
+  <div id="domainGrid" class="grid lg:grid-cols-2 gap-4"></div>
+
+  <!-- INSTITUTE DEEP DIVE -->
+  <div id="institute" class="mt-8 card-line rounded-3xl overflow-hidden reveal">
+    <div class="bg-gradient-to-r from-viol/30 via-panel to-mag/20 p-8 md:p-12">
+      <div class="grid lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <div class="chip text-lime border-lime/40 mb-4">◈ zazieinstitute.org — FLAGSHIP R&D PROPERTY</div>
+          <h3 class="font-grot font-bold text-3xl md:text-5xl leading-tight">Zazie Institute of<br><span class="font-serif italic font-normal">Applied Anomalies</span></h3>
+          <p class="text-mute mt-4 leading-relaxed">Experimental research & arts laboratory. Hardware + software prototypes, speculative patents, and classified research notes. Part IRCAM, part Area 51 gift shop.</p>
+          <div class="flex flex-wrap gap-2 mt-5 font-mono text-[11px]">
+            <span class="chip">SPECULATIVE PATENTS: 14</span><span class="chip">RESEARCH NOTES: 89</span><span class="chip text-lime">OPEN FOR GRANTS</span>
+          </div>
+          <div class="flex gap-3 mt-6">
+            <button onclick="openInstitute()" class="btn-lime rounded-xl px-6 py-3 font-bold text-sm">Enter Research Archive →</button>
+            <button onclick="toast('Patent docket requested. Check your inbox.')" class="btn-ghost rounded-xl px-6 py-3 text-sm">Patent Docket</button>
+          </div>
+        </div>
+        <div class="grid gap-3">
+          <div class="card-line rounded-2xl overflow-hidden bg-panel flex gap-4 p-4 card-hover cursor-pointer" onclick="openInstitute('bench')">
+            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=400&auto=format&fit=crop" class="w-24 h-24 object-cover rounded-xl" alt="Acoustic Bench">
+            <div><div class="font-mono text-[10px] text-cy">PROTOTYPE 01 — INTERACTIVE INSTRUMENT</div><div class="font-bold">Acoustic Bench</div><div class="text-sm text-mute">Sit to play. 88 piezo strings resonate through reclaimed church pew. MIDI + CV out.</div></div>
+          </div>
+          <div class="card-line rounded-2xl overflow-hidden bg-panel flex gap-4 p-4 card-hover cursor-pointer" onclick="openInstitute('spectra')">
+            <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=400&auto=format&fit=crop" class="w-24 h-24 object-cover rounded-xl" alt="Spectra Lab">
+            <div><div class="font-mono text-[10px] text-viol">PROTOTYPE 02 — LIGHT / SOUND LAB</div><div class="font-bold">Spectra Lab</div><div class="text-sm text-mute">Prism-driven granular synth. Light frequency = grain pitch. Full-spectrum composition.</div></div>
+          </div>
+          <div class="card-line rounded-2xl overflow-hidden bg-panel flex gap-4 p-4 card-hover cursor-pointer" onclick="openInstitute('oculus')">
+            <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?q=80&w=400&auto=format&fit=crop" class="w-24 h-24 object-cover rounded-xl" alt="VOID OCULUS">
+            <div><div class="font-mono text-[10px] text-mag">PROTOTYPE 03 — IMMERSIVE HEADSET</div><div class="font-bold">VOID//OCULUS</div><div class="text-sm text-mute">Sensory-deprivation VR for composing in total darkness. Binaural void engine.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCES -->
+<section id="audiences" class="border-y border-white/10 bg-[#0a0a12]">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 py-20">
+    <div class="eyebrow text-lime mb-3 reveal">04 — ZAZIE AUDIENCES • OWNED DISTRIBUTION</div>
+    <h2 class="font-grot font-bold text-4xl md:text-6xl mb-2 reveal">We own the <span class="font-serif italic font-normal">eyeballs.</span></h2>
+    <p class="text-mute max-w-xl mb-10 reveal">No ad spend needed when you own the channels. Two viral properties delivering launch-day traffic to every ZMH release.</p>
+
+    <div class="grid lg:grid-cols-2 gap-4">
+      <!-- Spotify -->
+      <div class="card-line rounded-3xl bg-panel overflow-hidden reveal card-hover">
+        <div class="bg-gradient-to-br from-emerald-500/30 to-panel p-8">
+          <div class="flex items-start justify-between">
+            <div class="w-20 h-20 rounded-2xl bg-[#1DB954] flex items-center justify-center text-4xl shadow-2xl">♫</div>
+            <span class="chip bg-[#1DB954] text-black border-none font-bold">SPOTIFY • 32K FOLLOWERS</span>
+          </div>
+          <h3 class="font-bold text-3xl mt-5">Goa Trance / Psytrance</h3>
+          <p class="text-mute text-sm">Flagship playlist. 140–148 BPM forever. Updated weekly. Placement = instant streams for catalog.</p>
+          <div class="flex items-center gap-4 mt-4">
+            <button onclick="togglePlaylist()" id="playlistBtn" class="w-14 h-14 rounded-full bg-[#1DB954] text-black text-2xl font-bold hover:scale-105 transition">▶</button>
+            <div><div class="font-mono text-[10px] text-mute">MONTHLY LISTENERS</div><div class="font-bold text-xl"><span class="counter" data-target="48">0</span>K <span class="text-emerald-400 text-sm font-mono">▲ 18%</span></div></div>
+            <div><div class="font-mono text-[10px] text-mute">PLACEMENTS SOLD</div><div class="font-bold text-xl">$<span class="counter" data-target="12">0</span>K</div></div>
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="font-mono text-[10px] tracking-widest text-mute px-2 mb-2">TOP TRACKS — TAP TO PREVIEW</div>
+          <div id="spotifyList"></div>
+        </div>
+      </div>
+
+      <!-- Instagram -->
+      <div class="card-line rounded-3xl bg-panel overflow-hidden reveal card-hover">
+        <div class="p-8 bg-gradient-to-br from-mag/25 to-viol/20">
+          <div class="flex items-start justify-between">
+            <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-amber-400 via-mag to-viol p-[3px]"><div class="w-full h-full rounded-2xl bg-panel flex items-center justify-center text-3xl font-bold">@</div></div>
+            <span class="chip bg-mag text-white border-none font-bold">INSTAGRAM • 25K • 10M VIEWS</span>
+          </div>
+          <h3 class="font-bold text-3xl mt-5">@WellMeaningNeurotypicals</h3>
+          <p class="text-mute text-sm">Viral neurodivergent meme account. Absurdly wholesome. Absurdly shareable. Funnel to music + merch.</p>
+          <div class="grid grid-cols-3 gap-3 mt-5 text-center">
+            <div class="card-line rounded-xl p-3 bg-panel/70"><div class="font-bold text-xl"><span class="counter" data-target="25">0</span>K</div><div class="font-mono text-[9px] text-mute">FOLLOWERS</div></div>
+            <div class="card-line rounded-xl p-3 bg-panel/70"><div class="font-bold text-xl">10M</div><div class="font-mono text-[9px] text-mute">TOTAL VIEWS</div></div>
+            <div class="card-line rounded-xl p-3 bg-panel/70"><div class="font-bold text-xl text-lime">9.4%</div><div class="font-mono text-[9px] text-mute">ENGAGEMENT</div></div>
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="font-mono text-[10px] tracking-widest text-mute px-2 mb-2">VIRAL GRID — HOVER TO PREVIEW</div>
+          <div class="grid grid-cols-3 gap-2 insta-grid" id="instaGrid"></div>
+          <div class="h-[140px] mt-4 px-2"><canvas id="instaChart"></canvas></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIGITAL PRODUCTS -->
+<section id="products" class="max-w-[1400px] mx-auto px-5 md:px-8 py-20">
+  <div class="flex flex-wrap items-end justify-between gap-4 mb-8 reveal">
+    <div><div class="eyebrow text-amber-300 mb-3">05 — ZAZIE SOUNDS • DIGITAL PRODUCTS • INSTANT DELIVERY</div>
+    <h2 class="font-grot font-bold text-4xl md:text-6xl">Sample Packs <span class="font-serif italic font-normal text-mute">& SFX</span></h2></div>
+    <button onclick="addBundle()" class="btn-lime rounded-xl px-6 py-3 font-bold">GET ALL 4 — $79 <span class="line-through opacity-60 font-normal">$102</span> SAVE 23%</button>
+  </div>
+  <div id="productGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+  <div class="mt-4 card-line rounded-2xl p-4 bg-panel flex flex-wrap items-center gap-3 justify-between reveal">
+    <div class="font-mono text-[11px] text-mute">◆ ROYALTY-FREE • WAV 24-BIT • 100% ZMH-OWNED MASTERS • USED IN <span class="text-cream">SEPSIS</span> & <span class="text-cream">PHANTOM REQUIEM</span></div>
+    <div class="font-mono text-[11px]"><span class="text-lime">●</span> <span id="salesCount">1,284</span> packs sold this quarter</div>
+  </div>
+</section>
+
+<!-- MUSIC -->
+<section id="music" class="border-y border-white/10 bg-[#0a0a12] grid-bg">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 py-20">
+    <div class="flex flex-wrap items-end justify-between gap-4 mb-6 reveal">
+      <div><div class="eyebrow text-viol mb-3">06 — ZAZIE PRODUCTIONS • MUSIC HOLDINGS • 20 RELEASES • VIA ZAZIEPRODUCTIONS.COM</div>
+      <h2 class="font-grot font-bold text-4xl md:text-6xl">The <span class="font-serif italic font-normal">Vault</span></h2></div>
+      <div class="font-mono text-[11px] text-mute">MASTERS + PUBLISHING 100% OWNED<br>SYNC-READY • STEMS AVAILABLE</div>
+    </div>
+
+    <div class="card-line rounded-2xl bg-panel p-4 mb-6 reveal flex flex-wrap gap-3 items-center">
+      <div class="relative flex-1 min-w-[220px]">
+        <input id="musicSearch" placeholder="Search vault: try 'stutter', 'tinsel', '123'..." class="w-full px-4 py-3 text-sm">
+      </div>
+      <div class="flex flex-wrap gap-2 font-mono text-[11px]">
+        <button class="musicFilter chip tab-active" data-m="all">ALL 20</button>
+        <button class="musicFilter chip" data-m="Single">SINGLES (6)</button>
+        <button class="musicFilter chip" data-m="EP">EPS (2)</button>
+        <button class="musicFilter chip" data-m="Album">ALBUMS (9)</button>
+        <button class="musicFilter chip" data-m="Deluxe">DELUXE (3)</button>
+      </div>
+      <select id="musicSort" class="px-3 py-2.5 text-sm font-mono">
+        <option value="year-desc">NEWEST FIRST</option><option value="year-asc">OLDEST FIRST</option><option value="az">A → Z</option>
+      </select>
+    </div>
+
+    <div id="musicStats" class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6 reveal"></div>
+    <div id="musicGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"></div>
+  </div>
+</section>
+
+<!-- SOFTWARE -->
+<section id="software" class="max-w-[1400px] mx-auto px-5 md:px-8 py-20">
+  <div class="eyebrow text-emerald-300 mb-3 reveal">07 — ZAZIE LABS • SOFTWARE • TRY LIVE IN BROWSER</div>
+  <h2 class="font-grot font-bold text-4xl md:text-6xl mb-2 reveal">Software <span class="font-serif italic font-normal text-mute">you can touch.</span></h2>
+  <p class="text-mute max-w-xl mb-10 reveal">Three fully-owned applications. No vaporware — every demo below actually runs. Audio on recommended. 🔊</p>
+
+  <!-- FORM-909 -->
+  <div class="card-line rounded-3xl bg-panel overflow-hidden mb-4 reveal">
+    <div class="grid lg:grid-cols-5">
+      <div class="p-8 lg:col-span-2 border-b lg:border-b-0 lg:border-r border-white/10">
+        <div class="chip text-lime border-lime/40 mb-3">APP 01 — BROWSER IDM DRUM MACHINE</div>
+        <h3 class="font-bold text-3xl">Form-909 <span class="text-lime">Warp</span></h3>
+        <p class="text-mute text-sm mt-2 leading-relaxed">A warping 909-style sequencer for glitch, IDM & breakcore. Program 16 steps, trigger pads, warp the swing. All synthesis is live Web Audio — no samples.</p>
+        <ul class="font-mono text-[11px] text-mute mt-4 space-y-1"><li>✓ 4-voice synth engine (kick/snare/hat/perc)</li><li>✓ 16-step sequencer + 8 performance pads</li><li>✓ Swing, BPM & pattern presets</li></ul>
+        <div class="flex gap-2 mt-5"><button onclick="toast('Form-909 Warp license added. Check cart.')" class="btn-lime rounded-lg px-4 py-2 text-sm font-bold">License — $49</button><button onclick="toast('Documentation opened in new tab (sim).')" class="btn-ghost rounded-lg px-4 py-2 text-sm">Docs</button></div>
+      </div>
+      <div class="p-6 md:p-8 lg:col-span-3 bg-[#0a0a13]">
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+          <button id="seqPlay" onclick="toggleSeq()" class="btn-lime rounded-xl w-14 h-14 text-2xl font-bold">▶</button>
+          <div><div class="font-mono text-[10px] text-mute">TEMPO</div><div class="flex items-center gap-2"><input id="bpm" type="range" min="80" max="180" value="132" class="w-32" oninput="updateBpm(this.value)"><span id="bpmVal" class="font-mono font-bold text-lime">132</span></div></div>
+          <div><div class="font-mono text-[10px] text-mute">SWING</div><div class="flex items-center gap-2"><input id="swing" type="range" min="0" max="60" value="12" class="w-24"><span class="font-mono text-xs" id="swingVal">12%</span></div></div>
+          <div class="flex gap-2 ml-auto">
+            <button onclick="loadPreset(0)" class="chip hover:border-lime">IDM</button>
+            <button onclick="loadPreset(1)" class="chip hover:border-lime">BREAK</button>
+            <button onclick="loadPreset(2)" class="chip hover:border-lime">GLITCH</button>
+            <button onclick="clearSeq()" class="chip hover:border-mag">CLEAR</button>
+          </div>
+        </div>
+        <div id="seqGrid" class="space-y-2"></div>
+        <div class="grid grid-cols-4 sm:grid-cols-8 gap-2 mt-4" id="padGrid"></div>
+        <div class="font-mono text-[10px] text-mute mt-3">TIP: CLICK STEPS TO PROGRAM • TAP PADS OR KEYS [1-8] TO PLAY • STEP <span id="stepRead" class="text-lime">--</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid lg:grid-cols-2 gap-4">
+    <!-- SIGNAL ROT -->
+    <div class="card-line rounded-3xl bg-panel overflow-hidden reveal">
+      <div class="p-8">
+        <div class="chip text-mag border-mag/40 mb-3">APP 02 — MASTERING SUITE</div>
+        <h3 class="font-bold text-2xl">Signal Rot <span class="font-serif italic font-normal text-mute">Mastering Suite</span></h3>
+        <p class="text-mute text-sm mt-2">Audio processing & mastering software. Degrade beautifully: bit-rot, tape melt, ghost limiter. Drag the rot — hear it decay live.</p>
+        <div class="mt-6 card-line rounded-2xl p-5 bg-[#0a0a13]">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3"><button id="rotPower" onclick="toggleRot()" class="w-12 h-12 rounded-full border border-white/20 font-bold hover:border-lime">⏻</button><div><div class="font-bold text-sm">ROT ENGINE</div><div id="rotState" class="font-mono text-[10px] text-mute">OFFLINE</div></div></div>
+            <div class="flex gap-1 items-end h-10" id="rotViz"></div>
+          </div>
+          <div class="space-y-4">
+            <div><div class="flex justify-between font-mono text-[11px] mb-1"><span>DECAY / DEGRADATION</span><span id="rotDecayVal" class="text-lime">42%</span></div><input type="range" id="rotDecay" min="0" max="100" value="42" class="w-full" oninput="updateRot()"></div>
+            <div><div class="flex justify-between font-mono text-[11px] mb-1"><span>CRUSH / BIT-DEPTH</span><span id="rotCrushVal" class="text-mag">28%</span></div><input type="range" id="rotCrush" min="0" max="100" value="28" class="w-full" oninput="updateRot()"></div>
+            <div><div class="flex justify-between font-mono text-[11px] mb-1"><span>WIDTH / HAUNT</span><span id="rotWidthVal" class="text-cy">65%</span></div><input type="range" id="rotWidth" min="0" max="100" value="65" class="w-full" oninput="updateRot()"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- NOETIC -->
+    <div class="card-line rounded-3xl bg-black overflow-hidden reveal flex flex-col">
+      <div class="p-8 pb-4">
+        <div class="chip text-cy border-cy/40 mb-3">APP 03 — SYNTHETIC THOUGHT OS</div>
+        <h3 class="font-bold text-2xl">NOETIC <span class="font-mono text-sm text-cy">Cognitive-Command-Deck</span></h3>
+        <p class="text-mute text-sm mt-2">An operating system for synthetic thought. Query the holdings mind. Type <span class="font-mono text-lime">help</span> to begin.</p>
+      </div>
+      <div class="mx-4 mb-4 rounded-2xl border border-cy/20 bg-[#05070d] flex-1 flex flex-col overflow-hidden">
+        <div class="flex gap-1.5 px-4 py-3 border-b border-white/10"><div class="browser-dot bg-mag"></div><div class="browser-dot bg-amber-400"></div><div class="browser-dot bg-emerald-400"></div><span class="font-mono text-[10px] text-mute ml-2">noetic://command-deck — v2.6.1</span></div>
+        <div id="noeticOut" class="terminal text-[12px] p-4 h-[240px] overflow-y-auto leading-relaxed"></div>
+        <div class="flex items-center gap-2 p-3 border-t border-white/10 terminal text-[12px]"><span class="text-cy">noetic&gt;</span><input id="noeticIn" placeholder="type command..." class="flex-1 !bg-transparent !border-none text-[12px] terminal" style="box-shadow:none!important"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTORS -->
+<section id="investors" class="border-t border-white/10 bg-gradient-to-b from-[#0c0c16] to-ink">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 py-20">
+    <div class="grid lg:grid-cols-2 gap-8">
+      <div class="reveal">
+        <div class="eyebrow text-lime mb-3">08 — INVESTOR RELATIONS & ACQUISITIONS</div>
+        <h2 class="font-grot font-bold text-4xl md:text-6xl leading-tight">Sell us your<br><span class="font-serif italic font-normal text-lime">weird asset.</span></h2>
+        <p class="text-mute mt-4 leading-relaxed">We buy revenue-generating or culturally potent media: dead-but-beloved blogs, Spotify playlists, sample labels, short films, domains with traffic, meme pages, instrument prototypes, unreleased albums. If it's strange and ownable, we want it.</p>
+        <div class="grid sm:grid-cols-3 gap-3 mt-6">
+          <div class="card-line rounded-xl p-4"><div class="font-mono text-[10px] text-mute">DEAL SIZE</div><div class="font-bold">$500 – $250K</div></div>
+          <div class="card-line rounded-xl p-4"><div class="font-mono text-[10px] text-mute">CLOSE TIME</div><div class="font-bold">7–21 days</div></div>
+          <div class="card-line rounded-xl p-4"><div class="font-mono text-[10px] text-mute">DEALS CLOSED</div><div class="font-bold text-lime">39 assets</div></div>
+        </div>
+        <div class="card-line rounded-2xl p-6 mt-4 bg-panel">
+          <div class="font-mono text-[11px] tracking-widest text-mute mb-4">◎ VALUATION CALCULATOR — WHAT IS YOUR ASSET WORTH TO US?</div>
+          <div class="grid sm:grid-cols-3 gap-3 mb-4">
+            <div><label class="font-mono text-[10px] text-mute">MONTHLY REVENUE ($)</label><input id="calcRev" type="number" value="1200" class="w-full px-3 py-2.5 mt-1"></div>
+            <div><label class="font-mono text-[10px] text-mute">MULTIPLE</label><select id="calcMult" class="w-full px-3 py-2.5 mt-1"><option value="18">Content site (18x)</option><option value="24" selected>Playlist / audience (24x)</option><option value="30">SaaS / software (30x)</option><option value="36">Music catalog (36x)</option></select></div>
+            <div><label class="font-mono text-[10px] text-mute">GROWTH BONUS</label><select id="calcGrow" class="w-full px-3 py-2.5 mt-1"><option value="1">Flat (1.0x)</option><option value="1.2" selected>Growing (1.2x)</option><option value="1.5">Viral (1.5x)</option></select></div>
+          </div>
+          <div class="flex items-center justify-between bg-lime/10 border border-lime/30 rounded-xl p-4">
+            <div class="font-mono text-[11px] text-mute">ESTIMATED ZMH OFFER RANGE</div>
+            <div class="font-bold text-2xl text-lime" id="calcOut">$34,560</div>
+          </div>
+          <button onclick="calcVal()" class="btn-ghost rounded-lg w-full py-2.5 mt-3 font-mono text-[12px]">↻ RECALCULATE</button>
+        </div>
+      </div>
+      <div class="reveal">
+        <form id="acquireForm" class="card-line rounded-3xl bg-panel p-8 space-y-4" onsubmit="return submitAcquire(event)">
+          <div class="flex items-center justify-between"><h3 class="font-bold text-2xl">Pitch an acquisition</h3><span class="chip text-lime">RESPONSE &lt; 48H</span></div>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <div><label class="font-mono text-[10px] text-mute">YOUR NAME</label><input required id="aqName" placeholder="Jane Weird" class="w-full px-4 py-3 mt-1"></div>
+            <div><label class="font-mono text-[10px] text-mute">EMAIL</label><input required type="email" id="aqEmail" placeholder="you@strange.com" class="w-full px-4 py-3 mt-1"></div>
+          </div>
+          <div><label class="font-mono text-[10px] text-mute">ASSET TYPE</label><select id="aqType" class="w-full px-4 py-3 mt-1"><option>Music catalog / masters</option><option>Film / video IP</option><option>Domain / website</option><option>Audience (playlist / social)</option><option>Digital product / sample pack</option><option>Software / app</option><option>Other anomaly</option></select></div>
+          <div><label class="font-mono text-[10px] text-mute">ASSET URL OR LINK</label><input required id="aqUrl" placeholder="https://..." class="w-full px-4 py-3 mt-1"></div>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <div><label class="font-mono text-[10px] text-mute">MONTHLY REVENUE</label><input id="aqRev" placeholder="$0 – $50k" class="w-full px-4 py-3 mt-1"></div>
+            <div><label class="font-mono text-[10px] text-mute">ASKING PRICE</label><input id="aqAsk" placeholder="$..." class="w-full px-4 py-3 mt-1"></div>
+          </div>
+          <div><label class="font-mono text-[10px] text-mute">WHY SHOULD ZMH OWN THIS?</label><textarea id="aqWhy" rows="3" placeholder="Tell us the lore, the numbers, the cult..." class="w-full px-4 py-3 mt-1"></textarea></div>
+          <button class="btn-lime rounded-xl w-full py-4 font-bold">SUBMIT FOR DILIGENCE REVIEW →</button>
+          <div class="font-mono text-[10px] text-mute text-center">ENCRYPTED • NDA ON REQUEST • WE BUY WEIRD, FAST</div>
+        </form>
+        <div class="grid grid-cols-2 gap-3 mt-4">
+          <div class="card-line rounded-2xl p-5"><div class="font-mono text-[10px] text-mute">PRESS</div><div class="font-bold text-sm">press@zazie.holdings</div></div>
+          <div class="card-line rounded-2xl p-5"><div class="font-mono text-[10px] text-mute">SYNC LICENSING</div><div class="font-bold text-sm">sync@zazie.holdings</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-white/10 bg-black">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 py-14">
+    <div class="grid md:grid-cols-4 gap-8 mb-10">
+      <div>
+        <div class="font-bold text-2xl mb-2">ZAZIE MEDIA <span class="text-lime">HOLDINGS</span></div>
+        <p class="text-mute text-sm leading-relaxed">A miniature Sony Group. Acquire. Own. Manage. Monetize. All masters, domains, code & audiences held outright.</p>
+        <div class="flex gap-2 mt-4">
+          <input id="newsEmail" placeholder="email for investor letters" class="px-3 py-2 text-sm flex-1">
+          <button onclick="subscribe()" class="btn-lime rounded-lg px-4 font-bold text-sm">→</button>
+        </div>
+      </div>
+      <div class="font-mono text-[12px] space-y-2"><div class="text-mute text-[10px] tracking-widest mb-3">DIVISIONS</div><a href="#films" class="block hover:text-lime">Zazie Pictures (4)</a><a href="#domains" class="block hover:text-lime">Zazie Domains (5)</a><a href="#audiences" class="block hover:text-lime">Zazie Audiences (2)</a><a href="#products" class="block hover:text-lime">Zazie Sounds (4)</a><a href="#music" class="block hover:text-lime">Zazie Productions (20)</a><a href="#software" class="block hover:text-lime">Zazie Labs (3)</a></div>
+      <div class="font-mono text-[12px] space-y-2"><div class="text-mute text-[10px] tracking-widest mb-3">PROPERTIES</div><div class="text-mute">zazieinstitute.org</div><div class="text-mute">globalparadigmscorp.com</div><div class="text-mute">kypo6.com</div><div class="text-mute">radioreach.us</div><div class="text-mute">zazieproductions.com</div></div>
+      <div class="font-mono text-[12px] space-y-2"><div class="text-mute text-[10px] tracking-widest mb-3">HOLDINGS</div><a href="#investors" class="block hover:text-lime">Acquire / Sell to us</a><a href="#investors" class="block hover:text-lime">Investor relations</a><button onclick="openDeck()" class="block hover:text-lime">Investor deck</button><button onclick="toast('Cap table: Zazie (100%). That is the cap table.')" class="block hover:text-lime">Cap table</button></div>
+    </div>
+    <div class="border-t border-white/10 pt-6 flex flex-wrap justify-between gap-3 font-mono text-[10px] text-mute">
+      <div>© 2026 ZAZIE MEDIA HOLDINGS • ALL RIGHTS RESERVED • ALL WRONGS REVERSED</div>
+      <div>39 ASSETS • 7 DIVISIONS • 1 PARENT • <span class="text-lime">DEMO SITE — METRICS SIMULATED</span></div>
+    </div>
+  </div>
+</footer>
+
+<!-- PLAYER DOCK -->
+<div id="playerDock" class="fixed bottom-0 left-0 right-0 z-50 glass border-t border-lime/30 hidden">
+  <div class="max-w-[1400px] mx-auto px-4 md:px-8 py-3 flex items-center gap-4">
+    <div id="dockCover" class="w-12 h-12 rounded-xl shrink-0" style="background:linear-gradient(135deg,#8b7cff,#ff3ea5)"></div>
+    <div class="min-w-0 flex-1">
+      <div class="flex items-center gap-2"><span class="w-2 h-2 bg-lime rounded-full pulse-dot"></span><span class="font-mono text-[9px] text-lime tracking-widest">NOW STREAMING FROM VAULT</span></div>
+      <div id="dockTitle" class="font-bold text-sm truncate">—</div>
+      <div class="progress-track mt-1.5" onclick="seek(event)"><div class="progress-fill" id="dockProg"></div></div>
+    </div>
+    <div class="hidden sm:flex gap-1 items-end h-8" id="dockViz"></div>
+    <div class="font-mono text-[11px] text-mute hidden md:block"><span id="dockTime">0:00</span> / <span id="dockDur">3:00</span></div>
+    <div class="flex items-center gap-2">
+      <button onclick="stepTrack(-1)" class="btn-ghost rounded-lg w-10 h-10">⏮</button>
+      <button onclick="togglePlay()" id="dockPlay" class="btn-lime rounded-lg w-12 h-12 text-xl font-bold">⏸</button>
+      <button onclick="stepTrack(1)" class="btn-ghost rounded-lg w-10 h-10">⏭</button>
+      <button onclick="closePlayer()" class="btn-ghost rounded-lg w-10 h-10">✕</button>
+    </div>
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+<div id="cartOverlay" class="fixed inset-0 modal-bg z-[60] hidden" onclick="toggleCart(false)"></div>
+<aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-panel border-l border-white/10 z-[61] drawer translate-x-full flex flex-col">
+  <div class="p-6 border-b border-white/10 flex items-center justify-between"><div><div class="font-bold text-xl">Holdings Cart</div><div class="font-mono text-[10px] text-mute">INSTANT DELIVERY • ROYALTY-FREE</div></div><button onclick="toggleCart(false)" class="btn-ghost rounded-lg w-10 h-10">✕</button></div>
+  <div id="cartItems" class="flex-1 overflow-y-auto p-6 space-y-3"></div>
+  <div class="p-6 border-t border-white/10 space-y-3">
+    <div class="flex justify-between font-mono text-sm"><span class="text-mute">SUBTOTAL</span><span id="cartSub">$0</span></div>
+    <div class="flex justify-between font-mono text-sm"><span class="text-mute">BUNDLE DISCOUNT</span><span id="cartDisc" class="text-lime">-$0</span></div>
+    <div class="flex justify-between font-bold text-xl"><span>TOTAL</span><span id="cartTotal" class="text-lime">$0</span></div>
+    <button onclick="checkout()" class="btn-lime rounded-xl w-full py-4 font-bold">CHECKOUT →</button>
+  </div>
+</aside>
+
+<!-- GENERIC MODAL -->
+<div id="modalOverlay" class="fixed inset-0 modal-bg z-[70] hidden items-center justify-center p-4" onclick="if(event.target===this)closeModal()">
+  <div id="modalBox" class="bg-panel border border-white/15 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto"></div>
+</div>
+
+<!-- COMMAND PALETTE -->
+<div id="palette" class="fixed inset-0 modal-bg z-[80] hidden justify-center pt-[12vh] px-4" onclick="if(event.target===this)closePalette()">
+  <div class="bg-panel border border-lime/30 rounded-2xl w-full max-w-xl overflow-hidden h-fit glow-lime">
+    <div class="flex items-center gap-3 p-4 border-b border-white/10"><span class="text-lime">⌘</span><input id="paletteIn" placeholder="Search all 39 assets... (films, domains, tracks, software)" class="flex-1 !bg-transparent !border-none text-sm" style="box-shadow:none!important"><span class="font-mono text-[10px] text-mute">ESC</span></div>
+    <div id="paletteList" class="max-h-[320px] overflow-y-auto p-2"></div>
+  </div>
+</div>
+
+<div id="toasts" class="fixed bottom-24 right-4 z-[90] space-y-2 max-w-sm"></div>
+
+<script src="/src/app.js"></script>
+
+</body>
+</html>
