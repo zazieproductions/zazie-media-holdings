@@ -9,7 +9,9 @@ The imported site is a **concept/demo**, not a verified company record or operat
 - **Investor deck:** `openDeck()` shows a mock modal; its Download PDF button does not generate or download a PDF.
 - **Music:** Audio is browser-synthesized / illustrative, not a licensed catalog stream. Replace with authorized audio files and accurate metadata before commercialization.
 - **Images:** Unsplash URLs and Google Fonts are fetched from outside services. Verify attribution, licensing, consent and privacy implications.
-- **Terminal:** NOETIC terminal presents hard-coded fictional statements and is not a real AI agent or diligence workflow.
+- **Terminal:** The in-page NOETIC terminal is a scripted mock, not the standalone project, a real AI agent, or a diligence workflow.
+- **Software/IP register:** 12 additional public GitHub candidates are now listed (11 software projects plus one research archive). Repository visibility is not proof of company ownership or commercial rights; license notices vary, some repositories have no license, and third-party dependencies/models/data need review. See [GitHub IP screen](GITHUB-IP-SCAN.md).
+- **Sensitive repository follow-up:** the `cue-sheet-automation-` repository is publicly visible despite README text describing an internal/private publishing archive. Review its contents and make it private if needed before further promotion.
 - **User data and security:** Set up proper back-end validation, rate limiting, consent, payment provider, privacy policy and contact details prior to collecting data or payment.
 - **Mobile and accessibility:** Review focus handling, keyboard access, contrast, reduced motion and any animations or custom widgets.
 

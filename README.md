@@ -3,6 +3,8 @@
 Interactive, single-page **concept showcase** for a proposed media and intellectual-property portfolio, adapted from the supplied HTML prototype. The project retains the imported catalog views, film and domain cards, simulated product cart, music vault, browser-generated audio instruments, organizational visualizations, valuation calculator, command palette, and animations.
 
 > **Important:** This is a front-end demo. The original content contains illustrative and potentially fictional business metrics, film credits, investment claims, and asset ownership assertions. Purchases, acquisition submissions, newsletter signup and PDF downloads are simulations; they do not process transactions, messages or files. See [content audit](docs/CONTENT-AUDIT.md) before publishing.
+>
+> The software section now includes a curated screen of 12 additional public GitHub candidates (11 software projects and one research-data archive). They are presented as **potential candidates**, not appraised or verified company holdings; license and chain-of-title checks are called out in [the GitHub IP screen](docs/GITHUB-IP-SCAN.md).
 
 ## Requirements
 
@@ -40,9 +42,10 @@ vite.config.cjs            Build configuration
 tailwind.config.cjs        Visual tokens and Tailwind content discovery
 postcss.config.cjs         CSS tooling
 docs/CONTENT-AUDIT.md      Operational and factual publication gates
+docs/GITHUB-IP-SCAN.md     GitHub project shortlist, rights signals, and diligence notes
 ```
 
-The current code follows the original, global-script architecture for compatibility. A future refactor can split the catalog, commerce, audio engine, and UI modules into testable packages, with real API integrations only after privacy/security design.
+The current code follows the original, global-script architecture because existing inline handlers depend on global functions. The Vite config explicitly emits `src/app.js` as a classic script at the same path in production output. A future refactor can split the catalog, commerce, audio engine, and UI modules into testable packages, with real API integrations only after privacy/security design.
 
 ## Deployment (Cloudflare Pages)
 
@@ -68,4 +71,4 @@ No API secrets are needed for this prototype. Third-party script/style CDN avail
 
 See [LICENSE.md](LICENSE.md). Do not assume rights to third-party names, images, brands or source material from their appearance in the prototype.
 
-**Build verification:** smoke tests and JavaScript syntax were checked locally. A full Vite bundle could not be executed in this environment because the npm package registry was unreachable. CI will run installation and build on GitHub once published.
+**Build verification:** `npm run check` passes locally (four smoke tests plus a production Vite build). Vite notes that the classic global script is not bundled as an ES module; the build config intentionally emits it to `dist/src/app.js` so the existing inline handlers continue to work.
