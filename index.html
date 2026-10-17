@@ -161,9 +161,9 @@
     <div class="grid md:grid-cols-7 gap-3 mt-6">
       <div onclick="scrollToId('films')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-mag border-mag/30"><div class="text-2xl mb-1">◈</div><div class="font-bold text-[13px]">ZAZIE<br>PICTURES</div><div class="font-mono text-[10px] text-mute mt-1">4 FILMS</div></div>
       <div onclick="scrollToId('domains')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-cy border-cy/30"><div class="text-2xl mb-1">⬢</div><div class="font-bold text-[13px]">ZAZIE<br>DOMAINS</div><div class="font-mono text-[10px] text-mute mt-1">5 SITES</div></div>
-      <div onclick="scrollToId('audiences')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-lime border-lime/30"><div class="text-2xl mb-1">◎</div><div class="font-bold text-[13px]">ZAZIE<br>AUDIENCES</div><div class="font-mono text-[10px] text-mute mt-1">57K FANS</div></div>
+      <div onclick="scrollToId('audiences')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-lime border-lime/30"><div class="text-2xl mb-1">◎</div><div class="font-bold text-[13px]">ZAZIE<br>AUDIENCES</div><div class="font-mono text-[10px] text-mute mt-1">31.3K SAVES<br>25K IG</div></div>
       <div onclick="scrollToId('products')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-amber-300 border-amber-300/30"><div class="text-2xl mb-1">⬣</div><div class="font-bold text-[13px]">ZAZIE<br>SOUNDS</div><div class="font-mono text-[10px] text-mute mt-1">4 PRODUCTS</div></div>
-      <div onclick="scrollToId('music')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-viol border-viol/30"><div class="text-2xl mb-1">♪</div><div class="font-bold text-[13px]">ZAZIE<br>PRODUCTIONS</div><div class="font-mono text-[10px] text-mute mt-1">20 RELEASES</div></div>
+      <div onclick="scrollToId('music')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-viol border-viol/30"><div class="text-2xl mb-1">♪</div><div class="font-bold text-[13px]">ZAZIE<br>PRODUCTIONS</div><div class="font-mono text-[10px] text-mute mt-1">23 RELEASES</div></div>
       <div onclick="scrollToId('software')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-emerald-300 border-emerald-300/30"><div class="text-2xl mb-1">⚙</div><div class="font-bold text-[13px]">ZAZIE<br>LABS</div><div class="font-mono text-[10px] text-mute mt-1">15 DOSSIERS • 13 GITHUB ENTRIES • 6 RUN IN SITE</div></div>
       <div onclick="scrollToId('institute')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-orange-300 border-orange-300/30"><div class="text-2xl mb-1">✦</div><div class="font-bold text-[13px]">ZAZIE<br>INSTITUTE</div><div class="font-mono text-[10px] text-mute mt-1">R&D</div></div>
     </div>
@@ -346,19 +346,29 @@
         <div class="bg-gradient-to-br from-emerald-500/30 to-panel p-8">
           <div class="flex items-start justify-between">
             <div class="w-20 h-20 rounded-2xl bg-[#1DB954] flex items-center justify-center text-4xl shadow-2xl">♫</div>
-            <span class="chip bg-[#1DB954] text-black border-none font-bold">SPOTIFY • 32K FOLLOWERS</span>
+            <span class="chip bg-[#1DB954] text-black border-none font-bold">SPOTIFY • 31,348 SAVES</span>
           </div>
-          <h3 class="font-bold text-3xl mt-5">Goa Trance / Psytrance</h3>
-          <p class="text-mute text-sm">Flagship playlist. 140–148 BPM forever. Updated weekly. Placement = instant streams for catalog.</p>
-          <div class="flex items-center gap-4 mt-4">
-            <button onclick="togglePlaylist()" id="playlistBtn" class="w-14 h-14 rounded-full bg-[#1DB954] text-black text-2xl font-bold hover:scale-105 transition">▶</button>
-            <div><div class="font-mono text-[10px] text-mute">MONTHLY LISTENERS</div><div class="font-bold text-xl"><span class="counter" data-target="48">0</span>K <span class="text-emerald-400 text-sm font-mono">▲ 18%</span></div></div>
-            <div><div class="font-mono text-[10px] text-mute">PLACEMENTS SOLD</div><div class="font-bold text-xl">$<span class="counter" data-target="12">0</span>K</div></div>
+          <h3 class="font-bold text-3xl mt-5">Goa Trance/Psy Trance</h3>
+          <p class="text-mute text-sm">The playlist Zazie curates on Spotify. Save counts, cover art and the running order are read from the live page — the embed below is the only copy of the tracklist this site keeps.</p>
+          <div class="flex flex-wrap items-center gap-4 mt-4">
+            <button onclick="loadSpotifyEmbed()" id="playlistBtn" class="btn-lime rounded-xl px-5 py-3 font-bold text-sm">LOAD LIVE PLAYLIST ▷</button>
+            <a href="https://open.spotify.com/playlist/75PxWthUYPOskOU1EjGrFX" target="_blank" rel="noopener noreferrer" class="btn-ghost rounded-xl px-5 py-3 text-sm">Open in Spotify ↗</a>
+            <a href="https://open.spotify.com/artist/4UOgvZEOo7xBhFBjJvlMm0" target="_blank" rel="noopener noreferrer" class="btn-ghost rounded-xl px-5 py-3 text-sm">Artist page ↗</a>
+            <div><div class="font-mono text-[10px] text-mute">SAVES</div><div class="font-bold text-xl">31,348</div></div>
+            <div><div class="font-mono text-[10px] text-mute">SONGS</div><div class="font-bold text-xl">382</div></div>
+            <div><div class="font-mono text-[10px] text-mute">RUNTIME</div><div class="font-bold text-xl">24+ HR</div></div>
+            <div><div class="font-mono text-[10px] text-mute">MONTHLY LISTENERS</div><div class="font-bold text-xl">247</div></div>
           </div>
+          <p class="font-mono text-[9px] text-mute mt-4">Saves, song count, runtime and monthly listeners as published on the playlist and artist pages on 17 Oct 2026. The artist page counts listeners; the playlist page counts saves — they are not the same number and neither is a follower total.</p>
         </div>
         <div class="p-4">
-          <div class="font-mono text-[10px] tracking-widest text-mute px-2 mb-2">TOP TRACKS — TAP TO PREVIEW</div>
-          <div id="spotifyList"></div>
+          <div class="font-mono text-[10px] tracking-widest text-mute px-2 mb-2">LIVE SPOTIFY EMBED — COVER ART + TRACKLIST FROM PLAYLIST</div>
+          <div id="spotifyEmbed" class="rounded-xl overflow-hidden">
+            <div id="spotifyGate" class="p-5 bg-panel2 rounded-xl">
+              <p class="font-mono text-[11px] text-mute leading-relaxed">Third-party player, loaded only on request. If it stays blank, your network or privacy blocker is refusing open.spotify.com — use the direct link above.</p>
+              <button onclick="loadSpotifyEmbed()" class="btn-lime rounded-xl px-5 py-2.5 font-bold text-sm mt-3">▶ LOAD EMBED</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -369,7 +379,7 @@
             <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-amber-400 via-mag to-viol p-[3px]"><div class="w-full h-full rounded-2xl bg-panel flex items-center justify-center text-3xl font-bold">@</div></div>
             <span class="chip bg-mag text-white border-none font-bold">INSTAGRAM • 25K • 10M VIEWS</span>
           </div>
-          <h3 class="font-bold text-3xl mt-5">@WellMeaningNeurotypicals</h3>
+          <h3 class="font-bold text-3xl mt-5"><a href="https://www.instagram.com/WellMeaningNeurotypicals/" target="_blank" rel="noopener noreferrer" class="hover:text-mag transition">WellMeaningNeurotypicals</a></h3>
           <p class="text-mute text-sm">Viral neurodivergent meme account. Absurdly wholesome. Absurdly shareable. Funnel to music + merch.</p>
           <div class="grid grid-cols-3 gap-3 mt-5 text-center">
             <div class="card-line rounded-xl p-3 bg-panel/70"><div class="font-bold text-xl"><span class="counter" data-target="25">0</span>K</div><div class="font-mono text-[9px] text-mute">FOLLOWERS</div></div>
@@ -378,8 +388,15 @@
           </div>
         </div>
         <div class="p-4">
-          <div class="font-mono text-[10px] tracking-widest text-mute px-2 mb-2">VIRAL GRID — HOVER TO PREVIEW</div>
-          <div class="grid grid-cols-3 gap-2 insta-grid" id="instaGrid"></div>
+          <div class="font-mono text-[10px] tracking-widest text-mute px-2 mb-2">OWNED SOCIAL CHANNEL — LIVE GRID ON INSTAGRAM</div>
+          <a href="https://www.instagram.com/WellMeaningNeurotypicals/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-xl bg-panel2 hover:bg-white/5 transition group">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-400 via-mag to-viol p-[2px] shrink-0"><div class="w-full h-full rounded-[10px] bg-panel flex items-center justify-center font-bold">@</div></div>
+            <div class="min-w-0">
+              <div class="font-bold text-sm">@WellMeaningNeurotypicals</div>
+              <div class="font-mono text-[10px] text-mute leading-snug">Posts, reels and captions render live on Instagram. Nothing is mirrored or restaged here.</div>
+            </div>
+            <span class="ml-auto font-mono text-[10px] text-mag shrink-0 group-hover:text-lime transition">FOLLOW ↗</span>
+          </a>
           <div class="h-[140px] mt-4 px-2"><canvas id="instaChart"></canvas></div>
         </div>
       </div>
@@ -406,20 +423,22 @@
 <section id="music" class="border-y border-white/10 bg-[#0a0a12] grid-bg">
   <div class="max-w-[1400px] mx-auto px-5 md:px-8 py-20">
     <div class="flex flex-wrap items-end justify-between gap-4 mb-6 reveal">
-      <div><div class="eyebrow text-viol mb-3">06 — ZAZIE PRODUCTIONS • MUSIC HOLDINGS • 20 RELEASES • VIA ZAZIEPRODUCTIONS.COM</div>
+      <div><div class="eyebrow text-viol mb-3">06 — ZAZIE PRODUCTIONS • MUSIC HOLDINGS • 23 RELEASES • 16 MIRRORED FROM THE DRIVE ARCHIVE • 146 WAV MASTERS</div>
       <h2 class="font-grot font-bold text-4xl md:text-6xl">The <span class="font-serif italic font-normal">Vault</span></h2></div>
-      <div class="font-mono text-[11px] text-mute">MASTERS + PUBLISHING 100% OWNED<br>SYNC-READY • STEMS AVAILABLE</div>
+      <div class="font-mono text-[11px] text-mute">MASTERS + PUBLISHING 100% OWNED<br>WAV ARCHIVE • SYNC + STEMS ON REQUEST<br><span class="text-[#1DB954]">▶ OPENS THE RELEASED RECORDING ON SPOTIFY (20 OF 23)</span></div>
     </div>
 
     <div class="card-line rounded-2xl bg-panel p-4 mb-6 reveal flex flex-wrap gap-3 items-center">
       <div class="relative flex-1 min-w-[220px]">
-        <input id="musicSearch" placeholder="Search vault: try 'stutter', 'tinsel', '123'..." class="w-full px-4 py-3 text-sm">
+        <input id="musicSearch" placeholder="Search vault: try 'stutter', 'vermiform', 'gainax'..." class="w-full px-4 py-3 text-sm">
       </div>
       <div class="flex flex-wrap gap-2 font-mono text-[11px]">
-        <button class="musicFilter chip tab-active" data-m="all">ALL 20</button>
-        <button class="musicFilter chip" data-m="Single">SINGLES (6)</button>
-        <button class="musicFilter chip" data-m="EP">EPS (2)</button>
-        <button class="musicFilter chip" data-m="Album">ALBUMS (9)</button>
+        <button class="musicFilter chip tab-active" data-m="all">ALL 23</button>
+        <button class="musicFilter chip" data-m="vault">IN DRIVE VAULT (16)</button>
+        <button class="musicFilter chip text-amber-300 border-amber-300/40" data-m="stream">SPOTIFY ONLY (7)</button>
+        <button class="musicFilter chip" data-m="Single">SINGLES (7)</button>
+        <button class="musicFilter chip" data-m="EP">EPS (5)</button>
+        <button class="musicFilter chip" data-m="Album">ALBUMS (7)</button>
         <button class="musicFilter chip" data-m="Deluxe">DELUXE (3)</button>
       </div>
       <select id="musicSort" class="px-3 py-2.5 text-sm font-mono">
@@ -427,7 +446,7 @@
       </select>
     </div>
 
-    <div id="musicStats" class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6 reveal"></div>
+    <div id="musicStats" class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6 reveal"></div>
     <div id="musicGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"></div>
   </div>
 </section>
@@ -752,12 +771,12 @@
   <div class="max-w-[1400px] mx-auto px-4 md:px-8 py-3 flex items-center gap-4">
     <div id="dockCover" class="w-12 h-12 rounded-xl shrink-0" style="background:linear-gradient(135deg,#8b7cff,#ff3ea5)"></div>
     <div class="min-w-0 flex-1">
-      <div class="flex items-center gap-2"><span class="w-2 h-2 bg-lime rounded-full pulse-dot"></span><span class="font-mono text-[9px] text-lime tracking-widest">NOW STREAMING FROM VAULT</span></div>
+      <div class="flex items-center gap-2"><span class="w-2 h-2 bg-lime rounded-full pulse-dot"></span><span class="font-mono text-[9px] text-lime tracking-widest">SYNTH SKETCH — NOT THE ARCHIVED MASTER</span></div>
       <div id="dockTitle" class="font-bold text-sm truncate">—</div>
       <div class="progress-track mt-1.5" onclick="seek(event)"><div class="progress-fill" id="dockProg"></div></div>
     </div>
     <div class="hidden sm:flex gap-1 items-end h-8" id="dockViz"></div>
-    <div class="font-mono text-[11px] text-mute hidden md:block"><span id="dockTime">0:00</span> / <span id="dockDur">3:00</span></div>
+    <div class="font-mono text-[11px] text-mute hidden md:block"><span id="dockTime">0:00</span> / <span id="dockDur">0:30</span></div>
     <div class="flex items-center gap-2">
       <button onclick="stepTrack(-1)" class="btn-ghost rounded-lg w-10 h-10">⏮</button>
       <button onclick="togglePlay()" id="dockPlay" class="btn-lime rounded-lg w-12 h-12 text-xl font-bold">⏸</button>
