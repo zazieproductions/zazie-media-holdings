@@ -18,7 +18,8 @@ const emitClassicAppScript = {
 };
 
 module.exports = defineConfig({
-  base: '/',
+  // Relative URLs work both at the domain root and GitHub Pages' repository path.
+  base: './',
   plugins: [emitClassicAppScript],
   build: {
     outDir: 'dist',
