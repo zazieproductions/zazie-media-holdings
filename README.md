@@ -114,7 +114,7 @@ No API secrets are needed for this prototype. The build produces two HTML entry 
 
 See [LICENSE.md](LICENSE.md). Do not assume rights to third-party names, images, brands or source material from their appearance in the prototype.
 
-**Build verification:** `npm run check` passes locally (18 tests covering the repository snapshot/dossier, THE PRODUCT embed, RadioReach disclosures, the writings/art register, and the Five Steps From The Fringe podcast register, plus a production Vite build). Vite notes that the classic global script is not bundled as an ES module; the build config intentionally emits it to `dist/src/app.js` so the existing inline handlers continue to work. The dossier was additionally exercised in a JSDOM harness: README rendering, sanitisation, file fetching, commit diffs, live iframe wiring, atlas fallback and the main-page launch bay.
+**Build verification:** `npm test` passes locally (24 tests covering the repository snapshot/dossier, THE PRODUCT embed, RadioReach disclosures, the writings/art register, the music vault, the institute prototype atlas, and the Five Steps From The Fringe podcast register). `npm run check` adds a production Vite build. Vite notes that the classic global script is not bundled as an ES module; the build config intentionally emits it to `dist/src/app.js` so the existing inline handlers continue to work. The dossier was additionally exercised in a JSDOM harness: README rendering, sanitisation, file fetching, commit diffs, live iframe wiring, atlas fallback and the main-page launch bay.
 
 ### Featured conceptual interface
 
