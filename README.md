@@ -5,6 +5,8 @@ Interactive, single-page **concept showcase** for a proposed media and intellect
 > **Important:** This is a front-end demo. The original content contains illustrative and potentially fictional business metrics, film credits, investment claims, and asset ownership assertions. Purchases, acquisition submissions, newsletter signup and PDF downloads are simulations; they do not process transactions, messages or files. See [content audit](docs/CONTENT-AUDIT.md) before publishing.
 >
 > The software section now includes a curated screen of 12 additional public GitHub candidates (11 software projects and one research-data archive). They are presented as **potential candidates**, not appraised or verified company holdings; license and chain-of-title checks are called out in [the GitHub IP screen](docs/GITHUB-IP-SCAN.md).
+>
+> The digital-product cards and the matching music-vault releases now carry the **real prices and cover art** mirrored from the public catalogue at [horror.zazieproductions.com/store](https://horror.zazieproductions.com/store) (hub prices last checked 24 September 2026); each card links out to its Gumroad, itch.io or Bandcamp listing, and BIOFLUID Vol. 01 — which has no live listing — is flagged as a concept. The on-page cart remains a simulation.
 
 ## Requirements
 
