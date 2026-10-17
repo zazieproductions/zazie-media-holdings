@@ -19,6 +19,8 @@ The software section now points at the real thing. A repository dossier at [`rep
 > The Institute asset section curates 8 speculative patent dossiers and 8 prototype concepts from the public [Zazie Institute of Applied Anomalies](https://zazieinstitute.org) open archive (curated 2026-10-17); abstracts link out to the full citable dossiers, and statuses must be re-verified before any licensing use — see [the ZIAA asset notes](docs/ZIAA-ASSET-NOTES.md).
 >
 > The music vault links the [Zazie Productions Bandcamp storefront](https://zazieproductions.bandcamp.com) as an external catalog asset, and [Hubris Books](https://hubrisbooks.win) is listed under domains as a satirical publishing imprint. Both are live outbound links (added 2026-10-17); listening, purchases and reading happen on those properties under their own terms. See [content audit](docs/CONTENT-AUDIT.md).
+>
+> The digital-product cards and the matching music-vault releases now carry the **real prices and cover art** mirrored from the public catalogue at [horror.zazieproductions.com/store](https://horror.zazieproductions.com/store) (hub prices last checked 24 September 2026); each card links out to its Gumroad, itch.io or Bandcamp listing, and BIOFLUID Vol. 01 — which has no live listing — is flagged as a concept. The on-page cart remains a simulation.
 
 ## Requirements
 
