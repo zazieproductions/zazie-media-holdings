@@ -1,6 +1,7 @@
 const { defineConfig } = require('vite');
 const fs = require('node:fs');
 const path = require('node:path');
+const { resolve } = path;
 
 // The prototype uses a classic global script for its many inline event handlers.
 // Vite intentionally does not bundle that script; emit it at the same URL used by index.html.
@@ -19,7 +20,17 @@ const emitClassicAppScript = {
 module.exports = defineConfig({
   base: '/',
   plugins: [emitClassicAppScript],
-  build: { outDir: 'dist', assetsDir: 'assets' },
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        repo: resolve(__dirname, 'repo.html'),
+        prototypes: resolve(__dirname, 'prototypes.html'),
+      },
+    },
+  },
   server: {
     host: '0.0.0.0',
     port: 5173,
