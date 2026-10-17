@@ -51,6 +51,7 @@
       <a href="#products" class="nav-link">PRODUCTS</a>
       <a href="#music" class="nav-link">MUSIC</a>
       <a href="#software" class="nav-link">SOFTWARE</a>
+      <a href="#writings" class="nav-link hidden xl:inline">WRITINGS</a>
     </div>
     <div class="flex items-center gap-2">
       <button onclick="openPalette()" class="hidden md:flex items-center gap-2 btn-ghost rounded-lg px-3 py-2 font-mono text-[11px] text-mute">
@@ -64,7 +65,7 @@
     </div>
   </div>
   <div id="mobileMenu" class="hidden lg:hidden border-t border-white/10 px-6 py-4 flex flex-col gap-3 font-mono text-sm glass">
-    <a href="#holdings">STRUCTURE</a><a href="#films">FILMS</a><a href="#domains">DOMAINS</a><a href="#audiences">AUDIENCES</a><a href="#products">PRODUCTS</a><a href="#music">MUSIC</a><a href="#software">SOFTWARE</a><a href="#investors" class="text-lime">INVEST / ACQUIRE →</a>
+    <a href="#holdings">STRUCTURE</a><a href="#films">FILMS</a><a href="#domains">DOMAINS</a><a href="#audiences">AUDIENCES</a><a href="#products">PRODUCTS</a><a href="#music">MUSIC</a><a href="#software">SOFTWARE</a><a href="#writings">WRITINGS &amp; ART</a><a href="#investors" class="text-lime">INVEST / ACQUIRE →</a>
   </div>
 </nav>
 
@@ -436,6 +437,66 @@
   </div>
 </section>
 
+<!-- WRITINGS & ART -->
+<section id="writings" class="border-y border-white/10 bg-[#0a0a12] grid-bg">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 py-20">
+    <div class="flex flex-wrap items-end justify-between gap-5 mb-4 reveal">
+      <div>
+        <div class="eyebrow text-cy mb-3">08 — ZAZIE PRESS • WRITINGS &amp; ART</div>
+        <h2 class="font-grot font-bold text-4xl md:text-6xl">The written <span class="font-serif italic font-normal">vault.</span></h2>
+      </div>
+      <div class="font-mono text-[11px] text-mute text-right">12 SUBMISSION-READY PDFS<br>12 RECOVERED ORIGINALS • 129 ARCHIVED GALLERIES</div>
+    </div>
+    <p class="text-mute max-w-3xl leading-relaxed reveal">Poetry, short fiction, conceptual texts and visual work made under the Zazie Productions name. The register is drawn from the literary submissions archive and the Behance holdings: excerpts are shown here, while the full manuscripts stay in Drive. Statuses are copied from the submission tracker and dated — an acceptance is not a publication.</p>
+    <p class="font-mono text-[10px] text-mute mt-2 reveal">STATUS AS RECORDED 2026-10-09 • UNSENT DRAFTS ARE LABELLED AS SUCH</p>
+
+    <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-3 mt-8 reveal">
+      <div class="card-line rounded-2xl bg-panel p-5"><div class="chip text-lime border-lime/40">ACCEPTED</div><div class="font-bold mt-3 leading-snug">Fragments Toward a Therolinguistic Autopsy</div><div class="font-mono text-[10px] text-mute mt-2">Posthuman Press anthology • 2026</div></div>
+      <div class="card-line rounded-2xl bg-panel p-5"><div class="chip text-lime border-lime/40">ACCEPTED</div><div class="font-bold mt-3 leading-snug">The Orchard of Eyelids</div><div class="font-mono text-[10px] text-mute mt-2">Are You Really Awake anthology • 2025</div></div>
+      <div class="card-line rounded-2xl bg-panel p-5"><div class="chip text-cy border-cy/40">SELECTED • IN PROGRESS</div><div class="font-bold mt-3 leading-snug">Virtual Horror Anthology</div><div class="font-mono text-[10px] text-mute mt-2">1 of ~50 selected from 300+ entries</div></div>
+      <div class="card-line rounded-2xl bg-panel p-5"><div class="chip text-lime border-lime/40">ACCEPTED • ILLUSTRATION</div><div class="font-bold mt-3 leading-snug">Dog Water Magazine</div><div class="font-mono text-[10px] text-mute mt-2">Inaugural issue contributor • 2025</div></div>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-3 mt-10 mb-5 reveal">
+      <div class="flex flex-wrap gap-2 font-mono text-[11px]" id="writingFilters">
+        <button class="writingFilter chip tab-active" data-s="all">ALL 15</button>
+        <button class="writingFilter chip" data-s="ACCEPTED">ACCEPTED</button>
+        <button class="writingFilter chip" data-s="SUBMITTED">SUBMITTED</button>
+        <button class="writingFilter chip" data-s="READY">READY TO SEND</button>
+        <button class="writingFilter chip" data-s="UNSENT">UNSENT</button>
+      </div>
+      <div class="font-mono text-[10px] text-mute">CLICK A CARD FOR AN EXTENDED EXCERPT</div>
+    </div>
+    <div id="writingGrid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+
+    <div class="mt-16 pt-10 border-t border-white/10">
+      <div class="flex flex-wrap items-end justify-between gap-5 mb-6 reveal">
+        <div>
+          <div class="eyebrow text-mag mb-3">VISUAL ARCHIVE • BEHANCE • 129 GALLERIES 2022–2025</div>
+          <h3 class="font-grot font-bold text-3xl md:text-5xl">The visual <span class="font-serif italic font-normal text-mute">wing.</span></h3>
+        </div>
+        <a href="https://www.behance.net/zaziediya" target="_blank" rel="noopener noreferrer" class="btn-ghost rounded-xl px-5 py-3 font-mono text-[11px]">OPEN BEHANCE ARCHIVE ↗</a>
+      </div>
+      <p class="text-mute max-w-3xl leading-relaxed reveal mb-6">Mixed-media, collage, illustration and graphic design held in the Behance archive: 19 galleries from 2025, 56 from 2023, 53 from 2022 and 1 from 2024. Ten representative works are shown at web resolution; originals remain in <span class="text-cream">01 WORKS / Behance Artworks Archive — Zazie Productions</span>.</p>
+      <div id="artGrid" class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3 reveal"></div>
+
+      <div class="card-line rounded-3xl overflow-hidden bg-panel mt-6 grid md:grid-cols-[minmax(0,380px)_1fr]">
+        <button onclick="openWordmark()" class="block bg-black group" aria-label="View the Zazie Productions wordmark">
+          <img src="/art/wordmark.jpg" alt="Zazie Productions × Fleshweather wordmark, white filament lettering on black" class="w-full h-full max-h-[380px] object-cover group-hover:opacity-90 transition" loading="lazy">
+        </button>
+        <div class="p-6 md:p-8 flex flex-col justify-center">
+          <div class="eyebrow text-lime mb-2">BRAND MARK • LOGOS.PNG</div>
+          <h4 class="font-bold text-2xl">ZAZIE PRODUCTIONS <span class="text-lime">×</span> FLESHWEATHER</h4>
+          <p class="text-sm text-mute mt-3 leading-relaxed">Cracked blackletter drawn as branching filament, white on black. The wordmark is archived in the submissions folder and is the strongest single brand asset on the Drive: it already carries the label’s horror-adjacent, handmade-signal identity.</p>
+          <p class="font-mono text-[10px] text-mute mt-3">USE WITH CLEAR SPACE • DO NOT RECOLOUR • CO-BRAND LOCKUP REQUIRES BOTH PARTIES’ CONSENT</p>
+        </div>
+      </div>
+
+      <p class="font-mono text-[10px] text-mute leading-relaxed mt-6">Excerpts are quoted from the submitted manuscripts and are reproduced for portfolio reference. Statuses reflect the submission tracker as of 2026-10-09; acceptance is not publication. Artwork © Zazie Productions / Zazie Kanwar-Torge. Verify anthology publication dates, contributor agreements and third-party credits before promoting any credit publicly.</p>
+    </div>
+  </div>
+</section>
+
 <!-- INVESTORS -->
 <section id="investors" class="border-t border-white/10 bg-gradient-to-b from-[#0c0c16] to-ink">
   <div class="max-w-[1400px] mx-auto px-5 md:px-8 py-20">
@@ -501,13 +562,13 @@
           <button onclick="subscribe()" class="btn-lime rounded-lg px-4 font-bold text-sm">→</button>
         </div>
       </div>
-      <div class="font-mono text-[12px] space-y-2"><div class="text-mute text-[10px] tracking-widest mb-3">DIVISIONS</div><a href="#films" class="block hover:text-lime">Zazie Pictures (4)</a><a href="#domains" class="block hover:text-lime">Zazie Domains (5)</a><a href="#audiences" class="block hover:text-lime">Zazie Audiences (2)</a><a href="#products" class="block hover:text-lime">Zazie Sounds (4)</a><a href="#music" class="block hover:text-lime">Zazie Productions (20)</a><a href="#software" class="block hover:text-lime">Zazie Labs (software portfolio)</a></div>
+      <div class="font-mono text-[12px] space-y-2"><div class="text-mute text-[10px] tracking-widest mb-3">DIVISIONS</div><a href="#films" class="block hover:text-lime">Zazie Pictures (4)</a><a href="#domains" class="block hover:text-lime">Zazie Domains (5)</a><a href="#audiences" class="block hover:text-lime">Zazie Audiences (2)</a><a href="#products" class="block hover:text-lime">Zazie Sounds (4)</a><a href="#music" class="block hover:text-lime">Zazie Productions (20)</a><a href="#software" class="block hover:text-lime">Zazie Labs (software portfolio)</a><a href="#writings" class="block hover:text-lime">Zazie Press (writings + art)</a></div>
       <div class="font-mono text-[12px] space-y-2"><div class="text-mute text-[10px] tracking-widest mb-3">PROPERTIES</div><div class="text-mute">zazieinstitute.org</div><div class="text-mute">globalparadigmscorp.com</div><div class="text-mute">kypo6.com</div><div class="text-mute">radioreach.us</div><div class="text-mute">zazieproductions.com</div></div>
       <div class="font-mono text-[12px] space-y-2"><div class="text-mute text-[10px] tracking-widest mb-3">HOLDINGS</div><a href="#investors" class="block hover:text-lime">Acquire / Sell to us</a><a href="#investors" class="block hover:text-lime">Investor relations</a><button onclick="openDeck()" class="block hover:text-lime">Investor deck</button><button onclick="toast('Cap table: Zazie (100%). That is the cap table.')" class="block hover:text-lime">Cap table</button></div>
     </div>
     <div class="border-t border-white/10 pt-6 flex flex-wrap justify-between gap-3 font-mono text-[10px] text-mute">
       <div>© 2026 ZAZIE MEDIA HOLDINGS • ALL RIGHTS RESERVED • ALL WRONGS REVERSED</div>
-      <div>39 ASSETS • 7 DIVISIONS • 1 PARENT • <span class="text-lime">DEMO SITE — METRICS SIMULATED</span></div>
+      <div>39 ASSETS • 8 DIVISIONS • 1 PARENT • <span class="text-lime">DEMO SITE — METRICS SIMULATED</span></div>
     </div>
   </div>
 </footer>
