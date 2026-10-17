@@ -93,6 +93,13 @@ test('institute patents and concepts are sourced from the live ZIAA archive', ()
   assert.match(html, /id="conceptGrid"/);
   assert.match(html, /id="patentFilters"/);
   assert.match(html, /100 SPECULATIVE DOSSIERS/);
+  const instituteBlock = html.match(/id="institute"[\s\S]*?<!-- AUDIENCES -->/);
+  assert.ok(instituteBlock, 'expected the institute asset section');
+  assert.doesNotMatch(instituteBlock[0], /unsplash/, 'institute section must not use stock photography');
+  assert.match(html, /fig-plate/);
+  assert.match(css, /\.fig-plate/);
+  assert.match(js, /<iframe/);
+  assert.match(js, /LIVE DOSSIER/);
   assert.match(html, /https:\/\/zazieinstitute\.org\/patents/);
   assert.match(html, /https:\/\/zazieinstitute\.org\/prototypes/);
   assert.match(html, /https:\/\/zazieinstitute\.org\/disciplines\//);
@@ -110,7 +117,7 @@ test('institute patents and concepts are sourced from the live ZIAA archive', ()
   assert.ok(patents.every((p) => p.url.startsWith('https://zazieinstitute.org/patents/')));
   assert.ok(concepts.every((c) => c.url.startsWith('https://zazieinstitute.org/prototypes/')));
   assert.ok(patents.every((p) => p.title && p.abstract && p.status && p.filed && p.discipline && p.claim && p.pub && p.code));
-  assert.ok(concepts.every((c) => c.title && c.abstract && c.investigator && c.discipline && c.transducer && c.code && c.slug));
+  assert.ok(concepts.every((c) => c.title && c.abstract && c.investigator && c.discipline && c.transducer && c.code && c.slug && c.fig && c.figtag && c.dims && c.status && c.year && c.power && c.snr && c.dsp));
   const statuses = new Set(patents.map((p) => p.status));
   for (const s of ['ISSUED PATENT', 'DEFENSIVE PUBLICATION', 'UNDER EXAMINATION', 'PROVISIONAL SPEC']) assert.ok(statuses.has(s), `missing patent status: ${s}`);
   const pRender = js.match(/function renderInstitutePatents\(\)\{[\s\S]*?\n\}/);

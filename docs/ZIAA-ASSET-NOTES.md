@@ -32,6 +32,22 @@ from the public Zazie Institute of Applied Anomalies (ZIAA) open archive at
 - Curated 2026-10-17. Titles, abstracts, filing metadata and investigator
   credits were transcribed from the live pages on that date.
 
+## Visuals (no stock imagery)
+
+ZIAA publishes its charts and exhibits as live vector figures inside the
+dossier pages — the site exposes no photographic or raster image files
+(verified 2026-10-17 across the indexes and 11 dossier pages). The
+Institute section therefore shows the real artifacts two ways:
+
+- **Live dossier viewer**: every patent and concept modal embeds the
+  actual dossier page in an `<iframe>` (vector schematic, calibration
+  bench, BOM / claims schedule), with the outbound dossier link as
+  fallback if framing is ever blocked.
+- **Transcribed figure plates**: teaser tiles and modal plates quote real
+  figure references and spec lines (FIG numbers, REF / NODE / BUS tags,
+  dimensions, SNR, DSP cores) from the dossiers. They are typographic
+  plates, not reconstructions of the artwork.
+
 ## Publication gates
 
 1. ZIAA materials are **speculative / defensive research disclosures**, not
@@ -43,5 +59,7 @@ from the public Zazie Institute of Applied Anomalies (ZIAA) open archive at
    before representing any dossier as a company holding.
 4. Full texts live on zazieinstitute.org; this site shows abstracts and
    excerpts only, with outbound links. Do not copy full claim schedules.
-5. Teaser-card imagery in `#institute` is generic stock photography, not
-   ZIAA exhibit art — do not present it as prototype documentation.
+5. `#institute` carries no stock or generated imagery: visuals are live
+   dossier embeds plus transcribed figure plates. Do not present the
+   plates as ZIAA exhibit art — they are labeled transcriptions that
+   link to the live figures.
