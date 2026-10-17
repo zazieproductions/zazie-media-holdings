@@ -27,8 +27,8 @@ test('GitHub software and research candidates are surfaced with rights context',
   const dataSource = js.match(/const CODE_HOLDINGS=(\[[\s\S]*?\n\]);/);
   assert.ok(dataSource, 'expected a parseable source-code holdings register');
   const holdings = vm.runInNewContext(dataSource[1]);
-  assert.equal(holdings.length, 13);
-  assert.equal(new Set(holdings.map((holding) => holding.id)).size, 13, 'holding IDs should be unique');
+  assert.equal(holdings.length, 14);
+  assert.equal(new Set(holdings.map((holding) => holding.id)).size, 14, 'holding IDs should be unique');
   assert.ok(holdings.every((holding) => holding.repo.startsWith('https://github.com/zazieproductions/')));
   assert.ok(holdings.every((holding) => holding.rights && holding.status));
   const renderFunction = js.match(/function renderCodeHoldings\(\)\{[\s\S]*?\n\}/);
@@ -38,7 +38,7 @@ test('GitHub software and research candidates are surfaced with rights context',
     (id) => id === 'codeHoldingsGrid' ? grid : null,
     holdings,
   );
-  assert.equal((grid.innerHTML.match(/<article /g) || []).length, 13);
+  assert.equal((grid.innerHTML.match(/<article /g) || []).length, 14);
   for (const repo of [
     'radioreach-funnel',
     'Comprehensive-Backlink-Tracker---Zazie-Productions-',
@@ -54,7 +54,7 @@ test('GitHub software and research candidates are surfaced with rights context',
     'interactive-harsh-noise-generator',
     'AETHER-V9-Pro'
   ]) assert.ok(js.includes(repo), `missing curated source repository: ${repo}`);
-  assert.match(html, /GITHUB IP REGISTER • 13 ADDITIONAL PROJECTS/);
+  assert.match(html, /GITHUB IP REGISTER • 14 ADDITIONAL PROJECTS/);
   const radioReach = holdings.find((holding) => holding.id === 'radioreach-funnel');
   assert.ok(radioReach, 'RadioReach source should be listed');
   assert.equal(radioReach.site, 'https://radioreach.us');
@@ -205,4 +205,29 @@ test('writing and artwork renderers emit accessible cards', () => {
   assert.match(rendered.w, /role="button"/);
   assert.match(rendered.w, /openWriting\('/);
   assert.match(rendered.a, /\/art\/thumbs\//);
+});
+
+
+test('THE PRODUCT preserves the original UI through an opt-in isolated embed', () => {
+  assert.match(html, /id="the-product"/);
+  assert.match(html, /Simulation/);
+  assert.match(html, /Critique/);
+  assert.match(html, /Baudrillard/);
+  assert.match(html, /EXPLORE SOURCE CODE/);
+  assert.doesNotMatch(html, /<iframe/);
+  const loader = js.match(/function loadProductEmbed\(\)\{[\s\S]*?\n\}/)[0];
+  const attributes = {};
+  const frame = { setAttribute: (key, value) => attributes[key] = value };
+  const host = { querySelector: () => null, replaceChildren: (value) => assert.equal(value, frame) };
+  const toggle = { hidden: false };
+  const status = { textContent: '' };
+  new Function('$', 'document', `${loader}; loadProductEmbed();`)(
+    id => ({ productEmbed: host, productEmbedToggle: toggle, productEmbedStatus: status })[id],
+    { createElement: tag => { assert.equal(tag, 'iframe'); return frame; } }
+  );
+  assert.equal(attributes.sandbox, 'allow-scripts allow-same-origin');
+  assert.match(frame.src, /^https:\/\/zazieproductions\.github\.io\/Baudrillardian/);
+  assert.ok(frame.title);
+  assert.equal(toggle.hidden, true);
+  assert.match(status.textContent, /blocked/);
 });
