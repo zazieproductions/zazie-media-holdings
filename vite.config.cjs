@@ -27,6 +27,7 @@ module.exports = defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         repo: resolve(__dirname, 'repo.html'),
+        prototypes: resolve(__dirname, 'prototypes.html'),
       },
     },
   },

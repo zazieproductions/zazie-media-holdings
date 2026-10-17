@@ -27,8 +27,8 @@ test('GitHub software and research candidates are surfaced with rights context',
   const dataSource = js.match(/const CODE_HOLDINGS=(\[[\s\S]*?\n\]);/);
   assert.ok(dataSource, 'expected a parseable source-code holdings register');
   const holdings = vm.runInNewContext(dataSource[1]);
-  assert.equal(holdings.length, 13);
-  assert.equal(new Set(holdings.map((holding) => holding.id)).size, 13, 'holding IDs should be unique');
+  assert.equal(holdings.length, 14);
+  assert.equal(new Set(holdings.map((holding) => holding.id)).size, 14, 'holding IDs should be unique');
   assert.ok(holdings.every((holding) => holding.repo.startsWith('https://github.com/zazieproductions/')));
   assert.ok(holdings.every((holding) => holding.rights && holding.status));
   const renderFunction = js.match(/function renderCodeHoldings\(\)\{[\s\S]*?\n\}/);
@@ -38,7 +38,7 @@ test('GitHub software and research candidates are surfaced with rights context',
     (id) => id === 'codeHoldingsGrid' ? grid : null,
     holdings,
   );
-  assert.equal((grid.innerHTML.match(/<article /g) || []).length, 13);
+  assert.equal((grid.innerHTML.match(/<article /g) || []).length, 14);
   for (const repo of [
     'radioreach-funnel',
     'Comprehensive-Backlink-Tracker---Zazie-Productions-',
@@ -54,7 +54,7 @@ test('GitHub software and research candidates are surfaced with rights context',
     'interactive-harsh-noise-generator',
     'AETHER-V9-Pro'
   ]) assert.ok(js.includes(repo), `missing curated source repository: ${repo}`);
-  assert.match(html, /GITHUB IP REGISTER • 13 ADDITIONAL PROJECTS/);
+  assert.match(html, /GITHUB IP REGISTER • 14 ADDITIONAL PROJECTS/);
   const radioReach = holdings.find((holding) => holding.id === 'radioreach-funnel');
   assert.ok(radioReach, 'RadioReach source should be listed');
   assert.equal(radioReach.site, 'https://radioreach.us');
@@ -135,6 +135,56 @@ test('writings and artwork registers are complete and assets exist', () => {
   }
 });
 
+test('institute patents and concepts are sourced from the live ZIAA archive', () => {
+  assert.match(html, /id="institute-learn"/);
+  assert.match(html, /id="patentGrid"/);
+  assert.match(html, /id="conceptGrid"/);
+  assert.match(html, /id="patentFilters"/);
+  assert.match(html, /100 SPECULATIVE DOSSIERS/);
+  const instituteBlock = html.match(/id="institute"[\s\S]*?<!-- AUDIENCES -->/);
+  assert.ok(instituteBlock, 'expected the institute asset section');
+  assert.doesNotMatch(instituteBlock[0], /unsplash/, 'institute section must not use stock photography');
+  assert.match(html, /fig-plate/);
+  assert.match(css, /\.fig-plate/);
+  assert.match(js, /<iframe/);
+  assert.match(js, /LIVE DOSSIER/);
+  assert.match(html, /https:\/\/zazieinstitute\.org\/patents/);
+  assert.match(html, /https:\/\/zazieinstitute\.org\/prototypes/);
+  assert.match(html, /https:\/\/zazieinstitute\.org\/disciplines\//);
+  for (const symbol of ['INSTITUTE_PATENTS', 'INSTITUTE_CONCEPTS', 'renderInstitutePatents', 'renderInstituteConcepts', 'openPatent', 'openConcept', 'openInstituteAsset', 'showInstituteTab']) assert.match(js, new RegExp(symbol));
+  const pSource = js.match(/const INSTITUTE_PATENTS=(\[[\s\S]*?\n\]);/);
+  const cSource = js.match(/const INSTITUTE_CONCEPTS=(\[[\s\S]*?\n\]);/);
+  assert.ok(pSource, 'expected a parseable patent register');
+  assert.ok(cSource, 'expected a parseable concept register');
+  const patents = vm.runInNewContext(pSource[1]);
+  const concepts = vm.runInNewContext(cSource[1]);
+  assert.equal(patents.length, 8);
+  assert.equal(concepts.length, 8);
+  assert.equal(new Set(patents.map((p) => p.id)).size, 8, 'patent IDs should be unique');
+  assert.equal(new Set(concepts.map((c) => c.id)).size, 8, 'concept IDs should be unique');
+  assert.ok(patents.every((p) => p.url.startsWith('https://zazieinstitute.org/patents/')));
+  assert.ok(concepts.every((c) => c.url.startsWith('https://zazieinstitute.org/prototypes/')));
+  assert.ok(patents.every((p) => p.title && p.abstract && p.status && p.filed && p.discipline && p.claim && p.pub && p.code));
+  assert.ok(concepts.every((c) => c.title && c.abstract && c.investigator && c.discipline && c.transducer && c.code && c.slug && c.fig && c.figtag && c.dims && c.status && c.year && c.power && c.snr && c.dsp));
+  const statuses = new Set(patents.map((p) => p.status));
+  for (const s of ['ISSUED PATENT', 'DEFENSIVE PUBLICATION', 'UNDER EXAMINATION', 'PROVISIONAL SPEC']) assert.ok(statuses.has(s), `missing patent status: ${s}`);
+  const pRender = js.match(/function renderInstitutePatents\(\)\{[\s\S]*?\n\}/);
+  const cRender = js.match(/function renderInstituteConcepts\(\)\{[\s\S]*?\n\}/);
+  assert.ok(pRender, 'expected the patent card renderer');
+  assert.ok(cRender, 'expected the concept card renderer');
+  const grids = { patentGrid: { innerHTML: '' }, conceptGrid: { innerHTML: '' } };
+  new Function('$', 'INSTITUTE_PATENTS', 'patentStatus', 'patentTone', `${pRender[0]}; renderInstitutePatents();`)(
+    (id) => grids[id] || null, patents, 'all', () => '',
+  );
+  new Function('$', 'INSTITUTE_CONCEPTS', `${cRender[0]}; renderInstituteConcepts();`)(
+    (id) => grids[id] || null, concepts,
+  );
+  assert.equal((grids.patentGrid.innerHTML.match(/<article /g) || []).length, 8);
+  assert.equal((grids.conceptGrid.innerHTML.match(/<article /g) || []).length, 8);
+  assert.match(grids.patentGrid.innerHTML, /openPatent\('/);
+  assert.match(grids.conceptGrid.innerHTML, /openConcept\('/);
+});
+
 test('writing and artwork renderers emit accessible cards', () => {
   const start = js.indexOf("let writingStatus='all';");
   const endMarker = 'renderWritings();renderArt();';
@@ -155,4 +205,56 @@ test('writing and artwork renderers emit accessible cards', () => {
   assert.match(rendered.w, /role="button"/);
   assert.match(rendered.w, /openWriting\('/);
   assert.match(rendered.a, /\/art\/thumbs\//);
+});
+
+
+test('THE PRODUCT preserves the original UI through an opt-in isolated embed', () => {
+  assert.match(html, /id="the-product"/);
+  assert.match(html, /Simulation/);
+  assert.match(html, /Critique/);
+  assert.match(html, /Baudrillard/);
+  assert.match(html, /EXPLORE SOURCE CODE/);
+  assert.doesNotMatch(html, /<iframe/);
+  const loader = js.match(/function loadProductEmbed\(\)\{[\s\S]*?\n\}/)[0];
+  const attributes = {};
+  const frame = { setAttribute: (key, value) => attributes[key] = value };
+  const host = { querySelector: () => null, replaceChildren: (value) => assert.equal(value, frame) };
+  const toggle = { hidden: false };
+  const status = { textContent: '' };
+  new Function('$', 'document', `${loader}; loadProductEmbed();`)(
+    id => ({ productEmbed: host, productEmbedToggle: toggle, productEmbedStatus: status })[id],
+    { createElement: tag => { assert.equal(tag, 'iframe'); return frame; } }
+  );
+  assert.equal(attributes.sandbox, 'allow-scripts allow-same-origin');
+  assert.match(frame.src, /^https:\/\/zazieproductions\.github\.io\/Baudrillardian/);
+  assert.ok(frame.title);
+  assert.equal(toggle.hidden, true);
+  assert.match(status.textContent, /blocked/);
+});
+
+test('Institute prototype register links verified dossiers with specifications and an accessible chart', () => {
+  assert.match(html, /id="prototypes"/);
+  assert.match(html, /aria-label="Conceptual signal-flow chart:/);
+  for (const id of ['147', '146', '019']) {
+    assert.match(html, new RegExp(`https://zazieinstitute\\.org/prototypes/prot-${id}/`));
+  }
+  assert.match(html, /15 Hz – 46 kHz/);
+  assert.match(html, /110 dB/);
+  assert.match(html, /meters are visual indicators, not live measurements/);
+});
+
+test('prototype atlas indexes all generations and distinguishes verified specifications', () => {
+  const records = JSON.parse(readFileSync('public/data/prototypes.json', 'utf8'));
+  const atlas = readFileSync('prototypes.html', 'utf8');
+  assert.equal(records.length, 160);
+  assert.equal(new Set(records.map((record) => record.id)).size, 160);
+  assert.ok(records.every((record) => /^https:\/\/zazieinstitute\.org\/prototypes\/prot-\d{3}\/$/.test(record.url)));
+  assert.equal(records.find((record) => record.id === 'PROT-147').snr, '110 dB (A-Weighted @ 1 kHz)');
+  assert.equal(records.find((record) => record.id === 'PROT-147').code, 'GESTURE-SPATIAL-V5');
+  assert.equal(records.find((record) => record.id === 'PROT-115').bandwidth, '30 Hz – 38 kHz');
+  assert.ok(records.every((record) => record.billOfMaterials.length > 0 && record.audioProfile && record.technicalNotes && record.schematicType));
+  assert.match(atlas, /id="prototypeSearch"/);
+  assert.match(atlas, /id="disciplineFilter"/);
+  assert.match(atlas, /id="prototypeDetail"/);
+  assert.match(html, /href="prototypes\.html\?id=PROT-147"/);
 });
