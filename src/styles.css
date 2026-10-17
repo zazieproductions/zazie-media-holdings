@@ -175,7 +175,13 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 /* writings + art register */
 .writing-card{transition:.3s cubic-bezier(.2,.8,.2,1)}
 .writing-card:hover{transform:translateY(-3px);border-color:rgba(92,242,255,.45);box-shadow:0 18px 50px -24px rgba(92,242,255,.35)}
-.writing-card:focus-visible,.art-tile:focus-visible{outline:2px solid #e6ff4a;outline-offset:3px}
+.writing-card:focus-visible,.art-tile:focus-visible,.episode-row:focus-visible{outline:2px solid #e6ff4a;outline-offset:3px}
+.podcast-cover{aspect-ratio:1;object-fit:cover;background:
+  radial-gradient(circle at 30% 20%,rgba(230,255,74,.35),transparent 42%),
+  linear-gradient(160deg,#1a1028,#07070b 70%);
+}
+.podcast-frame{position:relative}
+.podcast-frame::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),inset 0 0 80px rgba(0,0,0,.25)}
 .excerpt{font-family:'Instrument Serif',serif;font-size:1.06rem;line-height:1.6}
 .excerpt p+p{margin-top:.35rem}
 .art-tile{position:relative;overflow:hidden;border-radius:14px;border:1px solid rgba(255,255,255,.09);background:#0e0e15;aspect-ratio:4/5}

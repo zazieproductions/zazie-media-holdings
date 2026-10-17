@@ -8,6 +8,8 @@ The software section now points at the real thing. A repository dossier at [`rep
 >
 > The repository dossier includes 15 curated repositories: the three software sketches plus 12 additional public candidates. They are presented as **potential candidates**, not appraised or verified company holdings; license and chain-of-title checks are called out in [the GitHub IP screen](docs/GITHUB-IP-SCAN.md). The embedded builds are first-party copies; each `/embeds/<id>/` directory carries a `PROVENANCE.txt` and, when available, the repository's licence file.
 >
+> The `#podcast` section registers [Five Steps From The Fringe](https://open.spotify.com/show/7FPixyDvxgFkG9ndNOSDxJ) (Obsidian Veil Media) as an owner-asserted holding: official cover, 9 episodes on the desk, and an opt-in Spotify player. The 26 Sep 2024 Phantom Requiem episode is omitted from the desk at the owner’s request. It is not part of the simulated $4.2M valuation. See [the podcast register](docs/PODCAST-REGISTER.md).
+>
 > The `#writings` section quotes from manuscripts held in the Zazie Productions literary submissions archive (15 pieces, excerpts only) and shows ten works from the Behance art archive plus the ZAZIE PRODUCTIONS × FLESHWEATHER wordmark. Statuses are from the submission tracker dated 2026-10-09; see [the writings and art register](docs/WRITINGS-AND-ART.md) before promoting any credit.
 >
 > The software section now links the [RadioReach production funnel](https://radioreach.us) and lists its [source repository](https://github.com/zazieproductions/radioreach-funnel), alongside 13 other GitHub entries (12 software candidates and one research-data archive). RadioReach's README states that its code is all-rights-reserved and has no open-source license; the repository link is a high-level register, not a grant to copy or reuse source. None of the entries is an appraisal or proof of ZMH ownership. See [the GitHub IP screen](docs/GITHUB-IP-SCAN.md) for rights and security diligence.
@@ -42,7 +44,8 @@ Open the local URL displayed by Vite. The site loads GSAP, Chart.js, and fonts f
 ```text
 index.html                     Main portfolio, software atlas entry, and writings/art register
 repo.html                      Repository atlas + dossier shell
-src/app.js                     Catalog data, UI state, writing/art renderers, and audio interactions
+src/app.js                     Catalog data, UI state, podcast/writing/art renderers, and audio interactions
+docs/PODCAST-REGISTER.md       Five Steps From The Fringe: source URLs, episode IDs, publication gates
 src/repo-view.mjs              Dossier renderer (marked + DOMPurify, telemetry, file browser, live embeds)
 src/styles.css                 Tailwind directives and custom CSS
 data/repos.manifest.json       Curated 15-repository atlas manifest
@@ -104,7 +107,7 @@ No API secrets are needed for this prototype. The build produces two HTML entry 
 
 See [LICENSE.md](LICENSE.md). Do not assume rights to third-party names, images, brands or source material from their appearance in the prototype.
 
-**Build verification:** `npm run check` passes locally (17 tests covering the repository snapshot/dossier, THE PRODUCT embed, RadioReach disclosures, and the writings/art register, plus a production Vite build). Vite notes that the classic global script is not bundled as an ES module; the build config intentionally emits it to `dist/src/app.js` so the existing inline handlers continue to work. The dossier was additionally exercised in a JSDOM harness: README rendering, sanitisation, file fetching, commit diffs, live iframe wiring, atlas fallback and the main-page launch bay.
+**Build verification:** `npm run check` passes locally (18 tests covering the repository snapshot/dossier, THE PRODUCT embed, RadioReach disclosures, the writings/art register, and the Five Steps From The Fringe podcast register, plus a production Vite build). Vite notes that the classic global script is not bundled as an ES module; the build config intentionally emits it to `dist/src/app.js` so the existing inline handlers continue to work. The dossier was additionally exercised in a JSDOM harness: README rendering, sanitisation, file fetching, commit diffs, live iframe wiring, atlas fallback and the main-page launch bay.
 
 ### Featured conceptual interface
 

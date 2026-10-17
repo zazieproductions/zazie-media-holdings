@@ -10,6 +10,73 @@ test('site has expected document and JavaScript entrypoint', () => {
   assert.match(html, /\/src\/app\.js/);
   assert.match(html, /\/src\/styles\.css/);
 });
+test('Five Steps From The Fringe is registered with cover, episodes and an opt-in player', () => {
+  assert.match(html, /id="podcast"/);
+  assert.match(html, /https:\/\/open\.spotify\.com\/show\/7FPixyDvxgFkG9ndNOSDxJ/);
+  assert.match(html, /ab6765630000bdcff5f08fa13ab6ecdc76c988d2/);
+  assert.match(html, /Obsidian Veil Media/);
+  assert.match(html, /loadFringePlayer\('fringePlayer','show','7FPixyDvxgFkG9ndNOSDxJ'\)/);
+  assert.doesNotMatch(html, /<iframe/);
+  assert.match(js, /function renderFringe\(/);
+  assert.match(js, /function openFringeEpisode\(/);
+  assert.match(js, /function loadFringePlayer\(/);
+  const showSource = js.match(/const FRINGE_SHOW=(\{[\s\S]*?\n\});/);
+  const episodeSource = js.match(/const FRINGE_EPISODES=(\[[\s\S]*?\n\]);/);
+  assert.ok(showSource, 'expected a parseable show record');
+  assert.ok(episodeSource, 'expected a parseable episode register');
+  const show = vm.runInNewContext('(' + showSource[1] + ')');
+  const episodes = vm.runInNewContext(episodeSource[1]);
+  assert.equal(show.spotifyId, '7FPixyDvxgFkG9ndNOSDxJ');
+  assert.equal(show.publisher, 'Obsidian Veil Media');
+  assert.equal(episodes.length, 9);
+  assert.equal(new Set(episodes.map((episode) => episode.id)).size, 9);
+  assert.equal(new Set(episodes.map((episode) => episode.spotifyId)).size, 9);
+  assert.equal(episodes.reduce((sum, episode) => sum + episode.sec, 0), 3990);
+  assert.equal(episodes.find((episode) => episode.id === 'phantom-requiem'), undefined);
+  assert.doesNotMatch(js, /1fvq4kF8w6ew8IllOLf5yn/);
+  for (const episode of episodes) {
+    assert.match(episode.spotifyId, /^[A-Za-z0-9]+$/);
+    assert.ok(episode.title && episode.summary && episode.date && episode.dur && episode.desk);
+    assert.match(js, new RegExp(episode.spotifyId));
+  }
+  const desks = {};
+  for (const episode of episodes) desks[episode.desk] = (desks[episode.desk] || 0) + 1;
+  assert.deepEqual(desks, { Community: 1, Music: 3, Art: 3, Science: 2 });
+  const start = js.indexOf('function fringeEsc');
+  const end = js.indexOf('function openFringeEpisode');
+  assert.ok(start > -1 && end > start, 'expected the podcast renderer block');
+  const source = js.slice(start, end);
+  const list = { innerHTML: '', querySelectorAll: () => [] };
+  const count = { textContent: '' };
+  const runtime = { textContent: '' };
+  new Function('$', 'FRINGE_SHOW', 'FRINGE_EPISODES', 'fringeDesk', `${source}; renderFringe();`)(
+    (id) => ({ fringeList: list, fringeSearch: { value: '' }, fringeCount: count, fringeRuntime: runtime })[id] || null,
+    show,
+    episodes,
+    'all',
+  );
+  assert.equal((list.innerHTML.match(/<article /g) || []).length, 9);
+  assert.match(list.innerHTML, /EP 09/);
+  assert.match(list.innerHTML, /Busy Bee/);
+  assert.doesNotMatch(list.innerHTML, /Phantom Requiem/);
+  assert.equal(runtime.textContent, '1:06:30');
+  assert.match(html, /NOT IN THE SIMULATED VALUATION/);
+  assert.match(html, /they are not invented here/);
+  assert.doesNotMatch(html, /id="podcast"[\s\S]{0,1800}monthly listeners|id="podcast"[\s\S]{0,1800}\$\d[\d,.]*[kKmM]/);
+  const player = { querySelector: () => null, replaceChildren: (node) => { player.child = node; } };
+  const frame = { style: {}, setAttribute() {} };
+  new Function('$', 'document', 'FRINGE_SHOW', 'FRINGE_EPISODES', `${source}; loadFringePlayer('fringePlayer','show','7FPixyDvxgFkG9ndNOSDxJ');`)(
+    () => player,
+    { createElement: (tag) => { assert.equal(tag, 'iframe'); return frame; } },
+    show,
+    episodes,
+  );
+  assert.match(frame.src, /^https:\/\/open\.spotify\.com\/embed\/show\/7FPixyDvxgFkG9ndNOSDxJ/);
+  assert.match(frame.title, /Five Steps From The Fringe/);
+  assert.match(frame.allow, /autoplay/);
+  assert.equal(player.child, frame);
+});
+
 test('catalog, cart, music and instrument modules are retained', () => {
   for (const symbol of ['FILMS', 'DOMAINS', 'PRODUCTS', 'MUSIC', 'checkout', 'renderSeq', 'toggleRot']) assert.match(js, new RegExp(symbol));
 });
