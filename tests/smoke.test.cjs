@@ -27,8 +27,8 @@ test('GitHub software and research candidates are surfaced with rights context',
   const dataSource = js.match(/const CODE_HOLDINGS=(\[[\s\S]*?\n\]);/);
   assert.ok(dataSource, 'expected a parseable source-code holdings register');
   const holdings = vm.runInNewContext(dataSource[1]);
-  assert.equal(holdings.length, 12);
-  assert.equal(new Set(holdings.map((holding) => holding.id)).size, 12, 'holding IDs should be unique');
+  assert.equal(holdings.length, 13);
+  assert.equal(new Set(holdings.map((holding) => holding.id)).size, 13, 'holding IDs should be unique');
   assert.ok(holdings.every((holding) => holding.repo.startsWith('https://github.com/zazieproductions/')));
   assert.ok(holdings.every((holding) => holding.rights && holding.status));
   const renderFunction = js.match(/function renderCodeHoldings\(\)\{[\s\S]*?\n\}/);
@@ -38,8 +38,9 @@ test('GitHub software and research candidates are surfaced with rights context',
     (id) => id === 'codeHoldingsGrid' ? grid : null,
     holdings,
   );
-  assert.equal((grid.innerHTML.match(/<article /g) || []).length, 12);
+  assert.equal((grid.innerHTML.match(/<article /g) || []).length, 13);
   for (const repo of [
+    'radioreach-funnel',
     'Comprehensive-Backlink-Tracker---Zazie-Productions-',
     'Sonogenesis-Bioacoustic-Aquarium',
     'Auralis-Bioacoustic-Synthesphere',
@@ -53,8 +54,55 @@ test('GitHub software and research candidates are surfaced with rights context',
     'interactive-harsh-noise-generator',
     'AETHER-V9-Pro'
   ]) assert.ok(js.includes(repo), `missing curated source repository: ${repo}`);
-  assert.match(html, /GITHUB SCAN • 12 ADDITIONAL ASSETS/);
+  assert.match(html, /GITHUB IP REGISTER • 13 ADDITIONAL PROJECTS/);
+  const radioReach = holdings.find((holding) => holding.id === 'radioreach-funnel');
+  assert.ok(radioReach, 'RadioReach source should be listed');
+  assert.equal(radioReach.site, 'https://radioreach.us');
+  assert.match(radioReach.rights, /all rights reserved/i);
+  assert.match(radioReach.rights, /no open-source license/i);
+  for (const system of ['Emotional State Proxy (ESP)', 'Momentum + Ownership', 'Conversion Lab', 'Lucky Wheel', 'Secret Slots', 'Meta Pixel / Conversions API']) {
+    assert.ok(radioReach.systems.some((entry) => entry.includes(system)), `missing RadioReach system: ${system}`);
+  }
+  assert.match(grid.innerHTML, /href="https:\/\/radioreach\.us"/);
+  assert.match(grid.innerHTML, /href="https:\/\/github\.com\/zazieproductions\/radioreach-funnel"/);
+  assert.match(grid.innerHTML, /SYSTEMS \/ CODE IDENTIFIED/);
+  assert.match(grid.innerHTML, /href="#radioreach-systems"/);
   assert.doesNotMatch(html, /License — \$49/);
+});
+
+test('RadioReach proprietary behavioral systems are documented with transparency controls', () => {
+  assert.match(html, /id="radioreach-systems"/);
+  assert.match(html, /Marketing Psychology &amp; Conversion Systems/);
+  assert.match(html, /Emotional State Proxy \(ESP\)/);
+  assert.match(html, /scroll velocity/);
+  assert.match(html, /20-second half-life/);
+  for (const mode of ['calm', 'aspire', 'urgency']) assert.match(html, new RegExp(`>${mode}<`));
+  assert.match(html, /sessionStorage\["esp\.events\.v1"\]/);
+  assert.match(html, /src\/esp\/README\.md/);
+  assert.match(html, /Momentum \+ Ownership Sequence/);
+  assert.match(html, /localStorage/);
+  assert.match(html, /MomentumSequenceViewed/);
+  assert.match(html, /TRANSPARENCY &amp; PRIVACY REVIEW/);
+});
+
+test('RadioReach domain card links to its live funnel and source repository', () => {
+  const dataSource = js.match(/const DOMAINS=(\[[\s\S]*?\n\]);/);
+  const renderStart = js.indexOf('function renderDomains(){');
+  const renderEnd = js.indexOf('\n}\nrenderDomains();', renderStart);
+  assert.ok(dataSource, 'expected a parseable domain register');
+  assert.ok(renderStart > -1 && renderEnd > renderStart, 'expected the domain card renderer');
+  const renderFunction = js.slice(renderStart, renderEnd + 2);
+  const domains = vm.runInNewContext(dataSource[1]);
+  const grid = { innerHTML: '' };
+  new Function('$', 'DOMAINS', renderFunction + '; renderDomains();')(
+    (id) => id === 'domainGrid' ? grid : null,
+    domains,
+  );
+  assert.match(grid.innerHTML, /href="https:\/\/radioreach\.us"/);
+  assert.match(grid.innerHTML, /href="https:\/\/github\.com\/zazieproductions\/radioreach-funnel"/);
+  assert.match(grid.innerHTML, /OPEN LIVE FUNNEL/);
+  assert.match(grid.innerHTML, /Cloudflare KV/);
+  assert.doesNotMatch(grid.innerHTML, /62K \/yr|\$54K funnel sales|4\.2% conversion/);
 });
 
 test('writings and artwork registers are complete and assets exist', () => {
