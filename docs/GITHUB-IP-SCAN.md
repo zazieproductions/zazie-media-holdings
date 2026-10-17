@@ -93,3 +93,10 @@ The earlier caveat still applies: a repository under the account is not proof of
 6. **Review RadioReach environment artifacts:** its current public GitHub tree lists `.env.production` and `.env.local.save`. Their contents were not inspected. Check them privately, rotate any real credentials, and remove exposed secrets from Git history as needed.
 
 The website identifies RadioReach as a production source-code entry and labels the other new entries as candidates; rights signals appear beside each project so visitors can distinguish public-source evidence from verified ownership or an offer to license.
+## THE PRODUCT™ — conceptual landing-page artwork
+
+Added 2026-10-17 from [the source repository](https://github.com/zazieproductions/Baudrillardian-Simulacra-in-Landing-Page-Conversion), reviewed at commit `ef27e909759f78aa88395eccade35d40ebf1c1bc`.
+
+The README credits concept, design, and implementation to Zazie Productions and describes four orders of simulacra and a Simulation / Critique toggle. It links the original GitHub Pages UI; the portfolio embeds that remote UI only after visitor interaction rather than copying or rebuilding the product. No source code or artwork from that repository is redistributed here. An always-available external link provides a fallback if framing is blocked. External deployment and frame compatibility have not been browser-verified in this environment.
+
+The repository README states UNLICENSED / all rights reserved, not open-source. Confirm chain of title, contributor assignments, and third-party asset terms before licensing or reuse. Fabricated urgency, counters, testimonials, and claiming states are part of the artwork, not verified commercial evidence. The portfolio's register now contains 14 entries (13 software candidates and one research archive).
