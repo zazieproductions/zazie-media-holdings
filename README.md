@@ -13,6 +13,8 @@ The software section now points at the real thing. A repository dossier at [`rep
 > The software section now links the [RadioReach production funnel](https://radioreach.us) and lists its [source repository](https://github.com/zazieproductions/radioreach-funnel), alongside 13 other GitHub entries (12 software candidates and one research-data archive). RadioReach's README states that its code is all-rights-reserved and has no open-source license; the repository link is a high-level register, not a grant to copy or reuse source. None of the entries is an appraisal or proof of ZMH ownership. See [the GitHub IP screen](docs/GITHUB-IP-SCAN.md) for rights and security diligence.
 >
 > The Institute asset section curates 8 speculative patent dossiers and 8 prototype concepts from the public [Zazie Institute of Applied Anomalies](https://zazieinstitute.org) open archive (curated 2026-10-17); abstracts link out to the full citable dossiers, and statuses must be re-verified before any licensing use — see [the ZIAA asset notes](docs/ZIAA-ASSET-NOTES.md).
+>
+> The music vault links the [Zazie Productions Bandcamp storefront](https://zazieproductions.bandcamp.com) as an external catalog asset, and [Hubris Books](https://hubrisbooks.win) is listed under domains as a satirical publishing imprint. Both are live outbound links (added 2026-10-17); listening, purchases and reading happen on those properties under their own terms. See [content audit](docs/CONTENT-AUDIT.md).
 
 ## Requirements
 
