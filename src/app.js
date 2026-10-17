@@ -103,7 +103,7 @@ body:["Zazie Productions Presents","GIBBERETIC SEED SPIRAL — glocht","/ɡlɒxt
 note:"A dictionary entry for a word that unspells its speakers, from the GIBBERETIC SEED SPIRAL series."}
 ];
 const ARTWORKS=[
-{id:"silicon-reliquary",file:"silicon-reliquary",title:"Silicon Reliquary",year:"2025",date:"28 Dec 2025",fields:"Painting • Sculpting • Woodworking",note:"A standing figure built from circuit debris and pigment — the archive’s one sculptural object."},
+{id:"silicon-reliquary",file:"silicon-reliquary",title:"Silicon Reliquary",year:"2025",date:"28 Dec 2025",fields:"Painting • Sculpting • Woodworking",note:"A standing figure built from circuit debris and pigment, catalogued under painting, sculpting and woodworking."},
 {id:"paranoid-heraldry",file:"paranoid-heraldry",title:"Paranoid Heraldry of the Pink Sun",year:"2025",date:"14 Nov 2025",fields:"Graphic Design • Art Direction • Illustration",note:"Heraldic density at poster scale: eyes, teeth, crests and a pink sun that refuses to be decorative."},
 {id:"ouroborean-sunmouth",file:"ouroborean-sunmouth",title:"Ouroborean Sunmouth",year:"2025",date:"11 Nov 2025",fields:"Graphic Design • Illustration • Comic",note:"A head consumed by its own spiked corona — the archive’s recurring sun-and-mouth motif in its most literal form."},
 {id:"glossolalia-engine",file:"glossolalia-engine",title:"Glossolalia Engine / 23-Vector Gospel",year:"2025",date:"11 Nov 2025",fields:"Graphic Design • Illustration • Concept Art",note:"A portrait drawn as pure interference: black filaments on white, a face emerging from wiring and static."},
