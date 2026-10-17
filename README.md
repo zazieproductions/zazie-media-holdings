@@ -17,6 +17,8 @@ The software section now points at the real thing. A repository dossier at [`rep
 > The software section now links the [RadioReach production funnel](https://radioreach.us) and lists its [source repository](https://github.com/zazieproductions/radioreach-funnel), alongside 13 other GitHub entries (12 software candidates and one research-data archive). RadioReach's README states that its code is all-rights-reserved and has no open-source license; the repository link is a high-level register, not a grant to copy or reuse source. None of the entries is an appraisal or proof of ZMH ownership. See [the GitHub IP screen](docs/GITHUB-IP-SCAN.md) for rights and security diligence.
 >
 > The Institute asset section curates 8 speculative patent dossiers and 8 prototype concepts from the public [Zazie Institute of Applied Anomalies](https://zazieinstitute.org) open archive (curated 2026-10-17); abstracts link out to the full citable dossiers, and statuses must be re-verified before any licensing use — see [the ZIAA asset notes](docs/ZIAA-ASSET-NOTES.md).
+>
+> The digital-product cards and the matching music-vault releases now carry the **real prices and cover art** mirrored from the public catalogue at [horror.zazieproductions.com/store](https://horror.zazieproductions.com/store) (hub prices last checked 24 September 2026); each card links out to its Gumroad, itch.io or Bandcamp listing, and BIOFLUID Vol. 01 — which has no live listing — is flagged as a concept. The on-page cart remains a simulation.
 
 ## Requirements
 

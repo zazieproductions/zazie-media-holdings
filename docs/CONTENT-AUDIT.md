@@ -4,6 +4,7 @@ The imported site is a **concept/demo**, not a verified company record or operat
 
 - **Corporate and portfolio assertions:** film titles, rights/ownership, domain histories, patent claims, catalog counts, royalty/earnings, valuations, growth rates, investors and deal values are hard-coded in the original demo. Confirm each against actual records and mark fictional examples clearly.
 - **Checkout:** `checkout()` displays an order-success modal but has no payment, authentication, inventory, invoicing, or download fulfillment. It must not represent a real sale.
+- **Product prices and covers:** the PRODUCTS cards and the matching MUSIC vault releases mirror prices, specs and cover art from <https://horror.zazieproductions.com/store> (hub prices last checked 24 September 2026). Marketplace CDN artwork is hot-linked with `referrerpolicy="no-referrer"` and falls back to the monogram tile on error; re-verify hub prices before republishing. BIOFLUID Vol. 01 has no live listing and is flagged as a concept entry.
 - **Acquisition form:** `submitAcquire()` only shows a simulated confirmation and does not transmit or store submissions. It must not promise contact or an NDA.
 - **Newsletter:** `subscribe()` only displays a toast; it does not add subscribers to a list.
 - **Investor deck:** `openDeck()` shows a mock modal; its Download PDF button does not generate or download a PDF.

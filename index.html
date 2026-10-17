@@ -421,13 +421,14 @@
   <div class="flex flex-wrap items-end justify-between gap-4 mb-8 reveal">
     <div><div class="eyebrow text-amber-300 mb-3">05 — ZAZIE SOUNDS • DIGITAL PRODUCTS • INSTANT DELIVERY</div>
     <h2 class="font-grot font-bold text-4xl md:text-6xl">Sample Packs <span class="font-serif italic font-normal text-mute">& SFX</span></h2></div>
-    <button onclick="addBundle()" class="btn-lime rounded-xl px-6 py-3 font-bold">GET ALL 4 — $79 <span class="line-through opacity-60 font-normal">$102</span> SAVE 23%</button>
+    <button onclick="addBundle()" class="btn-lime rounded-xl px-6 py-3 font-bold">ADD ALL 4 — $45</button>
   </div>
   <div id="productGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
   <div class="mt-4 card-line rounded-2xl p-4 bg-panel flex flex-wrap items-center gap-3 justify-between reveal">
-    <div class="font-mono text-[11px] text-mute">◆ ROYALTY-FREE • WAV 24-BIT • 100% ZMH-OWNED MASTERS • USED IN <span class="text-cream">SEPSIS</span> & <span class="text-cream">PHANTOM REQUIEM</span></div>
+    <div class="font-mono text-[11px] text-mute">◆ ROYALTY-FREE • WAV + MP4 • 100% ZMH-OWNED MASTERS • USED IN <span class="text-cream">SEPSIS</span> & <span class="text-cream">PHANTOM REQUIEM</span></div>
     <div class="font-mono text-[11px]"><span class="text-lime">●</span> <span id="salesCount">1,284</span> packs sold this quarter</div>
   </div>
+  <div class="mt-3 font-mono text-[10px] text-mute leading-relaxed reveal">PRICES + COVERS MIRROR THE PUBLIC CATALOGUE AT <a href="https://horror.zazieproductions.com/store" target="_blank" rel="noopener noreferrer" class="text-lime underline underline-offset-2">HORROR.ZAZIEPRODUCTIONS.COM/STORE</a> (CHECKED 24 SEP 2026) • CHECKOUT IS HANDLED BY GUMROAD / ITCH.IO — THIS PAGE'S CART IS A SIMULATION • BIOFLUID VOL. 01 IS A CONCEPT AND IS NOT LISTED FOR SALE</div>
 </section>
 
 <!-- MUSIC -->
@@ -866,11 +867,10 @@
 <!-- CART DRAWER -->
 <div id="cartOverlay" class="fixed inset-0 modal-bg z-[60] hidden" onclick="toggleCart(false)"></div>
 <aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-panel border-l border-white/10 z-[61] drawer translate-x-full flex flex-col">
-  <div class="p-6 border-b border-white/10 flex items-center justify-between"><div><div class="font-bold text-xl">Holdings Cart</div><div class="font-mono text-[10px] text-mute">INSTANT DELIVERY • ROYALTY-FREE</div></div><button onclick="toggleCart(false)" class="btn-ghost rounded-lg w-10 h-10">✕</button></div>
+  <div class="p-6 border-b border-white/10 flex items-center justify-between"><div><div class="font-bold text-xl">Holdings Cart</div><div class="font-mono text-[10px] text-mute">SIMULATED • REAL CHECKOUT ON GUMROAD / ITCH.IO</div></div><button onclick="toggleCart(false)" class="btn-ghost rounded-lg w-10 h-10">✕</button></div>
   <div id="cartItems" class="flex-1 overflow-y-auto p-6 space-y-3"></div>
   <div class="p-6 border-t border-white/10 space-y-3">
     <div class="flex justify-between font-mono text-sm"><span class="text-mute">SUBTOTAL</span><span id="cartSub">$0</span></div>
-    <div class="flex justify-between font-mono text-sm"><span class="text-mute">BUNDLE DISCOUNT</span><span id="cartDisc" class="text-lime">-$0</span></div>
     <div class="flex justify-between font-bold text-xl"><span>TOTAL</span><span id="cartTotal" class="text-lime">$0</span></div>
     <button onclick="checkout()" class="btn-lime rounded-xl w-full py-4 font-bold">CHECKOUT →</button>
   </div>
