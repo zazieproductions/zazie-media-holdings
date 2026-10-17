@@ -528,6 +528,74 @@ function renderFacts(repo) {
     ${repo.topics.length ? `<div class="flex flex-wrap gap-1.5 mt-3">${repo.topics.map((topic) => `<span class="chip text-[9px]">${escapeHtml(topic)}</span>`).join('')}</div>` : ''}`;
 }
 
+const CHART_COLORS = ['#e6ff4a', '#5cf2ff', '#8b7cff', '#ff3ea5', '#ffb347', '#7CFFB2', '#ff6b6b', '#a8a8c8'];
+
+function renderTelemetry(repo) {
+  const repos = state.data.repositories;
+  const commits = [...(repo.commits || [])].filter((commit) => Number.isFinite(Date.parse(commit.date))).sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+  const first = commits.length ? Date.parse(commits[0].date) : 0;
+  const last = commits.length ? Date.parse(commits[commits.length - 1].date) : 0;
+  const span = Math.max(last - first, 1);
+  const points = commits.map((commit, index) => {
+    const x = commits.length === 1 ? 200 : 24 + ((Date.parse(commit.date) - first) / span) * 352;
+    const y = 30 + (index % 3) * 12;
+    const date = formatDate(commit.date, { short: true });
+    return `<circle cx="${x.toFixed(1)}" cy="${y}" r="5" fill="${CHART_COLORS[index % CHART_COLORS.length]}" stroke="#090910" stroke-width="2"><title>${escapeHtml(date)} · ${escapeHtml(commit.author)} · ${escapeHtml(commit.message)}</title></circle>`;
+  }).join('');
+  const activityPath = commits.length > 1
+    ? `<polyline points="${commits.map((commit, index) => {
+      const x = 24 + ((Date.parse(commit.date) - first) / span) * 352;
+      return `${x.toFixed(1)},${30 + (index % 3) * 12}`;
+    }).join(' ')}" fill="none" stroke="#5cf2ff" stroke-opacity=".45" stroke-width="2"/>`
+    : '';
+  const timeline = commits.length
+    ? `<svg viewBox="0 0 400 112" class="telemetry-svg" role="img" aria-label="Timeline of the ${commits.length} most recent commits, oldest to newest"><defs><linearGradient id="activityGlow" x1="0" x2="1"><stop stop-color="#8b7cff"/><stop offset="1" stop-color="#5cf2ff"/></linearGradient></defs><path d="M24 76H376" stroke="rgba(255,255,255,.13)" stroke-dasharray="3 5"/>${activityPath}${points}<text x="24" y="99" class="chart-label">${escapeHtml(formatDate(commits[0].date, { short: true }))}</text><text x="376" y="99" text-anchor="end" class="chart-label">${escapeHtml(formatDate(commits[commits.length - 1].date, { short: true }))}</text><text x="200" y="108" text-anchor="middle" class="chart-label">OLDEST → NEWEST · RECENT ${commits.length}</text></svg>`
+    : '<p class="text-[11px] text-mute">No dated commits in the current snapshot.</p>';
+  const totalBytes = (repo.languages || []).reduce((sum, language) => sum + (Number(language.bytes) || 0), 0);
+  let offset = 0;
+  const segments = (repo.languages || []).map((language, index) => {
+    const percent = Math.max(0, Math.min(100, Number(language.percent) || 0));
+    const circumference = 263.89;
+    const dash = (percent / 100) * circumference;
+    const segment = `<circle cx="60" cy="60" r="42" fill="none" stroke="${CHART_COLORS[index % CHART_COLORS.length]}" stroke-width="13" stroke-dasharray="${dash} ${circumference - dash}" stroke-dashoffset="${-offset}" transform="rotate(-90 60 60)"><title>${escapeHtml(language.name)} · ${percent}%</title></circle>`;
+    offset += dash;
+    return segment;
+  }).join('');
+  const ring = totalBytes
+    ? `<div class="language-ring-wrap"><svg viewBox="0 0 120 120" class="language-ring" role="img" aria-label="Source language composition by GitHub-reported bytes">${segments}<circle cx="60" cy="60" r="31" fill="#0e0e15"/><text x="60" y="57" text-anchor="middle" class="ring-value">${repo.languages.length}</text><text x="60" y="69" text-anchor="middle" class="ring-caption">LANGS</text></svg></div>`
+    : '<div class="language-ring-empty">NO DATA</div>';
+  const languageLegend = (repo.languages || []).slice(0, 5).map((language, index) => `<div class="viz-legend-row"><span class="viz-dot" style="background:${CHART_COLORS[index % CHART_COLORS.length]}"></span><span class="truncate">${escapeHtml(language.name)}</span><span class="font-mono text-[10px] text-mute">${Number(language.percent) || 0}%</span></div>`).join('');
+  const metrics = [
+    ['STARS', 'stars'], ['FORKS', 'forks'], ['OPEN ISSUES', 'openIssues'], ['REPO SIZE', 'sizeKB'], ['RECENT COMMITS', null],
+  ];
+  const comparisons = metrics.map(([label, key]) => {
+    const value = key ? Number(repo[key]) || 0 : commits.length;
+    const values = repos.map((item) => key ? Number(item[key]) || 0 : (item.commits || []).length);
+    const max = Math.max(1, ...values);
+    const percentile = Math.round((values.filter((item) => item <= value).length / Math.max(values.length, 1)) * 100);
+    const width = Math.max(value > 0 ? 4 : 0, Math.round((value / max) * 100));
+    return `<div class="peer-row"><div class="flex items-center justify-between gap-2 mb-1"><span class="font-mono text-[9px] tracking-widest text-mute">${label}</span><span class="font-mono text-[10px] text-cream">${number(value)} <span class="text-mute">· P${percentile}</span></span></div><div class="peer-track" role="img" aria-label="${label}: ${number(value)}, percentile ${percentile} among ${repos.length} curated repositories"><span style="width:${width}%"></span></div></div>`;
+  }).join('');
+  const dateRange = commits.length ? `${formatDate(commits[0].date, { short: true })} — ${formatDate(commits[commits.length - 1].date, { short: true })}` : 'NO DATED COMMITS';
+  $('#repoTelemetry').innerHTML = `
+    <article class="telemetry-card telemetry-activity">
+      <div class="telemetry-card-head"><div><div class="eyebrow text-cy">01 / ACTIVITY TRACE</div><h2 class="telemetry-title">Commit signal</h2></div><span class="telemetry-mark">↗</span></div>
+      <div class="telemetry-big">${number(commits.length)} <span>recent commits</span></div>
+      ${timeline}
+      <div class="telemetry-foot"><span>${escapeHtml(dateRange)}</span><span>DEFAULT BRANCH</span></div>
+    </article>
+    <article class="telemetry-card telemetry-language">
+      <div class="telemetry-card-head"><div><div class="eyebrow text-lime">02 / SOURCE PROFILE</div><h2 class="telemetry-title">Language mix</h2></div><span class="telemetry-mark">◌</span></div>
+      <div class="language-viz">${ring}<div class="language-legend">${languageLegend || '<span class="text-[11px] text-mute">No language breakdown</span>'}</div></div>
+      <div class="telemetry-foot"><span>${number(totalBytes)} bytes indexed</span><span>GITHUB LANGUAGES API</span></div>
+    </article>
+    <article class="telemetry-card telemetry-peers">
+      <div class="telemetry-card-head"><div><div class="eyebrow text-mag">03 / PORTFOLIO CONTEXT</div><h2 class="telemetry-title">Signal vs. atlas</h2></div><span class="telemetry-mark">◉</span></div>
+      <div class="peer-chart">${comparisons}</div>
+      <div class="telemetry-foot"><span>Percentile within ${repos.length} curated repos</span><span>LIVE SNAPSHOT</span></div>
+    </article>`;
+}
+
 function renderLanguages(repo) {
   const total = repo.languages.reduce((sum, language) => sum + language.bytes, 0);
   $('#languagesPanel').innerHTML = `
@@ -744,6 +812,7 @@ function renderRepo(repo) {
   renderTree(repo.tree, '');
   renderCommits(repo);
   renderFacts(repo);
+  renderTelemetry(repo);
   renderLanguages(repo);
   renderDiligence(repo);
   renderBuild(repo);
@@ -771,7 +840,7 @@ function renderRepo(repo) {
   $('#heroReadme')?.addEventListener('click', () => setTab('readme'));
 
   const requested = (location.hash || '').replace('#', '');
-  const initialTab = TABS.includes(requested) && (requested !== 'live' || live) ? requested : 'readme';
+  const initialTab = TABS.includes(requested) && (requested !== 'live' || live) ? requested : (live ? 'live' : 'readme');
   setTab(initialTab, { updateHash: false });
 
   wireTabs();
