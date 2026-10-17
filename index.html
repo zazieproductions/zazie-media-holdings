@@ -49,8 +49,9 @@
       <a href="#domains" class="nav-link">DOMAINS</a>
       <a href="prototypes.html" class="nav-link">PROTOTYPES</a>
       <a href="#audiences" class="nav-link">AUDIENCES</a>
-      <a href="#products" class="nav-link">PRODUCTS</a>
+      <a href="#products" class="nav-link hidden xl:inline">PRODUCTS</a>
       <a href="#music" class="nav-link">MUSIC</a>
+      <a href="#podcast" class="nav-link">PODCAST</a>
       <a href="#software" class="nav-link">SOFTWARE</a>
       <a href="repo.html" class="nav-link hidden xl:inline">REPOS</a>
       <a href="#writings" class="nav-link hidden xl:inline">WRITINGS</a>
@@ -67,7 +68,7 @@
     </div>
   </div>
   <div id="mobileMenu" class="hidden lg:hidden border-t border-white/10 px-6 py-4 flex flex-col gap-3 font-mono text-sm glass">
-    <a href="#holdings">STRUCTURE</a><a href="#films">FILMS</a><a href="#domains">DOMAINS</a><a href="prototypes.html">PROTOTYPES</a><a href="#audiences">AUDIENCES</a><a href="#products">PRODUCTS</a><a href="#music">MUSIC</a><a href="#software">SOFTWARE</a><a href="#writings">WRITINGS &amp; ART</a><a href="#investors" class="text-lime">INVEST / ACQUIRE →</a>
+    <a href="#holdings">STRUCTURE</a><a href="#films">FILMS</a><a href="#domains">DOMAINS</a><a href="prototypes.html">PROTOTYPES</a><a href="#audiences">AUDIENCES</a><a href="#products">PRODUCTS</a><a href="#music">MUSIC</a><a href="#podcast">PODCAST</a><a href="#software">SOFTWARE</a><a href="#writings">WRITINGS &amp; ART</a><a href="#investors" class="text-lime">INVEST / ACQUIRE →</a>
   </div>
 </nav>
 
@@ -84,13 +85,14 @@
           <span class="chip bg-lime text-black border-lime font-bold">◉ HOLDING COMPANY</span>
           <span class="chip">SONY / BERTELSMANN MODEL — AT 1:1000 SCALE</span>
           <span class="chip text-lime border-lime/40">41 ASSETS UNDER MANAGEMENT</span>
+          <a href="#podcast" class="chip text-lime border-lime/40">◉ 1 REGISTERED SHOW</a>
         </div>
         <h1 class="font-grot font-bold leading-[.9] tracking-tight text-[13vw] sm:text-7xl md:text-8xl xl:text-[110px]">
           ZAZIE<br><span class="outline-text">MEDIA</span><br>
           <span class="font-serif italic font-normal text-lime text-glow">Holdings.</span>
         </h1>
         <p class="mt-6 text-mute text-base md:text-lg max-w-xl leading-relaxed">
-          We acquire, own, manage & monetize <span class="text-cream">media properties</span> — music catalogs, films, domains, viral audiences, digital products, software & original IP. One parent. Seven divisions. Infinite licensing.
+          We acquire, own, manage & monetize <span class="text-cream">media properties</span> — music catalogs, films, a registered podcast, domains, viral audiences, digital products, software & original IP. One parent. Eight divisions. Infinite licensing.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
           <a href="#holdings" class="btn-lime rounded-xl px-6 py-3.5 font-bold">Explore the Portfolio ↓</a>
@@ -126,12 +128,21 @@
           </div>
         </div>
         <div class="card-line rounded-2xl p-5 bg-gradient-to-br from-viol/20 to-mag/10 relative overflow-hidden">
-          <div class="absolute top-3 right-4 font-mono text-[10px] text-mute">DIVISION 06 // ON AIR</div>
+          <div class="absolute top-3 right-4 font-mono text-[10px] text-mute">DIVISION 03 // TRAFFIC</div>
           <div class="eyebrow text-lime mb-2">★ Featured Asset</div>
           <div class="font-bold text-xl">KYPO6 — Infamous 2026 Tabloid</div>
           <div class="font-serif italic text-mute">2.1M monthly readers. Zero chill. Pure signal.</div>
           <div class="flex gap-2 mt-3"><a href="#domains" class="btn-lime rounded-lg px-4 py-2 text-sm font-bold">Inspect Asset</a><button onclick="openDomain(2)" class="btn-ghost rounded-lg px-4 py-2 text-sm">Live Preview</button></div>
         </div>
+        <a href="#podcast" class="card-line rounded-2xl p-4 bg-panel flex items-center gap-4 group hover:border-lime/50 transition">
+          <img src="https://i.scdn.co/image/ab6765630000bdcff5f08fa13ab6ecdc76c988d2" data-cover-fallback="https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo400/42101200/42101200-1747763783485-2486cd5def4f8.jpg" alt="Cover art for Five Steps From The Fringe" width="72" height="72" referrerpolicy="no-referrer" class="podcast-cover w-16 h-16 rounded-xl shrink-0">
+          <div class="min-w-0">
+            <div class="font-mono text-[10px] text-lime tracking-widest">REGISTERED HOLDING • ON AIR</div>
+            <div class="font-bold text-lg leading-tight">Five Steps From The Fringe</div>
+            <div class="font-mono text-[10px] text-mute mt-1">9 EPISODES • OBSIDIAN VEIL MEDIA • SPOTIFY</div>
+          </div>
+          <span class="ml-auto font-mono text-[11px] text-lime hidden sm:inline shrink-0">OPEN DESK →</span>
+        </a>
       </div>
     </div>
   </div>
@@ -146,7 +157,7 @@
   <div class="flex flex-wrap items-end justify-between gap-4 mb-10 reveal">
     <div>
       <div class="eyebrow text-lime mb-3">01 — CORPORATE STRUCTURE</div>
-      <h2 class="font-grot font-bold text-4xl md:text-6xl tracking-tight">One parent.<br><span class="font-serif italic font-normal text-mute">Seven money machines.</span></h2>
+      <h2 class="font-grot font-bold text-4xl md:text-6xl tracking-tight">One parent.<br><span class="font-serif italic font-normal text-mute">Eight money machines.</span></h2>
     </div>
     <p class="max-w-md text-mute text-sm leading-relaxed">Modelled on Sony Group & Bertelsmann: a central holding company that owns operating divisions outright. Every stream, license, sale and sync flows back to ZMH.</p>
   </div>
@@ -158,12 +169,13 @@
     </div>
     <div class="hidden md:block w-px h-8 bg-white/20 mx-auto"></div>
     <div class="hidden md:block h-px bg-white/20 mx-10 mb-0"></div>
-    <div class="grid md:grid-cols-7 gap-3 mt-6">
+    <div class="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-8 gap-3 mt-6">
       <div onclick="scrollToId('films')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-mag border-mag/30"><div class="text-2xl mb-1">◈</div><div class="font-bold text-[13px]">ZAZIE<br>PICTURES</div><div class="font-mono text-[10px] text-mute mt-1">4 FILMS</div></div>
       <div onclick="scrollToId('domains')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-cy border-cy/30"><div class="text-2xl mb-1">⬢</div><div class="font-bold text-[13px]">ZAZIE<br>DOMAINS</div><div class="font-mono text-[10px] text-mute mt-1">6 SITES</div></div>
       <div onclick="scrollToId('audiences')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-lime border-lime/30"><div class="text-2xl mb-1">◎</div><div class="font-bold text-[13px]">ZAZIE<br>AUDIENCES</div><div class="font-mono text-[10px] text-mute mt-1">31.3K SAVES<br>25K IG</div></div>
       <div onclick="scrollToId('products')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-amber-300 border-amber-300/30"><div class="text-2xl mb-1">⬣</div><div class="font-bold text-[13px]">ZAZIE<br>SOUNDS</div><div class="font-mono text-[10px] text-mute mt-1">4 PRODUCTS</div></div>
       <div onclick="scrollToId('music')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-viol border-viol/30"><div class="text-2xl mb-1">♪</div><div class="font-bold text-[13px]">ZAZIE<br>PRODUCTIONS</div><div class="font-mono text-[10px] text-mute mt-1">23 RELEASES</div></div>
+      <div onclick="scrollToId('podcast')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-lime border-lime/30"><div class="text-2xl mb-1">◉</div><div class="font-bold text-[13px]">ZAZIE<br>AIR</div><div class="font-mono text-[10px] text-mute mt-1">9 EPISODES</div></div>
       <div onclick="scrollToId('software')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-emerald-300 border-emerald-300/30"><div class="text-2xl mb-1">⚙</div><div class="font-bold text-[13px]">ZAZIE<br>LABS</div><div class="font-mono text-[10px] text-mute mt-1">15 DOSSIERS • 13 GITHUB ENTRIES • 6 RUN IN SITE</div></div>
       <div onclick="scrollToId('institute')" class="org-card card-line rounded-xl p-4 bg-panel2 text-center hold-node text-orange-300 border-orange-300/30"><div class="text-2xl mb-1">✦</div><div class="font-bold text-[13px]">ZAZIE<br>INSTITUTE</div><div class="font-mono text-[10px] text-mute mt-1">R&D</div></div>
     </div>
@@ -459,9 +471,75 @@
   </div>
 </section>
 
+<!-- PODCAST -->
+<section id="podcast" class="border-y border-white/10 bg-[#0a0a12] grid-bg">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8 py-20">
+    <div class="flex flex-wrap items-end justify-between gap-4 mb-8 reveal">
+      <div>
+        <div class="eyebrow text-lime mb-3">07 — ZAZIE AIR • REGISTERED SHOW • NOT IN THE SIMULATED VALUATION</div>
+        <h2 class="font-grot font-bold text-4xl md:text-6xl tracking-tight">Five Steps<br><span class="font-serif italic font-normal text-lime">From The Fringe.</span></h2>
+      </div>
+      <div class="font-mono text-[11px] text-mute text-right">OBSIDIAN VEIL MEDIA<br>SPOTIFY SHOW 7FPixyDvxgFkG9ndNOSDxJ<br>CAPTURED 2026-10-17</div>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-4 mb-8">
+      <div class="lg:col-span-5 reveal">
+        <div class="card-line rounded-3xl bg-panel p-4 md:p-5">
+          <div class="podcast-frame rounded-2xl overflow-hidden">
+            <img src="https://i.scdn.co/image/ab6765630000bdcff5f08fa13ab6ecdc76c988d2" data-cover-fallback="https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo400/42101200/42101200-1747763783485-2486cd5def4f8.jpg" alt="Official cover art for Five Steps From The Fringe, published by Obsidian Veil Media" width="640" height="640" referrerpolicy="no-referrer" class="podcast-cover w-full">
+          </div>
+          <div class="flex flex-wrap items-center gap-2 mt-4">
+            <span class="chip bg-lime text-black border-lime font-bold">ON AIR</span>
+            <span class="chip">SPOTIFY • 5.0 · 2 RATINGS</span>
+            <span class="chip">9 EPISODES ON THE DESK</span>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-7 flex flex-col gap-4 reveal">
+        <div class="card-line rounded-3xl bg-panel p-6 md:p-8">
+          <div class="font-mono text-[10px] text-lime tracking-widest">OWNER-ASSERTED HOLDING • PUBLIC IMPRINT: OBSIDIAN VEIL MEDIA</div>
+          <p class="mt-4 text-base md:text-lg leading-relaxed">Step beyond the mainstream and into the strange, mesmerizing world of fringe and underground media. Each episode reviews the films, art, and cultural movements that sit just outside the spotlight — avant-garde cinema, obscure music, experimental art.</p>
+          <p class="mt-3 text-sm text-mute leading-relaxed">The public show notes end mid-sentence: “Whether it’s dissecting a cult classic, unearthing hidden gems, or exploring the visionary minds behind them.” That fragment is kept as published. Listener counts and revenue are not on the public page, so they are not invented here.</p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-5">
+            <div class="card-line rounded-xl p-3 bg-black/30"><div class="font-mono text-[9px] text-mute tracking-widest">EPISODES</div><div class="font-bold text-xl"><span id="fringeCount">9 / 9</span></div></div>
+            <div class="card-line rounded-xl p-3 bg-black/30"><div class="font-mono text-[9px] text-mute tracking-widest">RUNTIME</div><div class="font-bold text-xl" id="fringeRuntime">1:06:30</div></div>
+            <div class="card-line rounded-xl p-3 bg-black/30"><div class="font-mono text-[9px] text-mute tracking-widest">SPAN</div><div class="font-bold text-xl">2024–25</div></div>
+            <div class="card-line rounded-xl p-3 bg-black/30"><div class="font-mono text-[9px] text-mute tracking-widest">RATING</div><div class="font-bold text-xl text-lime">5.0</div></div>
+          </div>
+          <div class="flex flex-wrap gap-2 mt-5">
+            <a href="https://open.spotify.com/show/7FPixyDvxgFkG9ndNOSDxJ" target="_blank" rel="noopener noreferrer" class="btn-lime rounded-xl px-5 py-3 font-bold text-sm">Open on Spotify ↗</a>
+            <a href="https://creators.spotify.com/pod/profile/fsftf/" target="_blank" rel="noopener noreferrer" class="btn-ghost rounded-xl px-5 py-3 text-sm">Creators profile ↗</a>
+          </div>
+        </div>
+        <div id="fringePlayer" class="card-line rounded-3xl bg-black/40 p-6 flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+          <div>
+            <div class="font-mono text-[10px] text-lime tracking-widest">SPOTIFY PLAYER • LOADS ON REQUEST</div>
+            <p class="text-sm text-mute mt-1">The embed is Spotify’s, not a local file. Press play to load it.</p>
+          </div>
+          <button type="button" onclick="loadFringePlayer('fringePlayer','show','7FPixyDvxgFkG9ndNOSDxJ')" class="btn-lime rounded-xl px-5 py-3 font-bold shrink-0">▶ Play the show</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-line rounded-2xl bg-panel p-4 mb-4 reveal flex flex-wrap gap-3 items-center">
+      <label class="sr-only" for="fringeSearch">Search episodes</label>
+      <input id="fringeSearch" placeholder="Search episodes: Warhol, Björk, Cave, bats..." class="flex-1 min-w-[220px] px-4 py-3 text-sm">
+      <div class="flex flex-wrap gap-2 font-mono text-[11px]">
+        <button type="button" class="fringeFilter chip tab-active" data-desk="all">ALL 9</button>
+        <button type="button" class="fringeFilter chip" data-desk="Music">MUSIC</button>
+        <button type="button" class="fringeFilter chip" data-desk="Art">ART</button>
+        <button type="button" class="fringeFilter chip" data-desk="Science">SCIENCE</button>
+        <button type="button" class="fringeFilter chip" data-desk="Community">COMMUNITY</button>
+      </div>
+    </div>
+    <div id="fringeList" class="grid lg:grid-cols-2 gap-3"></div>
+    <p class="font-mono text-[10px] text-mute leading-relaxed mt-6">Episode titles, dates, durations and notes were copied from the public Spotify show and the Spotify for Creators profile on 2026-10-17. One self-promotional episode is left off this desk at the owner’s request. It remains on Spotify. Third-party names in the notes are subjects, not holdings. Chain of title is owner-asserted; the public publisher credit remains Obsidian Veil Media. See docs/PODCAST-REGISTER.md.</p>
+  </div>
+</section>
+
 <!-- SOFTWARE -->
 <section id="software" class="max-w-[1400px] mx-auto px-5 md:px-8 py-20">
-  <div class="eyebrow text-emerald-300 mb-3 reveal">07 — ZAZIE LABS • SOFTWARE & SOURCE-CODE IP</div>
+  <div class="eyebrow text-emerald-300 mb-3 reveal">08 — ZAZIE LABS • SOFTWARE & SOURCE-CODE IP</div>
   <h2 class="font-grot font-bold text-4xl md:text-6xl mb-2 reveal">Software <span class="font-serif italic font-normal text-mute">you can touch.</span></h2>
   <p class="text-mute max-w-3xl mb-10 reveal">The controls below are lightweight sketches, not commercial releases. The <a href="repo.html" class="text-lime underline underline-offset-4">repository atlas</a> opens real READMEs, file trees, commits and visual telemetry, with six verified builds runnable in-page. The register also includes RadioReach Funnel and its repository-described systems. Repository visibility does not establish company ownership, exclusivity, or commercial rights; every entry carries a rights signal for diligence.</p>
 
@@ -732,7 +810,7 @@
             <div><label class="font-mono text-[10px] text-mute">YOUR NAME</label><input required id="aqName" placeholder="Jane Weird" class="w-full px-4 py-3 mt-1"></div>
             <div><label class="font-mono text-[10px] text-mute">EMAIL</label><input required type="email" id="aqEmail" placeholder="you@strange.com" class="w-full px-4 py-3 mt-1"></div>
           </div>
-          <div><label class="font-mono text-[10px] text-mute">ASSET TYPE</label><select id="aqType" class="w-full px-4 py-3 mt-1"><option>Music catalog / masters</option><option>Film / video IP</option><option>Domain / website</option><option>Audience (playlist / social)</option><option>Digital product / sample pack</option><option>Software / app</option><option>Other anomaly</option></select></div>
+          <div><label class="font-mono text-[10px] text-mute">ASSET TYPE</label><select id="aqType" class="w-full px-4 py-3 mt-1"><option>Music catalog / masters</option><option>Podcast / audio show</option><option>Film / video IP</option><option>Domain / website</option><option>Audience (playlist / social)</option><option>Digital product / sample pack</option><option>Software / app</option><option>Other anomaly</option></select></div>
           <div><label class="font-mono text-[10px] text-mute">ASSET URL OR LINK</label><input required id="aqUrl" placeholder="https://..." class="w-full px-4 py-3 mt-1"></div>
           <div class="grid sm:grid-cols-2 gap-3">
             <div><label class="font-mono text-[10px] text-mute">MONTHLY REVENUE</label><input id="aqRev" placeholder="$0 – $50k" class="w-full px-4 py-3 mt-1"></div>
@@ -763,13 +841,13 @@
           <button onclick="subscribe()" class="btn-lime rounded-lg px-4 font-bold text-sm">→</button>
         </div>
       </div>
-      <div class="font-mono text-[12px] space-y-2"><div class="text-mute text-[10px] tracking-widest mb-3">DIVISIONS</div><a href="#films" class="block hover:text-lime">Zazie Pictures (4)</a><a href="#domains" class="block hover:text-lime">Zazie Domains (6)</a><a href="#audiences" class="block hover:text-lime">Zazie Audiences (2)</a><a href="#products" class="block hover:text-lime">Zazie Sounds (4)</a><a href="#music" class="block hover:text-lime">Zazie Productions (23)</a><a href="#software" class="block hover:text-lime">Zazie Labs (software portfolio)</a><a href="repo.html" class="block hover:text-lime">Repository Atlas (15 dossiers)</a><a href="#writings" class="block hover:text-lime">Zazie Press (writings + art)</a></div>
+      <div class="font-mono text-[12px] space-y-2"><div class="text-mute text-[10px] tracking-widest mb-3">DIVISIONS</div><a href="#films" class="block hover:text-lime">Zazie Pictures (4)</a><a href="#domains" class="block hover:text-lime">Zazie Domains (6)</a><a href="#audiences" class="block hover:text-lime">Zazie Audiences (2)</a><a href="#products" class="block hover:text-lime">Zazie Sounds (4)</a><a href="#music" class="block hover:text-lime">Zazie Productions (23)</a><a href="#podcast" class="block hover:text-lime">Zazie Air (9 episodes)</a><a href="#software" class="block hover:text-lime">Zazie Labs (software portfolio)</a><a href="repo.html" class="block hover:text-lime">Repository Atlas (15 dossiers)</a><a href="#writings" class="block hover:text-lime">Zazie Press (writings + art)</a></div>
       <div class="font-mono text-[12px] space-y-2"><div class="text-mute text-[10px] tracking-widest mb-3">PROPERTIES</div><div class="text-mute">zazieinstitute.org</div><div class="text-mute">globalparadigmscorp.com</div><div class="text-mute">kypo6.com</div><a href="https://radioreach.us" target="_blank" rel="noopener noreferrer" class="block text-mute hover:text-lime">radioreach.us ↗</a><div class="text-mute">zazieproductions.com</div><a href="https://hubrisbooks.win" target="_blank" rel="noopener noreferrer" class="block text-mute hover:text-lime">hubrisbooks.win ↗</a></div>
       <div class="font-mono text-[12px] space-y-2"><div class="text-mute text-[10px] tracking-widest mb-3">HOLDINGS</div><a href="#investors" class="block hover:text-lime">Acquire / Sell to us</a><a href="#investors" class="block hover:text-lime">Investor relations</a><button onclick="openDeck()" class="block hover:text-lime">Investor deck</button><button onclick="toast('Cap table: Zazie (100%). That is the cap table.')" class="block hover:text-lime">Cap table</button></div>
     </div>
     <div class="border-t border-white/10 pt-6 flex flex-wrap justify-between gap-3 font-mono text-[10px] text-mute">
       <div>© 2026 ZAZIE MEDIA HOLDINGS • ALL RIGHTS RESERVED • ALL WRONGS REVERSED</div>
-      <div>41 ASSETS • 8 DIVISIONS • 1 PARENT • <span class="text-lime">DEMO SITE — METRICS SIMULATED</span></div>
+      <div>41 SIM ASSETS • 1 REGISTERED SHOW • 8 OPERATING DESKS • 1 PARENT • <span class="text-lime">DEMO SITE — METRICS SIMULATED</span></div>
     </div>
   </div>
 </footer>
@@ -815,7 +893,7 @@
 <!-- COMMAND PALETTE -->
 <div id="palette" class="fixed inset-0 modal-bg z-[80] hidden justify-center pt-[12vh] px-4" onclick="if(event.target===this)closePalette()">
   <div class="bg-panel border border-lime/30 rounded-2xl w-full max-w-xl overflow-hidden h-fit glow-lime">
-    <div class="flex items-center gap-3 p-4 border-b border-white/10"><span class="text-lime">⌘</span><input id="paletteIn" placeholder="Search holdings... (films, domains, music, software)" class="flex-1 !bg-transparent !border-none text-sm" style="box-shadow:none!important"><span class="font-mono text-[10px] text-mute">ESC</span></div>
+    <div class="flex items-center gap-3 p-4 border-b border-white/10"><span class="text-lime">⌘</span><input id="paletteIn" placeholder="Search holdings... (films, podcast, music, software)" class="flex-1 !bg-transparent !border-none text-sm" style="box-shadow:none!important"><span class="font-mono text-[10px] text-mute">ESC</span></div>
     <div id="paletteList" class="max-h-[320px] overflow-y-auto p-2"></div>
   </div>
 </div>
