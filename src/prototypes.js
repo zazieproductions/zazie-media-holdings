@@ -45,7 +45,7 @@ function renderList() {
 }
 async function init() {
   try {
-    const response = await fetch('/data/prototypes.json');
+    const response = await fetch('data/prototypes.json');
     if (!response.ok) throw new Error('Archive data unavailable');
     records = await response.json();
     $('disciplineFilter').innerHTML += disciplines.map((value) => `<option value="${value}">${value}</option>`).join('');
