@@ -228,28 +228,74 @@
         <div>
           <div class="chip text-lime border-lime/40 mb-4">◈ zazieinstitute.org — FLAGSHIP R&D PROPERTY</div>
           <h3 class="font-grot font-bold text-3xl md:text-5xl leading-tight">Zazie Institute of<br><span class="font-serif italic font-normal">Applied Anomalies</span></h3>
-          <p class="text-mute mt-4 leading-relaxed">Experimental research & arts laboratory. Hardware + software prototypes, speculative patents, and classified research notes. Part IRCAM, part Area 51 gift shop.</p>
+          <p class="text-mute mt-4 leading-relaxed">An independent research institute and open archive (est. 2021, Mojave Basin), operated as a research division of Zazie Productions LLC — experimental sound technology, perceptual interfaces and computational instruments, published as a permanent, citable record.</p>
           <div class="flex flex-wrap gap-2 mt-5 font-mono text-[11px]">
-            <span class="chip">SPECULATIVE PATENTS: 14</span><span class="chip">RESEARCH NOTES: 89</span><span class="chip text-lime">OPEN FOR GRANTS</span>
+            <span class="chip text-lime">100 SPECULATIVE DOSSIERS</span><span class="chip">160 PROTOTYPES</span><span class="chip">330 RESEARCH NOTES</span><span class="chip">8 MONOGRAPHS</span><span class="chip">OPEN FOR GRANTS</span>
           </div>
-          <div class="flex gap-3 mt-6">
-            <button onclick="openInstitute()" class="btn-lime rounded-xl px-6 py-3 font-bold text-sm">Enter Research Archive →</button>
-            <button onclick="toast('Patent docket requested. Check your inbox.')" class="btn-ghost rounded-xl px-6 py-3 text-sm">Patent Docket</button>
+          <div class="flex flex-wrap gap-3 mt-6">
+            <button onclick="showInstituteTab('patents');scrollToId('institute-learn')" class="btn-lime rounded-xl px-6 py-3 font-bold text-sm">Learn More About This Asset ↓</button>
+            <a href="https://zazieinstitute.org" target="_blank" rel="noopener noreferrer" class="btn-ghost rounded-xl px-6 py-3 text-sm">Visit Live Archive ↗</a>
           </div>
+          <p class="font-mono text-[10px] text-mute mt-4">COUNTS AS PUBLISHED AT ZAZIEINSTITUTE.ORG • CURATED SELECTION BELOW • FULL DOSSIERS LINK OUT</p>
         </div>
         <div class="grid gap-3">
-          <div class="card-line rounded-2xl overflow-hidden bg-panel flex gap-4 p-4 card-hover cursor-pointer" onclick="openInstitute('bench')">
-            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=400&auto=format&fit=crop" class="w-24 h-24 object-cover rounded-xl" alt="Acoustic Bench">
-            <div><div class="font-mono text-[10px] text-cy">PROTOTYPE 01 — INTERACTIVE INSTRUMENT</div><div class="font-bold">Acoustic Bench</div><div class="text-sm text-mute">Sit to play. 88 piezo strings resonate through reclaimed church pew. MIDI + CV out.</div></div>
+          <div class="card-line rounded-2xl overflow-hidden bg-panel flex gap-4 p-4 card-hover cursor-pointer" onclick="openConcept('prot-001')" tabindex="0" role="button" aria-label="Concept PROT-001: Self-Regulating Acoustic Feedback Resonator" onkeydown="if(event.key==='Enter')openConcept('prot-001')">
+            <div class="fig-plate w-24 shrink-0 rounded-xl p-2 flex flex-col justify-between min-h-[96px]" aria-hidden="true"><div class="font-mono text-[8px] leading-snug text-cy">FIG 1.1<br>AXIAL CROSS-SECTION</div><div class="font-mono text-[8px] leading-snug text-mute mt-2">320×210×95 MM<br>104 DB • 2021</div><div class="font-mono text-[7px] text-lime mt-1">◉ LIVE FIGURE ↓</div></div>
+            <div><div class="font-mono text-[10px] text-cy">PROT-001 // FEEDBACK-RES — APPLIED ANOMALIES</div><div class="font-bold">Self-Regulating Acoustic Feedback Resonator</div><div class="text-sm text-mute">Autonomous feedback instrument. Soft JFET limiting sustains harmonic overtones without runaway.</div></div>
           </div>
-          <div class="card-line rounded-2xl overflow-hidden bg-panel flex gap-4 p-4 card-hover cursor-pointer" onclick="openInstitute('spectra')">
-            <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=400&auto=format&fit=crop" class="w-24 h-24 object-cover rounded-xl" alt="Spectra Lab">
-            <div><div class="font-mono text-[10px] text-viol">PROTOTYPE 02 — LIGHT / SOUND LAB</div><div class="font-bold">Spectra Lab</div><div class="text-sm text-mute">Prism-driven granular synth. Light frequency = grain pitch. Full-spectrum composition.</div></div>
+          <div class="card-line rounded-2xl overflow-hidden bg-panel flex gap-4 p-4 card-hover cursor-pointer" onclick="openConcept('prot-021')" tabindex="0" role="button" aria-label="Concept PROT-021: Real-Time Audiovisual DSP Console" onkeydown="if(event.key==='Enter')openConcept('prot-021')">
+            <div class="fig-plate w-24 shrink-0 rounded-xl p-2 flex flex-col justify-between min-h-[96px]" aria-hidden="true"><div class="font-mono text-[8px] leading-snug text-cy">FIG 1.1<br>AXIAL CROSS-SECTION</div><div class="font-mono text-[8px] leading-snug text-mute mt-2">480×280×95 MM<br>110 DB • 2023</div><div class="font-mono text-[7px] text-lime mt-1">◉ LIVE FIGURE ↓</div></div>
+            <div><div class="font-mono text-[10px] text-viol">PROT-021 // SPECTRA-DSP — GENERATIVE SOFTWARE</div><div class="font-bold">Real-Time Audiovisual DSP Console</div><div class="text-sm text-mute">64-band spectral matrix, 8×8 modulation, live FFT with particle visualization shaders.</div></div>
           </div>
-          <div class="card-line rounded-2xl overflow-hidden bg-panel flex gap-4 p-4 card-hover cursor-pointer" onclick="openInstitute('oculus')">
-            <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?q=80&w=400&auto=format&fit=crop" class="w-24 h-24 object-cover rounded-xl" alt="VOID OCULUS">
-            <div><div class="font-mono text-[10px] text-mag">PROTOTYPE 03 — IMMERSIVE HEADSET</div><div class="font-bold">VOID//OCULUS</div><div class="text-sm text-mute">Sensory-deprivation VR for composing in total darkness. Binaural void engine.</div></div>
+          <div class="card-line rounded-2xl overflow-hidden bg-panel flex gap-4 p-4 card-hover cursor-pointer" onclick="openConcept('prot-020')" tabindex="0" role="button" aria-label="Concept PROT-020: Perceptual Binaural Auditory Mask" onkeydown="if(event.key==='Enter')openConcept('prot-020')">
+            <div class="fig-plate w-24 shrink-0 rounded-xl p-2 flex flex-col justify-between min-h-[96px]" aria-hidden="true"><div class="font-mono text-[8px] leading-snug text-cy">FIG 5.1<br>BOREHOLE STRATA · GEOPHONE</div><div class="font-mono text-[8px] leading-snug text-mute mt-2">440×245×175 MM<br>109 DB • 2022</div><div class="font-mono text-[7px] text-lime mt-1">◉ LIVE FIGURE ↓</div></div>
+            <div><div class="font-mono text-[10px] text-mag">PROT-020 // BINAURAL-MASK — PERCEPTUAL INTERFACES</div><div class="font-bold">Perceptual Binaural Auditory Mask</div><div class="text-sm text-mute">Wearable research headset: open-ear directional speakers plus zygomatic bone conductors.</div></div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEARN MORE ABOUT THIS ASSET -->
+    <div id="institute-learn" class="border-t border-white/10 bg-black/40 p-8 md:p-12">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-5">
+        <div>
+          <div class="eyebrow text-lime mb-2">LEARN MORE ABOUT THIS ASSET — LIVE ARCHIVE SELECTION</div>
+          <h4 class="font-grot font-bold text-2xl md:text-4xl tracking-tight">Speculative patents <span class="font-serif italic font-normal text-mute">& concepts.</span></h4>
+        </div>
+        <div class="flex gap-2 font-mono text-[11px]">
+          <button id="tabPatents" onclick="showInstituteTab('patents')" class="chip tab-active">8 PATENTS</button>
+          <button id="tabConcepts" onclick="showInstituteTab('concepts')" class="chip">8 CONCEPTS</button>
+        </div>
+      </div>
+      <p class="text-mute text-sm max-w-3xl leading-relaxed">Eight defensive patent disclosures and eight prototype concepts, curated from the public ZIAA open archive on 2026-10-17. Click any card for the abstract, filing record and a link to the full citable dossier. These are speculative research disclosures — verify status and chain of title before any licensing use.</p>
+      <div id="patentFilters" class="flex flex-wrap gap-2 mt-5 font-mono text-[11px]">
+        <button class="patentFilter chip tab-active" data-p="all">ALL</button>
+        <button class="patentFilter chip" data-p="ISSUED PATENT">ISSUED</button>
+        <button class="patentFilter chip" data-p="DEFENSIVE PUBLICATION">DEFENSIVE</button>
+        <button class="patentFilter chip" data-p="UNDER EXAMINATION">EXAMINATION</button>
+        <button class="patentFilter chip" data-p="PROVISIONAL SPEC">PROVISIONAL</button>
+      </div>
+      <div id="patentGrid" class="grid md:grid-cols-2 xl:grid-cols-4 gap-3 mt-5"></div>
+      <div id="conceptGrid" class="grid md:grid-cols-2 xl:grid-cols-4 gap-3 mt-5 hidden"></div>
+      <div class="mt-8">
+        <div class="font-mono text-[10px] tracking-widest text-mute mb-3">8 RESEARCH DIVISIONS — ≈20 PROTOTYPES EACH</div>
+        <div class="flex flex-wrap gap-2 font-mono text-[11px]">
+          <a href="https://zazieinstitute.org/disciplines/applied-anomalies" target="_blank" rel="noopener noreferrer" class="chip hover:border-lime">APPLIED ANOMALIES ↗</a>
+          <a href="https://zazieinstitute.org/disciplines/experimental-audio-systems" target="_blank" rel="noopener noreferrer" class="chip hover:border-lime">EXPERIMENTAL AUDIO ↗</a>
+          <a href="https://zazieinstitute.org/disciplines/computational-creativity" target="_blank" rel="noopener noreferrer" class="chip hover:border-lime">COMPUTATIONAL CREATIVITY ↗</a>
+          <a href="https://zazieinstitute.org/disciplines/speculative-engineering" target="_blank" rel="noopener noreferrer" class="chip hover:border-lime">SPECULATIVE ENGINEERING ↗</a>
+          <a href="https://zazieinstitute.org/disciplines/perceptual-interfaces" target="_blank" rel="noopener noreferrer" class="chip hover:border-lime">PERCEPTUAL INTERFACES ↗</a>
+          <a href="https://zazieinstitute.org/disciplines/generative-software" target="_blank" rel="noopener noreferrer" class="chip hover:border-lime">GENERATIVE SOFTWARE ↗</a>
+          <a href="https://zazieinstitute.org/disciplines/signal-archaeology" target="_blank" rel="noopener noreferrer" class="chip hover:border-lime">SIGNAL ARCHAEOLOGY ↗</a>
+          <a href="https://zazieinstitute.org/disciplines/acoustic-architecture" target="_blank" rel="noopener noreferrer" class="chip hover:border-lime">ACOUSTIC ARCHITECTURE ↗</a>
+        </div>
+      </div>
+      <div class="mt-6 card-line rounded-2xl p-5 bg-panel flex flex-wrap items-center justify-between gap-4">
+        <div class="font-mono text-[11px] text-mute">FULL ARCHIVE: 100 DOSSIERS • 160 PROTOTYPES • 330 NOTES • 8 MONOGRAPHS • <span class="text-lime">OPEN & CITABLE</span></div>
+        <div class="flex flex-wrap gap-2">
+          <a href="https://zazieinstitute.org/patents" target="_blank" rel="noopener noreferrer" class="btn-lime rounded-lg px-4 py-2 text-[12px] font-bold">ALL 100 DOSSIERS ↗</a>
+          <a href="https://zazieinstitute.org/prototypes" target="_blank" rel="noopener noreferrer" class="btn-ghost rounded-lg px-4 py-2 text-[12px]">ALL 160 PROTOTYPES ↗</a>
+          <a href="https://zazieinstitute.org/about" target="_blank" rel="noopener noreferrer" class="btn-ghost rounded-lg px-4 py-2 text-[12px]">ABOUT ZIAA ↗</a>
         </div>
       </div>
     </div>

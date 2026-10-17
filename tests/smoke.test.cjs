@@ -135,6 +135,56 @@ test('writings and artwork registers are complete and assets exist', () => {
   }
 });
 
+test('institute patents and concepts are sourced from the live ZIAA archive', () => {
+  assert.match(html, /id="institute-learn"/);
+  assert.match(html, /id="patentGrid"/);
+  assert.match(html, /id="conceptGrid"/);
+  assert.match(html, /id="patentFilters"/);
+  assert.match(html, /100 SPECULATIVE DOSSIERS/);
+  const instituteBlock = html.match(/id="institute"[\s\S]*?<!-- AUDIENCES -->/);
+  assert.ok(instituteBlock, 'expected the institute asset section');
+  assert.doesNotMatch(instituteBlock[0], /unsplash/, 'institute section must not use stock photography');
+  assert.match(html, /fig-plate/);
+  assert.match(css, /\.fig-plate/);
+  assert.match(js, /<iframe/);
+  assert.match(js, /LIVE DOSSIER/);
+  assert.match(html, /https:\/\/zazieinstitute\.org\/patents/);
+  assert.match(html, /https:\/\/zazieinstitute\.org\/prototypes/);
+  assert.match(html, /https:\/\/zazieinstitute\.org\/disciplines\//);
+  for (const symbol of ['INSTITUTE_PATENTS', 'INSTITUTE_CONCEPTS', 'renderInstitutePatents', 'renderInstituteConcepts', 'openPatent', 'openConcept', 'openInstituteAsset', 'showInstituteTab']) assert.match(js, new RegExp(symbol));
+  const pSource = js.match(/const INSTITUTE_PATENTS=(\[[\s\S]*?\n\]);/);
+  const cSource = js.match(/const INSTITUTE_CONCEPTS=(\[[\s\S]*?\n\]);/);
+  assert.ok(pSource, 'expected a parseable patent register');
+  assert.ok(cSource, 'expected a parseable concept register');
+  const patents = vm.runInNewContext(pSource[1]);
+  const concepts = vm.runInNewContext(cSource[1]);
+  assert.equal(patents.length, 8);
+  assert.equal(concepts.length, 8);
+  assert.equal(new Set(patents.map((p) => p.id)).size, 8, 'patent IDs should be unique');
+  assert.equal(new Set(concepts.map((c) => c.id)).size, 8, 'concept IDs should be unique');
+  assert.ok(patents.every((p) => p.url.startsWith('https://zazieinstitute.org/patents/')));
+  assert.ok(concepts.every((c) => c.url.startsWith('https://zazieinstitute.org/prototypes/')));
+  assert.ok(patents.every((p) => p.title && p.abstract && p.status && p.filed && p.discipline && p.claim && p.pub && p.code));
+  assert.ok(concepts.every((c) => c.title && c.abstract && c.investigator && c.discipline && c.transducer && c.code && c.slug && c.fig && c.figtag && c.dims && c.status && c.year && c.power && c.snr && c.dsp));
+  const statuses = new Set(patents.map((p) => p.status));
+  for (const s of ['ISSUED PATENT', 'DEFENSIVE PUBLICATION', 'UNDER EXAMINATION', 'PROVISIONAL SPEC']) assert.ok(statuses.has(s), `missing patent status: ${s}`);
+  const pRender = js.match(/function renderInstitutePatents\(\)\{[\s\S]*?\n\}/);
+  const cRender = js.match(/function renderInstituteConcepts\(\)\{[\s\S]*?\n\}/);
+  assert.ok(pRender, 'expected the patent card renderer');
+  assert.ok(cRender, 'expected the concept card renderer');
+  const grids = { patentGrid: { innerHTML: '' }, conceptGrid: { innerHTML: '' } };
+  new Function('$', 'INSTITUTE_PATENTS', 'patentStatus', 'patentTone', `${pRender[0]}; renderInstitutePatents();`)(
+    (id) => grids[id] || null, patents, 'all', () => '',
+  );
+  new Function('$', 'INSTITUTE_CONCEPTS', `${cRender[0]}; renderInstituteConcepts();`)(
+    (id) => grids[id] || null, concepts,
+  );
+  assert.equal((grids.patentGrid.innerHTML.match(/<article /g) || []).length, 8);
+  assert.equal((grids.conceptGrid.innerHTML.match(/<article /g) || []).length, 8);
+  assert.match(grids.patentGrid.innerHTML, /openPatent\('/);
+  assert.match(grids.conceptGrid.innerHTML, /openConcept\('/);
+});
+
 test('writing and artwork renderers emit accessible cards', () => {
   const start = js.indexOf("let writingStatus='all';");
   const endMarker = 'renderWritings();renderArt();';
