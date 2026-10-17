@@ -181,3 +181,30 @@ test('THE PRODUCT preserves the original UI through an opt-in isolated embed', (
   assert.equal(toggle.hidden, true);
   assert.match(status.textContent, /blocked/);
 });
+
+test('Institute prototype register links verified dossiers with specifications and an accessible chart', () => {
+  assert.match(html, /id="prototypes"/);
+  assert.match(html, /aria-label="Conceptual signal-flow chart:/);
+  for (const id of ['147', '146', '019']) {
+    assert.match(html, new RegExp(`https://zazieinstitute\\.org/prototypes/prot-${id}/`));
+  }
+  assert.match(html, /15 Hz – 46 kHz/);
+  assert.match(html, /110 dB/);
+  assert.match(html, /meters are visual indicators, not live measurements/);
+});
+
+test('prototype atlas indexes all generations and distinguishes verified specifications', () => {
+  const records = JSON.parse(readFileSync('public/data/prototypes.json', 'utf8'));
+  const atlas = readFileSync('prototypes.html', 'utf8');
+  assert.equal(records.length, 160);
+  assert.equal(new Set(records.map((record) => record.id)).size, 160);
+  assert.ok(records.every((record) => /^https:\/\/zazieinstitute\.org\/prototypes\/prot-\d{3}\/$/.test(record.url)));
+  assert.equal(records.find((record) => record.id === 'PROT-147').snr, '110 dB (A-Weighted @ 1 kHz)');
+  assert.equal(records.find((record) => record.id === 'PROT-147').code, 'GESTURE-SPATIAL-V5');
+  assert.equal(records.find((record) => record.id === 'PROT-115').bandwidth, '30 Hz – 38 kHz');
+  assert.ok(records.every((record) => record.billOfMaterials.length > 0 && record.audioProfile && record.technicalNotes && record.schematicType));
+  assert.match(atlas, /id="prototypeSearch"/);
+  assert.match(atlas, /id="disciplineFilter"/);
+  assert.match(atlas, /id="prototypeDetail"/);
+  assert.match(html, /href="prototypes\.html\?id=PROT-147"/);
+});

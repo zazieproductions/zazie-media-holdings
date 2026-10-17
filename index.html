@@ -47,6 +47,7 @@
       <a href="#holdings" class="nav-link">STRUCTURE</a>
       <a href="#films" class="nav-link">FILMS</a>
       <a href="#domains" class="nav-link">DOMAINS</a>
+      <a href="prototypes.html" class="nav-link">PROTOTYPES</a>
       <a href="#audiences" class="nav-link">AUDIENCES</a>
       <a href="#products" class="nav-link">PRODUCTS</a>
       <a href="#music" class="nav-link">MUSIC</a>
@@ -66,7 +67,7 @@
     </div>
   </div>
   <div id="mobileMenu" class="hidden lg:hidden border-t border-white/10 px-6 py-4 flex flex-col gap-3 font-mono text-sm glass">
-    <a href="#holdings">STRUCTURE</a><a href="#films">FILMS</a><a href="#domains">DOMAINS</a><a href="#audiences">AUDIENCES</a><a href="#products">PRODUCTS</a><a href="#music">MUSIC</a><a href="#software">SOFTWARE</a><a href="#writings">WRITINGS &amp; ART</a><a href="#investors" class="text-lime">INVEST / ACQUIRE →</a>
+    <a href="#holdings">STRUCTURE</a><a href="#films">FILMS</a><a href="#domains">DOMAINS</a><a href="prototypes.html">PROTOTYPES</a><a href="#audiences">AUDIENCES</a><a href="#products">PRODUCTS</a><a href="#music">MUSIC</a><a href="#software">SOFTWARE</a><a href="#writings">WRITINGS &amp; ART</a><a href="#investors" class="text-lime">INVEST / ACQUIRE →</a>
   </div>
 </nav>
 
@@ -253,6 +254,36 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- PROTOTYPE REGISTER -->
+<section id="prototypes" class="prototype-section border-y border-white/10 py-20">
+  <div class="max-w-[1400px] mx-auto px-5 md:px-8">
+    <div class="flex flex-wrap justify-between items-end gap-6 mb-10">
+      <div><div class="eyebrow text-cy mb-3">ZIAA / ENGINEERING ARCHIVE / SELECTED RECORDS</div><h2 class="font-grot font-bold text-4xl md:text-6xl">Instruments for the <span class="font-serif italic font-normal text-lime">unknown.</span></h2></div>
+      <p class="text-mute max-w-sm text-sm leading-relaxed">A window into the Institute’s prototype register. Explore measured specifications here, then open the original dossiers for schematics, bills of materials and acoustic test benches.</p>
+    </div>
+    <div class="prototype-feature rounded-3xl overflow-hidden mb-5">
+      <div class="prototype-feature-top flex flex-wrap justify-between gap-3 font-mono text-[10px] tracking-widest"><span>◉ FEATURED RECORD / PROT-147</span><span>PERCEPTUAL INTERFACES · 2023 · FIELD DEPLOYED</span></div>
+      <div class="grid lg:grid-cols-[1fr_1.1fr] gap-8 p-6 md:p-10">
+        <div class="flex flex-col justify-between">
+          <div><div class="font-mono text-cy text-xs mb-4">GESTURE-SPATIAL-V5 / REV 5.3</div><h3 class="font-grot font-bold text-3xl md:text-5xl leading-tight mb-5">Sound, shaped<br>by <span class="font-serif italic font-normal">movement.</span></h3><p class="text-mute leading-relaxed max-w-lg">A contactless desktop instrument translating three-dimensional hand gestures into multichannel spatial audio trajectories and filter sweeps. Time-of-flight infrared sensing tracks X, Y and Z position with 1 mm accuracy.</p></div>
+          <div class="mt-8"><div class="prototype-specs"><div><span>BANDWIDTH</span><strong>15 Hz – 46 kHz</strong></div><div><span>SIGNAL / NOISE</span><strong>110 dB</strong></div><div><span>POWER</span><strong>45 W</strong></div><div><span>ENCLOSURE</span><strong>400 × 280 × 115 mm</strong></div></div><a class="prototype-link mt-8 inline-flex" href="https://zazieinstitute.org/prototypes/prot-147/" target="_blank" rel="noopener noreferrer">OPEN COMPLETE TECHNICAL DOSSIER <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <div class="prototype-diagram rounded-2xl p-5 md:p-7" role="img" aria-label="Conceptual signal-flow chart: infrared time-of-flight sensors send X, Y and Z position to an ARM Cortex-M4 processing core, which sends OSC and USB-MIDI control to spatial audio outputs.">
+          <div class="flex justify-between font-mono text-[10px] text-cy tracking-widest"><span>FIG. 01 / SIGNAL PATH</span><span>CONCEPTUAL OVERVIEW</span></div>
+          <svg class="w-full mt-5" viewBox="0 0 620 325" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><pattern id="pgrid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="#5cf2ff" stroke-opacity=".1"/></pattern></defs><rect width="620" height="325" fill="url(#pgrid)"/><g fill="none" stroke="#5cf2ff" stroke-width="1.5"><path d="M135 157H220M380 157H478" stroke-dasharray="6 5"/><circle cx="83" cy="157" r="52"/><circle cx="83" cy="157" r="35" stroke-opacity=".45"/><rect x="220" y="95" width="160" height="124" rx="8"/><rect x="478" y="112" width="120" height="90" rx="8"/><path d="M83 105V55h55M83 209v48h55M300 95V50h70M538 202v55h-70" stroke-opacity=".45"/></g><g fill="#f4f1ea" font-family="monospace" text-anchor="middle"><text x="83" y="151" font-size="13">IR / TOF</text><text x="83" y="170" font-size="10" fill="#5cf2ff">X · Y · Z</text><text x="300" y="144" font-size="14">ARM CORTEX-M4</text><text x="300" y="166" font-size="10" fill="#5cf2ff">GESTURE MAPPING</text><text x="538" y="148" font-size="13">OSC / MIDI</text><text x="538" y="168" font-size="10" fill="#5cf2ff">SPATIAL OUT</text></g><g fill="#8d96a6" font-family="monospace" font-size="10"><text x="140" y="50">01 / POSITION</text><text x="254" y="43">02 / PROCESSING</text><text x="423" y="275">03 / CONTROL STREAM</text><text x="20" y="308">ZIAA // SIGNAL FLOW DIAGRAM · NOT TO SCALE</text></g></svg>
+          <div class="prototype-meter mt-2"><span>POSITION RESOLUTION</span><div><i style="width:92%"></i></div><b>1 mm</b></div><div class="prototype-meter"><span>HARMONIC DISTORTION</span><div><i style="width:18%"></i></div><b>&lt; 0.02%</b></div><p class="font-mono text-[10px] text-mute mt-4">Diagram summarizes the published transduction path; meters are visual indicators, not live measurements.</p>
+        </div>
+      </div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5">
+      <article class="prototype-card rounded-2xl p-6 md:p-8"><div class="flex justify-between gap-3 font-mono text-[10px] text-cy tracking-widest"><span>PROT-146 / HAPTIC-KEYBOARD-V5</span><span>2022</span></div><h3 class="font-bold text-2xl mt-5">The keyboard that pushes back.</h3><p class="text-mute text-sm leading-relaxed mt-3">A 49-key interface with motorized force feedback, simulating hammer action, spring tension and fluid resistance.</p><div class="prototype-specs compact mt-7"><div><span>REFRESH RATE</span><strong>4 kHz</strong></div><div><span>BANDWIDTH</span><strong>10 Hz – 42 kHz</strong></div><div><span>SIGNAL / NOISE</span><strong>109 dB</strong></div></div><a class="prototype-link mt-7 inline-flex" href="https://zazieinstitute.org/prototypes/prot-146/" target="_blank" rel="noopener noreferrer">VIEW SCHEMATIC &amp; BOM ↗</a></article>
+      <article class="prototype-card rounded-2xl p-6 md:p-8"><div class="flex justify-between gap-3 font-mono text-[10px] text-viol tracking-widest"><span>PROT-019 / GESTURE-SPATIAL</span><span>2021</span></div><h3 class="font-bold text-2xl mt-5">The first gesture interface.</h3><p class="text-mute text-sm leading-relaxed mt-3">An earlier optical controller for spatial audio trajectories. Archived and superseded by the revision 5 instrument above.</p><div class="prototype-specs compact mt-7"><div><span>POSITION</span><strong>1 mm</strong></div><div><span>BANDWIDTH</span><strong>25 Hz – 54 kHz</strong></div><div><span>SIGNAL / NOISE</span><strong>108 dB</strong></div></div><a class="prototype-link mt-7 inline-flex" href="https://zazieinstitute.org/prototypes/prot-019/" target="_blank" rel="noopener noreferrer">VIEW ORIGINAL RECORD ↗</a></article>
+    </div>
+    <p class="font-mono text-[10px] text-mute mt-5">SOURCE: ZAZIE INSTITUTE OF APPLIED ANOMALIES · SELECTED PUBLISHED DOSSIERS · SPECIFICATIONS REPRODUCED FROM SOURCE RECORDS</p>
+  <a href="prototypes.html?id=PROT-147" class="btn-lime inline-flex rounded-xl px-6 py-3 mt-8 font-bold text-sm">EXPLORE ALL 160 PROTOTYPES →</a>
   </div>
 </section>
 
