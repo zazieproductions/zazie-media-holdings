@@ -86,3 +86,58 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 #cursor{position:fixed;width:14px;height:14px;border:1px solid #e6ff4a;border-radius:99px;pointer-events:none;z-index:99;transition:transform .15s,background .15s;mix-blend-mode:difference;display:none}
 @media(pointer:fine){#cursor{display:block}}
 
+
+/* ============ REPOSITORY DOSSIER ============ */
+.skip-link{position:fixed;top:-100px;left:12px;z-index:200;background:#e6ff4a;color:#000;padding:10px 16px;border-radius:10px;font-weight:700;transition:top .2s}
+.skip-link:focus{top:12px}
+.repo-tab{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:10px 16px;border-radius:8px;border:1px solid transparent;color:#9a9ab0;transition:.2s}
+.repo-tab:hover{color:#f4f1ea;border-color:rgba(255,255,255,.15)}
+.repo-tab[aria-selected="true"]{background:#e6ff4a;color:#000;border-color:#e6ff4a;font-weight:700}
+.repo-tab:focus-visible{outline:2px solid #5cf2ff;outline-offset:2px}
+.file-row{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:7px 10px;border-radius:8px;font-size:12px;color:#d9d7d0;transition:.15s;cursor:pointer;border:1px solid transparent}
+.file-row:hover{background:rgba(230,255,74,.07);border-color:rgba(230,255,74,.18)}
+.file-row.is-active{background:rgba(230,255,74,.12);border-color:rgba(230,255,74,.35);color:#e6ff4a}
+.file-row:focus-visible{outline:2px solid #5cf2ff;outline-offset:-2px}
+.code-view{counter-reset:line;background:#05050a}
+.code-view pre{margin:0;padding:12px 0 18px;min-width:max-content}
+.code-view code{font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.65;color:#cfd3c4;white-space:pre;display:block}
+.code-line{display:block;padding:0 16px}
+.code-line::before{counter-increment:line;content:counter(line);display:inline-block;width:3em;margin-right:1.2em;text-align:right;color:#45455a;user-select:none;position:sticky;left:0;background:#05050a}
+.code-line:hover{background:rgba(230,255,74,.05)}
+#liveStage:fullscreen{background:#05050a}
+#liveStage:fullscreen iframe{height:100vh!important;min-height:100vh!important}
+
+/* README rendering (GitHub markdown) */
+.readme{font-size:14px;line-height:1.72;color:#d7d5ce;overflow-wrap:anywhere}
+.readme>*:first-child{margin-top:0!important}
+.readme>*:last-child{margin-bottom:0!important}
+.readme h1,.readme h2,.readme h3,.readme h4,.readme h5,.readme h6{font-family:'Space Grotesk',sans-serif;color:#f4f1ea;font-weight:700;line-height:1.25;margin:1.7em 0 .6em;scroll-margin-top:90px}
+.readme h1{font-size:1.85em;padding-bottom:.35em;border-bottom:1px solid rgba(255,255,255,.12)}
+.readme h2{font-size:1.45em;padding-bottom:.3em;border-bottom:1px solid rgba(255,255,255,.09)}
+.readme h3{font-size:1.18em;color:#e6ff4a}
+.readme h4{font-size:1.02em}
+.readme p{margin:.85em 0}
+.readme a{color:#e6ff4a;text-decoration:underline;text-decoration-color:rgba(230,255,74,.35);text-underline-offset:2px}
+.readme a:hover{text-decoration-color:#e6ff4a}
+.readme strong{color:#f4f1ea}
+.readme em{color:#e7e5df}
+.readme hr{border:0;border-top:1px solid rgba(255,255,255,.1);margin:2em 0}
+.readme img{max-width:100%;height:auto;border-radius:12px;border:1px solid rgba(255,255,255,.09);background:#0e0e15;margin:.6em 0}
+.readme img[src*="shields.io"],.readme img[src*="badge"]{display:inline-block;border:0;margin:2px 3px;border-radius:4px;background:transparent;vertical-align:middle}
+.readme ul{list-style:disc;margin:.8em 0;padding-left:1.6em}
+.readme ol{list-style:decimal;margin:.8em 0;padding-left:1.6em}
+.readme li{margin:.35em 0}
+.readme li>ul,.readme li>ol{margin:.25em 0}
+.readme blockquote{border-left:3px solid #e6ff4a;margin:1.1em 0;padding:.2em 0 .2em 1.1em;color:#b9b7c2;background:rgba(230,255,74,.035);border-radius:0 8px 8px 0}
+.readme code{font-family:'JetBrains Mono',monospace;font-size:.86em;background:rgba(255,255,255,.07);padding:.14em .38em;border-radius:5px;border:1px solid rgba(255,255,255,.06);color:#e9f7a6}
+.readme pre{background:#05050a;border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:14px 16px;overflow:auto;margin:1em 0;max-height:520px}
+.readme pre code{background:none;border:0;padding:0;color:#cfd3c4;font-size:11.5px;line-height:1.65;white-space:pre}
+.readme table{display:block;width:100%;max-width:100%;overflow:auto;border-collapse:collapse;margin:1.2em 0;font-size:12.5px}
+.readme th,.readme td{border:1px solid rgba(255,255,255,.12);padding:8px 12px;text-align:left;vertical-align:top}
+.readme th{background:rgba(255,255,255,.06);color:#f4f1ea;font-weight:600;white-space:nowrap}
+.readme tr:nth-child(2n) td{background:rgba(255,255,255,.02)}
+.readme details{border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px 14px;margin:.8em 0;background:rgba(255,255,255,.02)}
+.readme summary{cursor:pointer;color:#e6ff4a;font-weight:600}
+.readme kbd{font-family:'JetBrains Mono',monospace;font-size:.8em;background:#1a1a26;border:1px solid rgba(255,255,255,.18);border-bottom-width:2px;border-radius:5px;padding:.1em .4em}
+.readme del{opacity:.6}
+.readme .anchor{display:none}

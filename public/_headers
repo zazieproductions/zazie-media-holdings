@@ -1,5 +1,7 @@
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  X-Frame-Options: DENY
+  # SAMEORIGIN so the source-synced repository builds in /embeds/* can be
+  # framed by this site, while other origins are still blocked.
+  X-Frame-Options: SAMEORIGIN
   Permissions-Policy: camera=(), microphone=(), geolocation=()
