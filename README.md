@@ -4,6 +4,8 @@ Interactive **concept showcase** for a proposed media and intellectual-property 
 
 The software section now points at the real thing. A repository dossier at [`repo.html`](repo.html) renders the actual GitHub repositories behind Zazie Labs — real READMEs (markdown, sanitised), real file trees and file contents, real commit history, language breakdowns, licences and metadata synced from GitHub. Each dossier opens with a custom telemetry dashboard: a commit timeline, language-composition ring and percentile comparison against the curated atlas. Where a verified demo/build is available, the live app opens embedded by default; the README and source tabs remain one click away. Five zero-build projects are vendored verbatim from their repositories and run inside the site; a sixth is embedded from its working GitHub Pages deployment. Repositories with no working deployment get a full source dossier instead of a dead "live demo" link.
 
+> **Music vault and audiences:** the 16 archive-backed entries in the `MUSIC` register mirror the owner's Google Drive archive `ZAZIE PRODUCTIONS (FULL DISCOGRAPHY + MASTERS)` — 16 release folders containing 146 numbered WAV masters — so titles, types, years and running orders match the folder listing rather than a shorter "highlights" set; seven further editions are listed alongside them because they are distributed on streaming, labelled as not being in the shared vault and with no transcribed tracklist. Release years for the 2026 entries come from licensed ISRC registrations in a public Google Sheet; four folders have no year recorded anywhere and fall back to their position in the listing. Twenty of the 23 editions in the grid (16 archive-backed plus 7 distributed-only, which are labelled and carry no transcribed tracklist) carry a verified `open.spotify.com` album id: the release modal loads the real record through a click-to-activated Spotify embed, and Spotify's own 640px artwork is the cover fallback when a file has not been dropped into `public/art/covers/` (see [`docs/COVER-MANIFEST.md`](docs/COVER-MANIFEST.md)). Nothing is copied into the repository and no Drive URL is hotlinked; the Drive folder IDs stay in `docs/` because they are share links to the whole master archive. In-page audio is a **synth sketch** generated from the track index (used for the three undistributed 2026 singles and as a per-track sketch), not master playback. The Spotify card and the Instagram card publish only what their live pages verify — playlist saves, song count, runtime, monthly listeners — instead of invented follower figures. See [`docs/CONTENT-AUDIT.md`](docs/CONTENT-AUDIT.md) for remaining unverified claims.
+
 > **Important:** This is a front-end demo. The original content contains illustrative and potentially fictional business metrics, film credits, investment claims, and asset ownership assertions. Purchases, acquisition submissions, newsletter signup and PDF downloads are simulations; they do not process transactions, messages or files. See [content audit](docs/CONTENT-AUDIT.md) before publishing.
 >
 > The repository dossier includes 15 curated repositories: the three software sketches plus 12 additional public candidates. They are presented as **potential candidates**, not appraised or verified company holdings; license and chain-of-title checks are called out in [the GitHub IP screen](docs/GITHUB-IP-SCAN.md). The embedded builds are first-party copies; each `/embeds/<id>/` directory carries a `PROVENANCE.txt` and, when available, the repository's licence file.
@@ -52,6 +54,7 @@ scripts/sync-repos.mjs         GitHub sync: metadata, READMEs, trees, commits, a
 public/data/repos.json         Generated 15-repository snapshot consumed by both pages
 public/embeds/<id>/            Verbatim zero-build apps + PROVENANCE.txt / LICENSE.txt
 public/art/                    Web-resolution artwork and wordmark copies (masters stay in Drive)
+public/art/covers/               Drop-in release cover art (mapping in docs/COVER-MANIFEST.md)
 docs/WRITINGS-AND-ART.md       Writings and artwork sources, statuses, Drive IDs, publication gates
 public/_headers                Cloudflare Pages security response headers
 .github/workflows/ci.yml       CI checks on pushes/PRs
@@ -59,6 +62,7 @@ vite.config.cjs                Multi-page build configuration
 tailwind.config.cjs            Visual tokens and Tailwind content discovery
 postcss.config.cjs             CSS tooling
 docs/CONTENT-AUDIT.md          Operational and factual publication gates
+docs/COVER-MANIFEST.md           Release-to-Drive-folder cover manifest
 docs/GITHUB-IP-SCAN.md         GitHub project shortlist, RadioReach systems, rights signals, and diligence notes
 ```
 
@@ -98,9 +102,10 @@ No API secrets are needed for this prototype. The build produces two HTML entry 
 2. Implement an actual hosted checkout, real downloadable products, and licensing terms.
 3. Implement server-backed, privacy-compliant inquiries and newsletter subscriptions.
 4. Add usable accessibility, end-to-end/browser tests and mobile performance checks.
-5. Replace hard-coded catalog entries with editable, verified structured content (the repository section is already generated from `data/repos.manifest.json`).
+5. Replace hard-coded catalog entries with editable, verified structured content (the repository section is already generated from `data/repos.manifest.json`, and the music vault is mirrored against the Drive archive above); films, domains, products, social metrics and valuation figures are still hand-written demo claims.
 6. Version-pin and locally bundle third-party JavaScript dependencies.
 7. Re-run `npm run repos:sync` on a schedule or before publication so stars, READMEs and commits do not drift; re-verify demo deployments at the same time.
+8. Confirm the last unverified audience metric (the Instagram follower/view chip) and re-read `CAN'T GET MY EYES OFF YOU (123)` on Spotify to fill the type and year this build could not verify; its entry is flagged `spUnknown:true` until then. Cover art needs no further work for the 20 editions with release pages; only the three undistributed singles need a JPEG dropped at `public/art/covers/`.
 
 ## Rights
 
