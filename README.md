@@ -36,6 +36,20 @@ npm run dev
 
 Open the local URL displayed by Vite. The site loads GSAP, Chart.js, and fonts from third-party CDNs; those features require internet connectivity.
 
+## GitHub Pages deployment
+
+The public site is https://zazieproductions.github.io/zazie-media-holdings/.
+In **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**
+(not “Deploy from a branch”). The `Deploy GitHub Pages` workflow builds and tests
+on pushes to `main`, then publishes only `dist/`. It can also be run manually.
+Publishing the repository root directly skips Tailwind compilation and dependency
+bundling, so it will not match the development preview.
+
+Vite uses relative build URLs, and runtime artwork/data URLs are page-relative,
+so the same build works at the repository subpath or a custom domain root.
+The classic `src/app.js` is deliberately copied into the build to preserve the
+inline event handlers; Vite's non-module script warning is expected.
+
 ## Commands
 
 | Command | Purpose |
