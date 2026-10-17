@@ -1,16 +1,37 @@
 # GitHub project and IP screen
 
-**Reviewed:** 2026-10-13 (UTC)  
+**Reviewed:** 2026-10-17 (UTC)
 **Account:** [`zazieproductions`](https://github.com/zazieproductions)  
 **Purpose:** surface source-code, creative-software, and research-data candidates for the Zazie Media Holdings portfolio.
 
 ## Scope and limits
 
-I reviewed the account-visible repository catalog, descriptions, selected README files, repository license indicators, and demo links documented by the projects. GitHub showed 62 repositories at the time of review, including this website; the `OpenAudio` fork was not treated as original project IP. Twelve additional candidates are now surfaced in the website's software register (11 software projects plus one research-data archive). The three existing in-page software sketches—Form-909 Warp, Signal Rot, and NOETIC—now link to their separate GitHub projects.
+I reviewed the account-visible repository catalog, descriptions, selected README files, repository license indicators, and demo links documented by the projects. GitHub showed 62 repositories at the time of the 2026-10-13 catalog review, including this website; the `OpenAudio` fork was not treated as original project IP. The website now surfaces 13 GitHub entries: RadioReach Funnel plus 11 other software candidates and one research-data archive. RadioReach's README and repository license status were reviewed on 2026-10-17; older candidate notes retain their prior review context. The three existing in-page software sketches—Form-909 Warp, Signal Rot, and NOETIC—link to their separate GitHub projects.
 
 This is a discovery shortlist, **not** a legal opinion, technical audit, chain-of-title review, product validation, or valuation. A repository under an account does not, by itself, prove that ZMH owns all code, content, trademarks, data, or commercial rights. License labels below are repository-level indicators and can be incomplete or inaccurate. No dollar values are assigned. Live-demo links were taken from project READMEs and were not independently uptime-tested.
 
-## Twelve additional candidates added to the site
+## RadioReach funnel and proprietary systems
+
+- **Live property:** [RadioReach](https://radioreach.us)
+- **Source repository:** [zazieproductions/radioreach-funnel](https://github.com/zazieproductions/radioreach-funnel)
+- **Repository-described stack:** React and TypeScript sales experience; Stripe Embedded Checkout; Cloudflare Pages Functions; KV order state; signed webhook and HMAC fulfillment flows; private R2 downloads; and browser/server conversion measurement.
+- **Named systems surfaced from the README:** Emotional State Proxy (ESP); Momentum + Ownership sequence; Conversion Lab; modular post-purchase offer flows; Lucky Wheel and Secret Slots promotion systems; exit-intent recovery; urgency/trust components; and UTM, Meta Pixel / Conversions API, `dataLayer`, and purchase-deduplication instrumentation.
+
+### Emotional State Proxy (ESP)
+
+The README describes ESP as a client-side state engine that adapts copy tone—not prices, product facts, or offer terms—using browsing signals such as scroll velocity, direction changes, rage-clicks, reading patterns, CTA hover, section revisits, and idle detection. It documents weighted scores with a 20-second half-life, confidence/margin thresholds, a 500 ms hold, an 8-second cooldown, and fallback to default copy when signals conflict. Its modes are `calm` (de-pressure), `aspire` (identity/future framing), and `urgency` (cost-of-waiting framing around pricing/CTAs). The README says CTA and purchase events are associated with mode/signal context, stored in `sessionStorage["esp.events.v1"]`, and can be disabled through URL, localStorage, build-time, or source-removal controls. These are repository claims, not an independent behavioral or code audit.
+
+### Momentum + Ownership Sequence
+
+The README describes a feature-flagged three-step sequence asking for a target market, a key frustration, and what the visitor is “done with.” Answers are stored in localStorage and reflected in a personalized plan; the funnel then attaches normalized `sequence_*` attribution to checkout and purchase events. It documents lifecycle events for viewed, started, step-completed, finished, CTA-clicked, and reset. The exact deployed behavior, consent/notice, persistence, and event payloads should be verified before making performance or privacy claims.
+
+**Privacy and transparency review:** these systems use scroll, click, and intent signals and store some state in the browser. Confirm clear disclosure, consent/opt-out behavior, data minimization, retention, and applicable privacy requirements. Avoid sensitive-trait inference. The portfolio summary is based on the repository README and does not establish legal compliance.
+- **Rights signal:** the README states “Copyright © 2026 RadioReach. All rights reserved” and says the repository has no open-source license. The code is therefore listed by link and high-level description only; public visibility does not grant permission to copy, redistribute, or commercially use it. Confirm the correct legal owner, contributor assignments, and third-party/API terms before representing it as a ZMH-owned asset.
+- **Scope:** the README describes a production storefront, but this screen did not audit the live purchase flow, security, performance, conversion results, or customer claims. No traffic, revenue, or conversion metrics are asserted here.
+
+**Security follow-up:** the public repository tree includes files named `.env.production` and `.env.local.save`. I did not inspect or reproduce their contents. Privately check whether they contain real credentials; rotate any exposed secrets and remove them from the repository history as appropriate before further promotion.
+
+## Twelve other candidates in the register
 
 | Candidate | Why it may merit portfolio attention | Rights / maturity signal to resolve |
 |---|---|---|
@@ -40,5 +61,6 @@ This is a discovery shortlist, **not** a legal opinion, technical audit, chain-o
 3. **Separate product claims from prototypes:** test builds, browser support, audio export, accessibility, security, and any model/API dependencies. Avoid revenue, user, valuation, or performance claims without evidence.
 4. **Refresh the research archive:** independently validate the Backlink Tracker's record count, source trail, and update date before showing any metrics publicly.
 5. **Review sensitive repositories before more publication:** `cue-sheet-automation-` is listed as public on GitHub even though its README describes an internal/private publishing archive; the repository includes a spreadsheet and music-administration notes. I did not copy its contents or change its visibility. Review it promptly and make it private if it is intended to remain internal. It was intentionally **not** added to the public website shortlist.
+6. **Review RadioReach environment artifacts:** its current public GitHub tree lists `.env.production` and `.env.local.save`. Their contents were not inspected. Check them privately, rotate any real credentials, and remove exposed secrets from Git history as needed.
 
-The website labels the new entries as candidates and shows the rights signals beside each project so visitors can distinguish public-source evidence from verified ownership or an offer to license.
+The website identifies RadioReach as a production source-code entry and labels the other new entries as candidates; rights signals appear beside each project so visitors can distinguish public-source evidence from verified ownership or an offer to license.

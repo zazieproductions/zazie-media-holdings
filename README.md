@@ -6,7 +6,7 @@ Interactive, single-page **concept showcase** for a proposed media and intellect
 >
 > The `#writings` section quotes from manuscripts held in the Zazie Productions literary submissions archive (15 pieces, excerpts only) and shows ten works from the Behance art archive plus the ZAZIE PRODUCTIONS × FLESHWEATHER wordmark. Statuses are from the submission tracker dated 2026-10-09; see [the writings and art register](docs/WRITINGS-AND-ART.md) before promoting any credit.
 >
-> The software section now includes a curated screen of 12 additional public GitHub candidates (11 software projects and one research-data archive). They are presented as **potential candidates**, not appraised or verified company holdings; license and chain-of-title checks are called out in [the GitHub IP screen](docs/GITHUB-IP-SCAN.md).
+> The software section now links the [RadioReach production funnel](https://radioreach.us) and lists its [source repository](https://github.com/zazieproductions/radioreach-funnel), alongside 12 other GitHub entries (11 software candidates and one research-data archive). RadioReach's README states that its code is all-rights-reserved and has no open-source license; the repository link is a high-level register, not a grant to copy or reuse source. None of the entries is an appraisal or proof of ZMH ownership. See [the GitHub IP screen](docs/GITHUB-IP-SCAN.md) for rights and security diligence.
 
 ## Requirements
 
@@ -44,7 +44,7 @@ vite.config.cjs            Build configuration
 tailwind.config.cjs        Visual tokens and Tailwind content discovery
 postcss.config.cjs         CSS tooling
 docs/CONTENT-AUDIT.md      Operational and factual publication gates
-docs/GITHUB-IP-SCAN.md     GitHub project shortlist, rights signals, and diligence notes
+docs/GITHUB-IP-SCAN.md     GitHub project shortlist, RadioReach systems, rights signals, and diligence notes
 docs/WRITINGS-AND-ART.md   Writings and artwork sources, statuses, Drive IDs, publication gates
 public/art/                Web-resolution artwork and wordmark copies (masters stay in Drive)
 ```
@@ -64,7 +64,7 @@ No API secrets are needed for this prototype. Third-party script/style CDN avail
 
 ## Limitations and next steps
 
-1. Verify intellectual-property and asset rights and remove invented financial/operational claims.
+1. Verify intellectual-property and asset rights and remove invented financial/operational claims. Confirm RadioReach's legal ownership and review the public repository's environment-file artifacts before publication.
 2. Implement an actual hosted checkout, real downloadable products, and licensing terms.
 3. Implement server-backed, privacy-compliant inquiries and newsletter subscriptions.
 4. Add usable accessibility, end-to-end/browser tests and mobile performance checks.
