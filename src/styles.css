@@ -72,8 +72,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .reveal{opacity:0;transform:translateY(30px)}
 .toast-in{animation:toastIn .35s cubic-bezier(.2,.8,.2,1)}
 @keyframes toastIn{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
-.insta-grid img{transition:.4s}
-.insta-grid>div:hover img{transform:scale(1.08)}
+.cover-art img{transition:transform .4s ease}
+.card-hover:hover .cover-art img{transform:scale(1.05)}
 .progress-track{height:4px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden;cursor:pointer}
 .progress-fill{height:100%;background:linear-gradient(90deg,#8b7cff,#e6ff4a);width:0%}
 .nav-link{position:relative;transition:.2s}
