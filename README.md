@@ -7,6 +7,10 @@ The software section now points at the real thing. A repository dossier at [`rep
 > **Important:** This is a front-end demo. The original content contains illustrative and potentially fictional business metrics, film credits, investment claims, and asset ownership assertions. Purchases, acquisition submissions, newsletter signup and PDF downloads are simulations; they do not process transactions, messages or files. See [content audit](docs/CONTENT-AUDIT.md) before publishing.
 >
 > The repository dossier includes 15 curated repositories: the three software sketches plus 12 additional public candidates. They are presented as **potential candidates**, not appraised or verified company holdings; license and chain-of-title checks are called out in [the GitHub IP screen](docs/GITHUB-IP-SCAN.md). The embedded builds are first-party copies; each `/embeds/<id>/` directory carries a `PROVENANCE.txt` and, when available, the repository's licence file.
+>
+> The `#writings` section quotes from manuscripts held in the Zazie Productions literary submissions archive (15 pieces, excerpts only) and shows ten works from the Behance art archive plus the ZAZIE PRODUCTIONS × FLESHWEATHER wordmark. Statuses are from the submission tracker dated 2026-10-09; see [the writings and art register](docs/WRITINGS-AND-ART.md) before promoting any credit.
+>
+> The software section also lists the [RadioReach production funnel](https://radioreach.us) and its [source repository](https://github.com/zazieproductions/radioreach-funnel), alongside 12 other GitHub entries. RadioReach’s README states that its code is all-rights-reserved and has no open-source license; the repository link is a high-level register, not a grant to copy or reuse. None of these entries is an appraisal or proof of ZMH ownership.
 
 ## Requirements
 
@@ -36,22 +40,24 @@ Open the local URL displayed by Vite. The site loads GSAP, Chart.js, and fonts f
 ## Structure
 
 ```text
-index.html                     HTML markup and content
+index.html                     Main portfolio, software atlas entry, and writings/art register
 repo.html                      Repository atlas + dossier shell
-src/app.js                     Catalog data, UI state and audio interactions
-src/repo-view.mjs              Dossier renderer (marked + DOMPurify, tabs, file browser, live embeds)
+src/app.js                     Catalog data, UI state, writing/art renderers, and audio interactions
+src/repo-view.mjs              Dossier renderer (marked + DOMPurify, telemetry, file browser, live embeds)
 src/styles.css                 Tailwind directives and custom CSS
-data/repos.manifest.json       Curated repository catalog (source of truth for curatorial text)
-scripts/sync-repos.mjs         GitHub sync: metadata, READMEs, trees, commits and vendored builds
-public/data/repos.json         Generated snapshot consumed by both pages
+data/repos.manifest.json       Curated 15-repository atlas manifest
+scripts/sync-repos.mjs         GitHub sync: metadata, READMEs, trees, commits, and vendored builds
+public/data/repos.json         Generated 15-repository snapshot consumed by both pages
 public/embeds/<id>/            Verbatim zero-build apps + PROVENANCE.txt / LICENSE.txt
+public/art/                    Web-resolution artwork and wordmark copies (masters stay in Drive)
+docs/WRITINGS-AND-ART.md       Writings and artwork sources, statuses, Drive IDs, publication gates
 public/_headers                Cloudflare Pages security response headers
 .github/workflows/ci.yml       CI checks on pushes/PRs
 vite.config.cjs                Multi-page build configuration
 tailwind.config.cjs            Visual tokens and Tailwind content discovery
 postcss.config.cjs             CSS tooling
 docs/CONTENT-AUDIT.md          Operational and factual publication gates
-docs/GITHUB-IP-SCAN.md         GitHub project shortlist, rights signals, and diligence notes
+docs/GITHUB-IP-SCAN.md         GitHub project shortlist, RadioReach systems, rights signals, and diligence notes
 ```
 
 ## Repository dossier
@@ -86,7 +92,7 @@ No API secrets are needed for this prototype. The build produces two HTML entry 
 
 ## Limitations and next steps
 
-1. Verify intellectual-property and asset rights and remove invented financial/operational claims.
+1. Verify intellectual-property and asset rights and remove invented financial/operational claims. Confirm RadioReach's legal ownership and review the public repository's environment-file artifacts before publication.
 2. Implement an actual hosted checkout, real downloadable products, and licensing terms.
 3. Implement server-backed, privacy-compliant inquiries and newsletter subscriptions.
 4. Add usable accessibility, end-to-end/browser tests and mobile performance checks.
@@ -98,4 +104,4 @@ No API secrets are needed for this prototype. The build produces two HTML entry 
 
 See [LICENSE.md](LICENSE.md). Do not assume rights to third-party names, images, brands or source material from their appearance in the prototype.
 
-**Build verification:** `npm run check` passes locally (12 source/snapshot/integration tests plus a production Vite build). Vite notes that the classic global script is not bundled as an ES module; the build config intentionally emits it to `dist/src/app.js` so the existing inline handlers continue to work. The dossier was additionally exercised in a JSDOM harness: README rendering, sanitisation, file fetching, commit diffs, live iframe wiring, atlas fallback and the main-page launch bay.
+**Build verification:** `npm run check` passes locally (16 tests covering the repository snapshot/dossier, RadioReach disclosures, and the writings/art register, plus a production Vite build). Vite notes that the classic global script is not bundled as an ES module; the build config intentionally emits it to `dist/src/app.js` so the existing inline handlers continue to work. The dossier was additionally exercised in a JSDOM harness: README rendering, sanitisation, file fetching, commit diffs, live iframe wiring, atlas fallback and the main-page launch bay.
