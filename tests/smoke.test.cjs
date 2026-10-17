@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { readFileSync } = require('node:fs');
+const { readFileSync, existsSync } = require('node:fs');
 const vm = require('node:vm');
 const html = readFileSync('index.html', 'utf8');
 const js = readFileSync('src/app.js', 'utf8');
@@ -55,4 +55,56 @@ test('GitHub software and research candidates are surfaced with rights context',
   ]) assert.ok(js.includes(repo), `missing curated source repository: ${repo}`);
   assert.match(html, /GITHUB SCAN • 12 ADDITIONAL ASSETS/);
   assert.doesNotMatch(html, /License — \$49/);
+});
+
+test('writings and artwork registers are complete and assets exist', () => {
+  assert.match(html, /id="writings"/);
+  assert.match(html, /id="writingGrid"/);
+  assert.match(html, /id="artGrid"/);
+  assert.match(html, /wordmark\.jpg/);
+  const wSource = js.match(/const WRITINGS=(\[[\s\S]*?\n\]);/);
+  const aSource = js.match(/const ARTWORKS=(\[[\s\S]*?\n\]);/);
+  assert.ok(wSource, 'expected a parseable writings register');
+  assert.ok(aSource, 'expected a parseable artwork register');
+  const writings = vm.runInNewContext(wSource[1]);
+  const artworks = vm.runInNewContext(aSource[1]);
+  assert.equal(writings.length, 15);
+  assert.equal(artworks.length, 10);
+  assert.equal(new Set(writings.map((w) => w.id)).size, 15, 'writing IDs should be unique');
+  assert.equal(new Set(artworks.map((a) => a.id)).size, 10, 'artwork IDs should be unique');
+  const statuses = new Set(['ACCEPTED', 'SUBMITTED', 'READY', 'UNSENT']);
+  for (const w of writings) {
+    assert.ok(statuses.has(w.status), `unexpected writing status: ${w.status}`);
+    assert.ok(w.title && w.form && w.note && w.source);
+    assert.ok(Array.isArray(w.lines) && w.lines.length, `missing card excerpt: ${w.title}`);
+    assert.ok(Array.isArray(w.body) && w.body.length, `missing modal excerpt: ${w.title}`);
+  }
+  assert.ok(writings.some((w) => w.status === 'ACCEPTED'), 'accepted credits should be visible');
+  for (const a of artworks) {
+    for (const asset of [`public/art/${a.file}.jpg`, `public/art/thumbs/${a.file}.jpg`]) {
+      assert.ok(existsSync(asset), `missing artwork asset: ${asset}`);
+    }
+  }
+});
+
+test('writing and artwork renderers emit accessible cards', () => {
+  const start = js.indexOf("let writingStatus='all';");
+  const endMarker = 'renderWritings();renderArt();';
+  const end = js.indexOf(endMarker);
+  assert.ok(start > -1 && end > start, 'expected the writings renderer block');
+  const source = js.slice(start, end + endMarker.length);
+  const wSource = js.match(/const WRITINGS=(\[[\s\S]*?\n\]);/);
+  const aSource = js.match(/const ARTWORKS=(\[[\s\S]*?\n\]);/);
+  const writings = vm.runInNewContext(wSource[1]);
+  const artworks = vm.runInNewContext(aSource[1]);
+  const grids = { writingGrid: { innerHTML: '' }, artGrid: { innerHTML: '' } };
+  const doc = { getElementById: (id) => grids[id] || null, querySelectorAll: () => [] };
+  const rendered = new Function('document', '$', 'WRITINGS', 'ARTWORKS', 'toast', 'openModal', 'closeModal', `${source}; return { w: document.getElementById('writingGrid').innerHTML, a: document.getElementById('artGrid').innerHTML };`)(
+    doc, (id) => doc.getElementById(id), writings, artworks, () => {}, () => {}, () => {},
+  );
+  assert.equal((rendered.w.match(/<article /g) || []).length, 15);
+  assert.equal((rendered.a.match(/<figure /g) || []).length, 10);
+  assert.match(rendered.w, /role="button"/);
+  assert.match(rendered.w, /openWriting\('/);
+  assert.match(rendered.a, /\/art\/thumbs\//);
 });

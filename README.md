@@ -4,6 +4,8 @@ Interactive, single-page **concept showcase** for a proposed media and intellect
 
 > **Important:** This is a front-end demo. The original content contains illustrative and potentially fictional business metrics, film credits, investment claims, and asset ownership assertions. Purchases, acquisition submissions, newsletter signup and PDF downloads are simulations; they do not process transactions, messages or files. See [content audit](docs/CONTENT-AUDIT.md) before publishing.
 >
+> The `#writings` section quotes from manuscripts held in the Zazie Productions literary submissions archive (15 pieces, excerpts only) and shows ten works from the Behance art archive plus the ZAZIE PRODUCTIONS × FLESHWEATHER wordmark. Statuses are from the submission tracker dated 2026-10-09; see [the writings and art register](docs/WRITINGS-AND-ART.md) before promoting any credit.
+>
 > The software section now includes a curated screen of 12 additional public GitHub candidates (11 software projects and one research-data archive). They are presented as **potential candidates**, not appraised or verified company holdings; license and chain-of-title checks are called out in [the GitHub IP screen](docs/GITHUB-IP-SCAN.md).
 
 ## Requirements
@@ -43,6 +45,8 @@ tailwind.config.cjs        Visual tokens and Tailwind content discovery
 postcss.config.cjs         CSS tooling
 docs/CONTENT-AUDIT.md      Operational and factual publication gates
 docs/GITHUB-IP-SCAN.md     GitHub project shortlist, rights signals, and diligence notes
+docs/WRITINGS-AND-ART.md   Writings and artwork sources, statuses, Drive IDs, publication gates
+public/art/                Web-resolution artwork and wordmark copies (masters stay in Drive)
 ```
 
 The current code follows the original, global-script architecture because existing inline handlers depend on global functions. The Vite config explicitly emits `src/app.js` as a classic script at the same path in production output. A future refactor can split the catalog, commerce, audio engine, and UI modules into testable packages, with real API integrations only after privacy/security design.
