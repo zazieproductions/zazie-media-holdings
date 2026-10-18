@@ -462,3 +462,66 @@ test('prototype atlas indexes all generations and distinguishes verified specifi
   assert.match(atlas, /id="prototypeDetail"/);
   assert.match(html, /href="prototypes\.html\?id=PROT-147"/);
 });
+
+test('film archive publishes the four real shorts with official covers and published synopses', () => {
+  const source = js.match(/const FILMS=(\[[\s\S]*?\n\];)/);
+  assert.ok(source, 'expected a parseable film register');
+  const films = vm.runInNewContext(source[1].replace(/;$/, ''));
+  assert.equal(films.length, 4);
+  assert.deepEqual(
+    Array.from(films, (film) => film.title),
+    ['Phantom Requiem', 'Beyond The Silken Threads', 'Deaf Orphans of Streamcast', 'Sepsis']
+  );
+  const byTitle = Object.fromEntries(films.map((film) => [film.title, film]));
+  assert.equal(byTitle['Phantom Requiem'].runtime, '5 min');
+  assert.equal(byTitle['Beyond The Silken Threads'].runtime, '5 min 37 sec');
+  assert.equal(byTitle['Deaf Orphans of Streamcast'].runtime, '51 sec');
+  assert.equal(byTitle['Sepsis'].runtime, '2 min 51 sec');
+  assert.equal(byTitle['Phantom Requiem'].year, 2024);
+  assert.equal(byTitle['Phantom Requiem'].awards.length, 9);
+  assert.equal(byTitle['Beyond The Silken Threads'].awards.length, 1);
+  assert.equal(byTitle['Deaf Orphans of Streamcast'].awards.length, 0);
+  // every film carries a synopsis (published text, or a statement that none is published)
+  for (const film of films) {
+    assert.ok(film.log && film.log.length > 80, `${film.title} needs a synopsis`);
+    assert.ok(film.roles && film.specs.length > 0 && film.source);
+    assert.ok(film.watch && film.record);
+    assert.match(film.watch, /^https:\/\//);
+    assert.ok(film.img || film.remote, `${film.title} needs a cover`);
+    // nothing that was never published may reappear
+    assert.equal(film.rating, undefined);
+    assert.equal(film.cast, undefined);
+    assert.equal(film.rev, undefined);
+  }
+  assert.match(byTitle['Deaf Orphans of Streamcast'].logHead, /NO SYNOPSIS IS PUBLISHED/);
+  assert.match(byTitle['Phantom Requiem'].log, /stop-motion film marries the macabre grace/);
+  assert.match(byTitle['Beyond The Silken Threads'].log, /bruise-violet, overripe orange, chlorophyll green/);
+  assert.match(byTitle['Sepsis'].log, /septic shock/);
+  // covers resolve from a local file that has to exist, then the official press-kit still
+  for (const film of films) {
+    if (!film.img) continue;
+    assert.match(film.img, /^\.\/art\/films\/[a-z0-9-]+\.jpg$/);
+    assert.ok(existsSync('public' + film.img.replace('./', '/')), `${film.img} is missing`);
+  }
+  assert.match(byTitle['Deaf Orphans of Streamcast'].remote, /filmfreeway-production-storage-01-connector/);
+  assert.match(byTitle['Sepsis'].remote, /newmediartspace\.info\/exhibitions\/2024_ripples/);
+  assert.doesNotMatch(js, /images\.unsplash\.com/);
+});
+
+test('films section publishes shorts with matching filters and no invented rights copy', () => {
+  const section = html.split('id="films"')[1].split('<!-- DOMAINS -->')[0];
+  assert.match(section, /ZAZIE PICTURES • 4 SHORTS/);
+  assert.doesNotMatch(section, /FEATURES/);
+  assert.doesNotMatch(section, /RIGHTS: AVAILABLE/);
+  assert.doesNotMatch(section, /Request Screener Access/);
+  const filters = [...section.matchAll(/data-f="([A-Za-z]+)"/g)].map((match) => match[1]);
+  assert.equal(filters.join(','), 'all,Experimental,Horror,Conceptual');
+  const source = js.match(/const FILMS=(\[[\s\S]*?\n\];)/);
+  const films = vm.runInNewContext(source[1].replace(/;$/, ''));
+  const used = new Set([].concat(...films.map((film) => film.genres)));
+  for (const filter of filters.filter((value) => value !== 'all')) {
+    assert.ok(used.has(filter), `filter ${filter} matches no film`);
+  }
+  assert.match(js, /function filmCoverFallback\(/);
+  assert.match(js, /data-fallback=/);
+});
