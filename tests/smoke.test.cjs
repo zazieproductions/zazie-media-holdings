@@ -309,6 +309,90 @@ test('RadioReach domain card links to its live funnel and source repository', ()
   assert.doesNotMatch(grid.innerHTML, /62K \/yr|\$54K funnel sales|4\.2% conversion/);
 });
 
+test('Global Paradigms domain card carries the sourced archive register', () => {
+  const dataSource = js.match(/const DOMAINS=(\[[\s\S]*?\n\]);/);
+  assert.ok(dataSource, 'expected a parseable domain register');
+  const domains = vm.runInNewContext(dataSource[1]);
+  const gpc = domains.find((domain) => domain.id === 1);
+  assert.equal(gpc.url, 'globalparadigmscorp.com');
+  assert.equal(gpc.register, 'gpc');
+  assert.equal(gpc.liveUrl, 'https://globalparadigmscorp.com');
+  assert.ok(gpc.chips.includes('NON-CANON HOAX'));
+  assert.ok(gpc.chips.includes('REACTIVATED 2026'));
+
+  const registerSource = js.match(/const GPC_REGISTER=(\{[\s\S]*?\n\});/);
+  assert.ok(registerSource, 'expected a parseable archive register');
+  const register = vm.runInNewContext('(' + registerSource[1] + ')');
+  assert.ok(register.sheet.length >= 10, 'expected an identity sheet');
+  assert.ok(register.timeline.length >= 10, 'expected a dated timeline');
+  assert.ok(register.roster.length >= 5, 'expected a roster');
+  assert.equal(register.transmissions.length, 3);
+  assert.match(register.quote[1], /You have been warned/);
+  assert.match(register.clients, /Halliburton/);
+  assert.match(register.clients, /Hanso Foundation/);
+  assert.match(register.clients, /Valenzetti Foundation/);
+
+  // every artifact is a named, absolute primary source
+  for (const artifact of register.artifacts) {
+    assert.match(artifact[1], /^https:\/\//, `artifact ${artifact[0]} needs an absolute source URL`);
+    assert.ok(artifact[0] && artifact[2], `artifact ${artifact[0]} needs a label and a note`);
+  }
+  assert.ok(register.artifacts.some((artifact) => artifact[1] === 'https://lostpedia.fandom.com/wiki/Globalparadigmscorp.com'));
+  assert.ok(register.artifacts.some((artifact) => artifact[1].startsWith('https://lostpedia.fandom.com/wiki/Talk:')));
+  assert.ok(register.artifacts.some((artifact) => artifact[1].includes('web.archive.org')));
+  assert.ok(register.artifacts.some((artifact) => artifact[1] === 'https://globalparadigmscorp.com/'));
+
+  // the modal renderer surfaces every register section
+  const start = js.indexOf('function registerSection(');
+  const end = js.indexOf('\n}\n', js.indexOf('function renderDomainRegister(reg){'));
+  assert.ok(start > -1 && end > start, 'expected the register renderer');
+  const block = js.slice(start, end + 2);
+  const html = new Function('reg', `${block}; return renderDomainRegister(reg);`)(register);
+  for (const label of ['IDENTITY SHEET', 'TIMELINE', 'ROSTER — PEOPLE & ORGANISATIONS', 'CLIENT ROSTER', 'TRANSMISSIONS', 'PRIMARY SOURCES']) {
+    assert.match(html, new RegExp(label));
+  }
+  assert.match(html, /NON-CANON HOAX/);
+  assert.match(html, /EMAIL GRENDEL AT GLOBALPARADIGMSCORP DOT COM TO FIND HIS CAGE/);
+  assert.match(html, /Stephenson was wrong/);
+  assert.match(html, /rel="noopener noreferrer"/);
+  assert.match(html, /target="_blank"/);
+
+  // the card itself shows the chips and links to the live domain
+  const renderStart = js.indexOf('function renderDomains(){');
+  const renderEnd = js.indexOf('\n}\nrenderDomains();', renderStart);
+  const renderFunction = js.slice(renderStart, renderEnd + 2);
+  const grid = { innerHTML: '' };
+  new Function('$', 'DOMAINS', `${renderFunction}; renderDomains();`)(
+    (id) => (id === 'domainGrid' ? grid : null),
+    domains,
+  );
+  assert.match(grid.innerHTML, /NON-CANON HOAX/);
+  assert.match(grid.innerHTML, /href="https:\/\/globalparadigmscorp\.com"/);
+  assert.match(grid.innerHTML, /VISIT LIVE ARCHIVE/);
+
+  // the modal itself: sourced stat strip plus the register, and no invented uptime/SEO figures
+  const openStart = js.indexOf('function openDomain(i){');
+  const openTag = 'renderDomainRegister(register))}';
+  const openEnd = js.indexOf(openTag, openStart) + openTag.length;
+  assert.ok(openEnd > openStart, 'expected the domain modal renderer');
+  const openBlock = js.slice(openStart, openEnd);
+  let modal = '';
+  new Function('$', 'DOMAINS', 'DOMAIN_REGISTERS', 'toast', 'openModal', `${block}${openBlock}; openDomain(1);`)(
+    () => ({ classList: { add() {}, remove() {}, toggle() {}, contains: () => false }, style: {}, innerHTML: '' }),
+    domains,
+    { gpc: register },
+    () => {},
+    (html) => { modal = html; },
+  );
+  assert.match(modal, /ARCHIVE RECORDS/);
+  assert.match(modal, /174 indexed/);
+  assert.match(modal, /NON-CANON/);
+  assert.doesNotMatch(modal, /SEO SCORE|99\.98%/);
+  assert.match(modal, /IDENTITY SHEET/);
+  assert.match(modal, /PRIMARY SOURCES/);
+  assert.match(modal, /web\.archive\.org/);
+});
+
 test('writings and artwork registers are complete and assets exist', () => {
   assert.match(html, /id="writings"/);
   assert.match(html, /id="writingGrid"/);

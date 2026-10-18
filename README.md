@@ -22,6 +22,8 @@ The software section now points at the real thing. A repository dossier at [`rep
 >
 > The music vault links the [Zazie Productions Bandcamp storefront](https://zazieproductions.bandcamp.com) as an external catalog asset, and [Hubris Books](https://hubrisbooks.win) is listed under domains as a satirical publishing imprint. Both are live outbound links (added 2026-10-17); listening, purchases and reading happen on those properties under their own terms. See [content audit](docs/CONTENT-AUDIT.md).
 >
+> The `globalparadigmscorp.com` domain card opens a sourced **archive register** instead of a three-stat summary: the canon status, a 12-row identity sheet, a 12-entry dated timeline (1993 → 2026), a roster of the people and organisations the hoax named, the archived 2006 client roster, the three messages hidden in the old page source, the Terms of Use §8 quote, and 10 primary-source links. It is drawn from [Lostpedia's article](https://lostpedia.fandom.com/wiki/Globalparadigmscorp.com) (read 18 Oct 2026), the [Wayback Machine captures](https://web.archive.org/web/2006/http://globalparadigmscorp.com/) of the original 2006 site, and the live 2026 build. The 2006 material was an **intentional hoax** and the 2026 project is an independent ARG, so the modal opens with Lostpedia's non-canon alert; the card's traffic, revenue and "400+ pages" figures remain demo metrics. See [the Global Paradigms register](docs/GLOBAL-PARADIGMS-REGISTER.md).
+>
 > The digital-product cards and the matching music-vault releases now carry the **real prices and cover art** mirrored from the public catalogue at [horror.zazieproductions.com/store](https://horror.zazieproductions.com/store) (hub prices last checked 24 September 2026) and the itch.io listings at [zazieproductions.itch.io](https://zazieproductions.itch.io/) — **CRYPTOTYPE-9** (free pixel UI pack, 2026) and **Room 7G: The Hygiene Loop** ($10 or more HDRI, 2026) are included as digital products alongside the four original packs (prices last checked 18 October 2026); each card links out to its Gumroad, itch.io or Bandcamp listing, and BIOFLUID Vol. 01 — which has no live listing — is flagged as a concept. The on-page cart remains a simulation.
 
 ## Requirements
@@ -94,6 +96,7 @@ index.html                     Main portfolio, software atlas entry, and writing
 repo.html                      Repository atlas + dossier shell
 src/app.js                     Catalog data, UI state, podcast/writing/art renderers, and audio interactions
 docs/PODCAST-REGISTER.md       Five Steps From The Fringe: source URLs, episode IDs, publication gates
+docs/GLOBAL-PARADIGMS-REGISTER.md  Global Paradigms Corp: 2006 hoax archive, 2026 revival, source register
 src/repo-view.mjs              Dossier renderer (marked + DOMPurify, telemetry, file browser, live embeds)
 src/styles.css                 Tailwind directives and custom CSS
 data/repos.manifest.json       Curated 15-repository atlas manifest
