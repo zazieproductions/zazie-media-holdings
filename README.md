@@ -39,11 +39,34 @@ Open the local URL displayed by Vite. The site loads GSAP, Chart.js, and fonts f
 ## GitHub Pages deployment
 
 The public site is https://zazieproductions.github.io/zazie-media-holdings/.
-In **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**
-(not “Deploy from a branch”). The `Deploy GitHub Pages` workflow builds and tests
-on pushes to `main`, then publishes only `dist/`. It can also be run manually.
-Publishing the repository root directly skips Tailwind compilation and dependency
-bundling, so it will not match the development preview.
+
+**One-time setup (must be done in the GitHub UI — the automation cannot do it):**
+
+1. Open **Settings → Pages → Build and deployment**.
+2. Set **Source** to **GitHub Actions**.
+
+With **Source** left on “Deploy from a branch”, Pages publishes the repository
+root: `index.html` links the Tailwind entry point instead of the compiled
+stylesheet, the module bundles do not exist, and `data/` and `embeds/` are only
+reachable under `/public/`. The page then renders unstyled with its loading
+overlay on screen. The `Deploy GitHub Pages` workflow still reports success in
+that configuration because it only uploads the artifact — which is why a
+`verify` job re-checks the live URL after every deploy.
+
+The `Deploy GitHub Pages` workflow builds and tests on pushes to `main`, then
+publishes only `dist/`. It can also be run manually (Actions → Deploy GitHub
+Pages → Run workflow). After the deploy job, the `verify` job fetches the live
+pages and asserts that they serve the compiled `assets/*.css`, the bundled
+modules, the emitted `src/app.js`, the JSON data and the vendored embeds; it
+retries for a few minutes while the Pages CDN catches up, and fails loudly with
+the remediation above if the site is still serving source.
+
+Check any deployed (or locally served) copy at any time:
+
+```bash
+npm run verify:pages                                   # the public site
+npm run verify:pages -- http://127.0.0.1:4173/         # a local preview
+```
 
 Vite uses relative build URLs, and runtime artwork/data URLs are page-relative,
 so the same build works at the repository subpath or a custom domain root.
@@ -58,7 +81,8 @@ inline event handlers; Vite's non-module script warning is expected.
 | `npm run build` | Compile Tailwind CSS and bundle assets to `dist/` |
 | `npm run preview` | Preview production output |
 | `npm test` | Source and integration smoke assertions |
-| `npm run check` | Tests plus production build |
+| `npm run check` | Production build, then tests (including assertions on the build output in `tests/dist.test.cjs`) |
+| `npm run verify:pages` | Check a served copy of the site (public URL, or pass a base URL) is the build and that its assets resolve |
 | `npm run repos:sync` | Refresh `public/data/repos.json` and the vendored `/embeds` builds from GitHub (needs network; uses `GITHUB_TOKEN`/`GH_TOKEN` or `gh auth token`) |
 
 ## Structure

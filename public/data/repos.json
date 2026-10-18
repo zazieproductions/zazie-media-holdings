@@ -30,7 +30,7 @@
       "demoUrl": "https://zazieproductions.github.io/Form-909-Warp-IDM-Drum-Machine/Form-909%20Warp%20IDM%20Drum%20Machine.html",
       "demoLabel": "GitHub Pages deployment",
       "embed": {
-        "url": "/embeds/form-909/index.html",
+        "url": "embeds/form-909/index.html",
         "label": "SOURCE-SYNCED BUILD",
         "sourcePath": "Form-909 Warp IDM Drum Machine.html",
         "sourceUrl": "https://github.com/zazieproductions/Form-909-Warp-IDM-Drum-Machine/blob/main/Form-909%20Warp%20IDM%20Drum%20Machine.html",
@@ -1719,7 +1719,7 @@
       "demoUrl": null,
       "demoLabel": null,
       "embed": {
-        "url": "/embeds/prompt-forge/index.html",
+        "url": "embeds/prompt-forge/index.html",
         "label": "SOURCE-SYNCED BUILD",
         "sourcePath": "index.html",
         "sourceUrl": "https://github.com/zazieproductions/PROMPT-FORGE-v2.4.1-LOCAL-COMPILER-DETERMINISTIC-MEGA-PROMPT-COMPILER/blob/main/index.html",
@@ -1891,7 +1891,7 @@
       "demoUrl": null,
       "demoLabel": null,
       "embed": {
-        "url": "/embeds/cinecontract/index.html",
+        "url": "embeds/cinecontract/index.html",
         "label": "SOURCE-SYNCED BUILD",
         "sourcePath": "index.html",
         "sourceUrl": "https://github.com/zazieproductions/StudioLex-Contract-Automation/blob/main/index.html",
@@ -2006,7 +2006,7 @@
       "demoUrl": null,
       "demoLabel": null,
       "embed": {
-        "url": "/embeds/uiua-resonance/index.html",
+        "url": "embeds/uiua-resonance/index.html",
         "label": "SOURCE-SYNCED BUILD",
         "sourcePath": "index.html",
         "sourceUrl": "https://github.com/zazieproductions/UIUA-RESONANCE-LAB/blob/main/index.html",
@@ -2694,7 +2694,7 @@
       "demoUrl": "https://zazieproductions.github.io/void-oculus/",
       "demoLabel": "GitHub Pages deployment",
       "embed": {
-        "url": "/embeds/void-oculus/index.html",
+        "url": "embeds/void-oculus/index.html",
         "label": "SOURCE-SYNCED BUILD",
         "sourcePath": "index.html",
         "sourceUrl": "https://github.com/zazieproductions/void-oculus/blob/main/index.html",
