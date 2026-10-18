@@ -49,12 +49,87 @@ const FILMS=[
 ];
 const DOMAINS=[
 {id:0,url:"zazieinstitute.org",name:"Zazie Institute of Applied Anomalies",tag:"EXPERIMENTAL R&D + ARTS",traffic:"84K /yr",rev:"$18K grants + licensing",status:"ACTIVE • FLAGSHIP",color:"#8b7cff",desc:"Independent research institute and open archive (est. 2021): 160 prototypes, 100 speculative patent dossiers, 330 research notes and 8 monographs across 8 divisions. Monetized via grants, workshops & IP licensing."},
-{id:1,url:"globalparadigmscorp.com",name:"Global Paradigms Corp",tag:"LOST HOAX PROPERTY",traffic:"140K /yr",rev:"$9K ads + lore drops",status:"CULT CLASSIC",color:"#5cf2ff",desc:"The infamous 'Lost Hoax' site — a labyrinthine corporate-conspiracy ARG frozen in amber. 400+ pages of fake memos, redacted PDFs & dead links fans still decode. Ad + merch revenue, zero maintenance."},
+{id:1,url:"globalparadigmscorp.com",name:"Global Paradigms Corp",tag:"LOST HOAX PROPERTY",traffic:"140K /yr",rev:"$9K ads + lore drops",status:"CULT CLASSIC",color:"#5cf2ff",desc:"The infamous 'Lost Hoax' site — a labyrinthine corporate-conspiracy ARG. The 2006 original went dark by July; the domain was reactivated in 2026 as a separate ARG project. 400+ pages of fake memos, redacted PDFs & dead links fans still decode. Ad + merch revenue, low maintenance.",register:"gpc",liveUrl:"https://globalparadigmscorp.com",cta:"VISIT LIVE ARCHIVE ↗",chips:["NON-CANON HOAX","REACTIVATED 2026","35 WAYBACK CAPTURES"],modalStats:[{label:"ARCHIVE RECORDS",value:"174 indexed"},{label:"WAYBACK CAPTURES",value:"35"},{label:"CANON STATUS",value:"NON-CANON"}]},
 {id:2,url:"kypo6.com",name:"KYPO6",tag:"INFAMOUS 2026 TABLOID",traffic:"2.1M /mo",rev:"$96K ads + subs",status:"VIRAL • SCALING",color:"#e6ff4a",desc:"The tabloid news site everyone pretends not to read. Absurd headlines, real leaks, unhinged comment section. ZMH's highest-traffic property and launchpad for every music & film drop."},
 {id:3,url:"radioreach.us",name:"RadioReach",tag:"PRODUCTION SALES FUNNEL",status:"LIVE STOREFRONT",color:"#ff3ea5",desc:"Production commerce experience for independent musicians, combining a responsive sales journey, Stripe Embedded Checkout, signed payment verification, and private digital delivery.",stats:[{label:"CHECKOUT",value:"Stripe Embedded"},{label:"ORDER STATE",value:"Cloudflare KV"},{label:"DELIVERY",value:"Private R2"}],liveUrl:"https://radioreach.us",repoUrl:"https://github.com/zazieproductions/radioreach-funnel"},
 {id:4,url:"zazieproductions.com",name:"Zazie Productions",tag:"DISCOGRAPHY HUB",traffic:"210K /yr",rev:"$71K streams + sync",status:"CATALOG HOME",color:"#ffb347",desc:"Official home of the 20-release Zazie Productions discography. Stream, license stems, buy deluxe editions. Every play routes publishing straight to Holdings."},
 {id:5,url:"hubrisbooks.win",name:"Hubris Books",tag:"SATIRICAL PUBLISHING HOUSE",status:"LIVE • IMPRINT",color:"#f4f1ea",desc:"The satirical publishing arm of ZMH — straight-faced absurdity in hardcover, ebook and web serial. Blurbs from reviewers who do not exist, mission statements filed as satire, and a catalog that winks with a deadpan face. Hubris Books lets Holdings own the joke, not just tell it.",stats:[{label:"CATALOG",value:"Satire • Fiction • Theory"},{label:"FORMATS",value:"Web • Ebook • Print"},{label:"OWNERSHIP",value:"100%"}],cta:"OPEN HUBRIS BOOKS",liveUrl:"https://hubrisbooks.win"}
 ];
+/* GLOBAL PARADIGMS CORP — ARCHIVE REGISTER (attached to the domain card as register:"gpc").
+   Everything below is transcribed, not estimated. Three sources, all read 18 Oct 2026:
+
+   (a) LOSTPEDIA — "Globalparadigmscorp.com",
+       https://lostpedia.fandom.com/wiki/Globalparadigmscorp.com (article last edited 5 Oct 2026),
+       plus its talk page (https://lostpedia.fandom.com/wiki/Talk:Globalparadigmscorp.com) and
+       Category:Hoax. Lostpedia files the 2006 site as a NON-CANON HOAX: material written to be
+       mistaken for official Lost sources — deliberately more confusing than fanon (clearly
+       labelled) or parody (humorous).
+   (b) THE WAYBACK MACHINE — 35 captures of the root URL between 21 Apr 2006 and 26 Sep 2026, plus
+       the archived sub-pages quoted here (About GPC, Clients, Press, Employment, GPC Policies).
+   (c) THE LIVE 2026 SITE — https://globalparadigmscorp.com/, the reactivated domain.
+
+   Nothing in this register is a company record. The 1995 bankruptcy, the client roster, the
+   personnel and the "reactivation" are fiction or a separate ARG; the verifiable facts are the
+   captures, the archived text and what the live site publishes about itself. */
+const GPC_REGISTER={
+canonLabel:"NON-CANON HOAX — READ THIS FIRST",
+canonNote:"Lostpedia files the original 2006 site under Category:Hoax: fake material built to be mistaken for information from official sources — unlike fanon, which labels itself, or parody, which spoofs for laughs. The 2026 incarnation is an independently created ARG and is not affiliated with ABC, Disney, the creators of Lost, or the creators of the original Global Paradigms Corporation site. Nothing on this card is a company record, a filing, a client list or a contract.",
+sheet:[
+["DOMAIN","globalparadigmscorp.com"],
+["ORIGINAL ERA","Live 21 Apr 2006 — offline by 30 Jul 2006"],
+["WAYBACK RECORD","35 captures of the root URL, 21 Apr 2006 – 26 Sep 2026"],
+["2006 SITE MAP","Six linked pages — About GPC · Clients · Press · Employment · GPC Policies · Contact"],
+["COPYRIGHT LINE","“© 1995 Global Paradigms Corp.” — on every page of the 2006 site"],
+["BANKRUPTCY (FICTION)","Chapter 11 protection filed in the Bankruptcy Court of Santa Dominica County, 31 Oct 1995"],
+["JURISDICTION","Ventura County, California — Terms of Use §7"],
+["REACTIVATED","2026 — a new ARG / experimental web project, not a continuation of the 2006 site"],
+["LIVE BUILD (18 OCT 2026)","174 indexed archive records · 22 field stations · 45 personnel profiles · 14 project dossiers · 8 vault devices · 5 sub-audible tools"],
+["2026 CONTINUITY","Paradigms Systems Ltd., founded in Cambridge 12 Apr 1971 — Dr. Arthur Vance-Vane & Eleanor Cross"],
+["CURRENT ARG","The Seven Seals — Seal I: The Square of Lead (a 3×3 magic square)"],
+["CANON STATUS","Non-canon. Not affiliated with ABC, Disney or the creators of Lost."]],
+timeline:[
+["1993-04-08","Enrico Valenzetti's employment at GPC is terminated, “according to the online record” (Lostpedia)."],
+["1995-10-31","Global Paradigms Corp. files for Chapter 11 protection in the Bankruptcy Court of Santa Dominica County (archived press page)."],
+["1995-11-02","The press page posts “IMPORTANT NOTICE!” — signed Gil Flores, Asst. District Attorney, County of Santa Dominica. The site stays online “for archival and arbitration purposes”."],
+["2006-04-21","Earliest Wayback capture of the live site — a logo, one photograph and “© 1995 Global Paradigms Corp.”"],
+["2006-04-21","Lostpedia's talk thread opens on the site, and the article is catalogued under the hoax alert: material “created intentionally to cause confusion with information from official sources”."],
+["2006-04-27","The talk page's “Connections” thread maps the chain: Widmore Laboratories → Valenzetti → S.K. Nave → Herb Rogers → Michael Sontag → Project Chthonic → globalparadigmscorp.com. Every site in the chain is unofficial."],
+["2006-05-19 → 05-29","Wayback captures the GPC Policies page (19 May), the press notice and the employment page (28 May), and the client roster (29 May)."],
+["2006-07-30","The site is offline by this date (Lostpedia's external-links note)."],
+["2006-07-31","Lostpedia's editors debate deleting the article for safety; the page is kept, rewritten, as a record of the fan-made sites (talk page, 31 Jul – 4 Aug 2006)."],
+["2007-02-02","Last edit to the Lostpedia article before the 2026 revival note."],
+["2026-10-04","Lostpedia adds the “2026 revival” section: the domain was reactivated as an independent ARG / experimental web project, unrelated to the original creators and to Lost canon."],
+["2026-10-18","Read for this register: 174 indexed records live, a 10,000-seat Tier-1 Heritage Cohort, a 14.802 Hz planetary carrier, 14 Aethelgard redoubts, and the Postojna repository at 45.7821° N / 14.2137° E."]],
+roster:[
+["Enrico Valenzetti","“A Enrico Valenzetti” (sic) — GPC was a former place of employment; the online record shows termination on 04/08/93. Fictional."],
+["Michael Sontag","Purported GPC employee. In Lostpedia's chain his page points to Project Chthonic, which links back to GPC. Fictional."],
+["S.K. Nave","Purported GPC employee — “Enzo's favorite author”. His own page stages a disappearance. Fictional."],
+["RansomX Ministries","An obscure organisation named in the “GPC Policies – Terms of Use” section, linking out to “ransomx dot org”. Lostpedia's editors still argued about whether it belonged on the wiki at all."],
+["Grendel","Recipient of the Morse-code transmission. He replied by email with the location of “his cage”; his “biggest fear” is a UPC barcode."],
+["Gil Flores","Signatory of the Chapter 11 notice — Asst. District Attorney, County of Santa Dominica."],
+["Project Chthonic","An off-site hoax page that links to GPC; the tail of the 2006 “Connections” chain."]],
+clients:"Lockheed Martin · Rocketdyne Propulsion & Power · Merck & Co., Inc. · Minnesota Metallurgy · Hanso Foundation · Halliburton · The Coca-Cola Company · Valenzetti Foundation · Hadron Applications · Schering AG · General Electric · RAND Corporation",
+clientsNote:"Transcribed from the archived Clients page (“Over its three decade history, GPC has had the privilege of working with some of the world's top think tanks and companies”). Lostpedia highlights three of the twelve — Halliburton, the Hanso Foundation and the Valenzetti Foundation — because they are names that appear in Lost; all three are on the archived list.",
+transmissions:[
+["SOURCE-CODE ADDENDUM","“Stephenson was wrong. There are five. He missed weapon” — an addendum to a Neil Stephenson quote hidden in the 2006 page source."],
+["MORSE CODE","EMAIL GRENDEL AT GLOBALPARADIGMSCORP DOT COM TO FIND HIS CAGE"],
+["GRENDEL'S BIGGEST FEAR","A UPC bar code. On Yahoo groups it was identified as the barcode of the book Fantasia (0-7888-1806-6)."]],
+quote:["TERMS OF USE §8 — SENSITIVE MATERIAL","“8. Sensitive Material. Due to GPC's involvement and subcontracting arrangements with the national government, international governments, transnational corporations, and transnational nongovernment organizations (including but not limited to the United States federal government, the U.S. Department of Defense, the U.S. Department of Interior, the U.S. Department of Justice, the U.S. Department of Energy, the National Aeronautics and Space Administration, the State of California, the State of Nevada, the State of Alabama, the State of Texas, the State of Florida, the State of Maryland, the Commonwealth of Virigina, the District of Columbia, the Atomic Energy Commission, and the United Nations), there may be references or access to sensitive materials via this site. Unauthorized access to these areas may have national security implications. Those in violation of access protocols may be subject to national and international law. In the jurisdiction of the United States, these charges are severe, ranging up to and including treason which carries a penalty of execution. You have been warned.”"],
+artifacts:[
+["LOSTPEDIA ARTICLE","https://lostpedia.fandom.com/wiki/Globalparadigmscorp.com","The write-up this register is drawn from — non-canon hoax alert, press notice, Terms of Use, hidden messages, RansomX Ministries and the 2026 revival section."],
+["LOSTPEDIA TALK PAGE","https://lostpedia.fandom.com/wiki/Talk:Globalparadigmscorp.com","The 2006 fan thread: the “Connections” chain, the delete-or-keep debate, and the observation that none of the sites in the chain is official."],
+["HOAX CATEGORY","https://lostpedia.fandom.com/wiki/Category:Hoax","How Lostpedia distinguishes a hoax from fanon and parody — and where this site is filed."],
+["ARCHIVED — HOME","https://web.archive.org/web/20060529033854/http://globalparadigmscorp.com/","A logo, one photograph and “© 1995 Global Paradigms Corp.”"],
+["ARCHIVED — ABOUT GPC","https://web.archive.org/web/20060529034129/http://globalparadigmscorp.com/about.html","“For over thirty years, GPC has lead the industry in innovative technologies and their application to real world problems on a worldwide scale.” Nav: Projects, Clients, Technologies, Press, Employment."],
+["ARCHIVED — CLIENTS","https://web.archive.org/web/20060529034115/http://globalparadigmscorp.com/clients.html","The twelve-name client roster quoted above."],
+["ARCHIVED — PRESS","https://web.archive.org/web/20060528005652/http://globalparadigmscorp.com/press.html","The Chapter 11 notice dated 2 November 1995."],
+["ARCHIVED — EMPLOYMENT","https://web.archive.org/web/20060528005759/http://globalparadigmscorp.com/employment.html","Recruitment copy and the jobs@globalparadigmscorp.com address."],
+["ARCHIVED — GPC POLICIES","https://web.archive.org/web/20060519143116/http://www.globalparadigmscorp.com/policy.html","Privacy clauses 01–12 and Terms of Use 1–8, including the §8 quote above."],
+["LIVE 2026 SITE","https://globalparadigmscorp.com/","The reactivated domain: “Secure Archive & Intelligence Repository” — boot sequence, live telemetry, the Seven Seals."]],
+note:"Fifteen years after the lights went out, the site is still being decoded. The talk page holds a 2006 chain of unofficial sites, an argument about whether a hoax belongs on a canon wiki at all, a solved Morse code and a barcode that turned out to be a book. The 2026 revival inherits the name and the mood, not the continuity: its own founding covenant starts in Cambridge in 1971, and its archive is a new body of fiction with its own rules.",
+provenance:"REGISTER COMPILED 18 OCT 2026 — SOURCES: THE LOSTPEDIA ARTICLE (LAST EDITED 5 OCT 2026) AND ITS TALK PAGE, THE WAYBACK MACHINE CAPTURES OF THE 2006 SITE, AND THE LIVE 2026 BUILD. EVERY LINK ABOVE IS THE SOURCE; NOTHING HERE IS INVENTED."
+};
+const DOMAIN_REGISTERS={gpc:GPC_REGISTER};
 /* Prices, cover art and listing links mirror the public catalogue at
    https://horror.zazieproductions.com/store (hub prices last checked 24 Sep 2026)
    and the itch.io listings at https://zazieproductions.itch.io/ (prices checked
@@ -400,19 +475,40 @@ const stats=d.stats||[
 {label:"OWNERSHIP",value:"100%"}
 ];
 const statsHtml=stats.map(stat=>'<div class="bg-black/40 rounded-xl p-3"><div class="font-mono text-[9px] text-mute">'+stat.label+'</div><div class="font-bold">'+stat.value+'</div></div>').join('');
+const chipsHtml=(d.chips||[]).map(c=>'<span class="chip !text-[8px]" style="color:'+d.color+';border-color:'+d.color+'55">'+c+'</span>').join('');
 const actions=d.liveUrl
 ?'<a href="'+d.liveUrl+'" target="_blank" rel="noopener noreferrer" class="btn-lime rounded-lg px-4 py-2.5 text-sm font-bold">'+(d.cta||'OPEN LIVE FUNNEL')+' ↗</a>'
 +(d.repoUrl?'<a href="'+d.repoUrl+'" target="_blank" rel="noopener noreferrer" class="btn-ghost rounded-lg px-4 py-2.5 text-sm">SOURCE REPO ↗</a>':'')
 +'<button onclick="openDomain('+i+')" class="btn-ghost rounded-lg px-4 py-2.5 text-sm">ASSET DETAILS</button>'
 :'<button onclick="openDomain('+i+')" class="btn-lime rounded-lg px-4 py-2.5 text-sm font-bold flex-1">Launch Preview →</button><button onclick="toast(\'Media kit for '+d.url+' sent.\')" class="btn-ghost rounded-lg px-4 py-2.5 text-sm">Media Kit</button>';
-return '<article class="card-line rounded-2xl bg-panel overflow-hidden card-hover reveal" style="opacity:1;transform:none"><div class="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-black/40"><div class="browser-dot bg-[#ff5f57]"></div><div class="browser-dot bg-[#febc2e]"></div><div class="browser-dot bg-[#28c840]"></div><div class="ml-2 flex-1 bg-white/5 rounded-lg px-3 py-1.5 font-mono text-[12px] flex items-center gap-2"><span class="text-emerald-400">🔒</span> '+d.url+'</div><span class="chip hidden sm:inline-block" style="color:'+d.color+';border-color:'+d.color+'55">'+d.status+'</span></div><div class="p-6"><div class="font-mono text-[10px] tracking-widest" style="color:'+d.color+'">'+d.tag+'</div><h3 class="font-bold text-2xl mt-1">'+d.name+'</h3><p class="text-sm text-mute mt-2 leading-relaxed">'+d.desc+'</p><div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-4">'+statsHtml+'</div><div class="flex flex-wrap gap-2 mt-4">'+actions+'</div></div></article>';
+return '<article class="card-line rounded-2xl bg-panel overflow-hidden card-hover reveal" style="opacity:1;transform:none"><div class="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-black/40"><div class="browser-dot bg-[#ff5f57]"></div><div class="browser-dot bg-[#febc2e]"></div><div class="browser-dot bg-[#28c840]"></div><div class="ml-2 flex-1 bg-white/5 rounded-lg px-3 py-1.5 font-mono text-[12px] flex items-center gap-2"><span class="text-emerald-400">🔒</span> '+d.url+'</div><span class="chip hidden sm:inline-block" style="color:'+d.color+';border-color:'+d.color+'55">'+d.status+'</span></div><div class="p-6"><div class="font-mono text-[10px] tracking-widest" style="color:'+d.color+'">'+d.tag+'</div>'+(chipsHtml?'<div class="flex flex-wrap gap-1.5 mt-2">'+chipsHtml+'</div>':'')+'<h3 class="font-bold text-2xl mt-1">'+d.name+'</h3><p class="text-sm text-mute mt-2 leading-relaxed">'+d.desc+'</p><div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-4">'+statsHtml+'</div><div class="flex flex-wrap gap-2 mt-4">'+actions+'</div></div></article>';
 }).join('');
 }
 renderDomains();
+/* ============ DOMAIN ARCHIVE REGISTERS ============ */
+/* Optional per-domain research registers. A register adds types of information the
+   three-stat card cannot hold: an identity sheet, a dated timeline, a roster, a client
+   list, transmissions, a quoted primary source and the primary-source links.
+   Everything in a register is transcribed from a named source and attributed in place. */
+function registerSection(label,body){return '<div class="eyebrow text-mute mt-8 mb-2">'+label+'</div>'+body}
+function renderDomainRegister(reg){
+if(!reg)return '';
+let h='<div class="px-5 md:px-12 pb-10">';
+if(reg.canonNote)h+=registerSection(reg.canonLabel||'CANON STATUS','<div class="card-line rounded-xl p-4" style="border-color:#ffb34755;background:rgba(255,179,71,.06)"><p class="text-[13px] leading-relaxed text-cream/85">'+reg.canonNote+'</p></div>');
+if(reg.sheet&&reg.sheet.length)h+=registerSection('IDENTITY SHEET','<div class="grid sm:grid-cols-2 gap-2">'+reg.sheet.map(s=>'<div class="card-line rounded-xl p-3"><div class="font-mono text-[9px] text-mute tracking-widest">'+s[0]+'</div><div class="text-[13px] mt-1 leading-snug">'+s[1]+'</div></div>').join('')+'</div>');
+if(reg.timeline&&reg.timeline.length)h+=registerSection('TIMELINE','<div class="space-y-2">'+reg.timeline.map(t=>'<div class="card-line rounded-xl p-3 flex gap-3"><div class="font-mono text-[10px] text-cy shrink-0 w-[86px]">'+t[0]+'</div><div class="text-[13px] leading-relaxed text-cream/85">'+t[1]+'</div></div>').join('')+'</div>');
+if(reg.roster&&reg.roster.length)h+=registerSection('ROSTER — PEOPLE & ORGANISATIONS','<div class="space-y-2">'+reg.roster.map(r=>'<div class="card-line rounded-xl p-3"><div class="font-bold text-[13px]">'+r[0]+'</div><div class="text-[12px] text-mute leading-relaxed mt-1">'+r[1]+'</div></div>').join('')+'</div>');
+if(reg.clients)h+=registerSection('CLIENT ROSTER','<div class="card-line rounded-xl p-4 text-[13px] leading-relaxed">'+reg.clients+'</div>'+(reg.clientsNote?'<div class="font-mono text-[10px] text-mute mt-2 leading-relaxed">'+reg.clientsNote+'</div>':''));
+if(reg.transmissions&&reg.transmissions.length)h+=registerSection('TRANSMISSIONS','<div class="space-y-2">'+reg.transmissions.map(t=>'<div class="fig-plate rounded-xl p-4"><div class="font-mono text-[9px] tracking-widest text-cy">'+t[0]+'</div><div class="font-mono text-[12px] text-cream/90 mt-2 leading-relaxed">'+t[1]+'</div></div>').join('')+'</div>');
+if(reg.quote)h+=registerSection(reg.quote[0],'<blockquote class="card-line rounded-xl p-4 text-[13px] leading-relaxed text-cream/85 border-l-2 border-lime">'+reg.quote[1]+'</blockquote>');
+if(reg.artifacts&&reg.artifacts.length)h+=registerSection('PRIMARY SOURCES','<div class="space-y-2">'+reg.artifacts.map(a=>'<a href="'+a[1]+'" target="_blank" rel="noopener noreferrer" class="card-line rounded-xl p-3 block card-hover"><div class="flex items-center justify-between gap-2"><span class="font-mono text-[10px] text-lime">'+a[0]+'</span><span class="text-mute text-[11px]">↗</span></div><div class="text-[12px] text-mute leading-relaxed mt-1">'+a[2]+'</div></a>').join('')+'</div>');
+if(reg.note)h+='<p class="text-[13px] text-mute leading-relaxed mt-8">'+reg.note+'</p>';
+if(reg.provenance)h+='<div class="font-mono text-[10px] text-mute mt-6 leading-relaxed border-t border-white/10 pt-4">'+reg.provenance+'</div>';
+return h+'</div>'}
 function openDomain(i){
 const d=DOMAINS[i];
 if(i===0){openInstituteAsset();return}
-const stats=d.stats||[
+const stats=d.modalStats||d.stats||[
 {label:"UPTIME",value:"99.98%"},
 {label:"SEO SCORE",value:"94/100"},
 {label:"STATUS",value:"OWNED"}
@@ -422,7 +518,8 @@ const liveAction=d.liveUrl
 :'<button onclick="toast(\'Visiting '+d.url+' (simulated).\')" class="btn-lime rounded-xl px-6 py-3 font-bold text-sm">Visit Live Site ↗</button>';
 const repoAction=d.repoUrl?'<a href="'+d.repoUrl+'" target="_blank" rel="noopener noreferrer" class="btn-ghost rounded-xl px-6 py-3 text-sm">Source Repository ↗</a>':'';
 const statsHtml=stats.map(stat=>'<div class="card-line rounded-xl p-3"><div class="text-mute text-[9px]">'+stat.label+'</div><div class="font-bold">'+stat.value+'</div></div>').join('');
-openModal('<div class="flex items-center gap-2 px-5 py-4 border-b border-white/10"><div class="browser-dot bg-[#ff5f57]"></div><div class="browser-dot bg-[#febc2e]"></div><div class="browser-dot bg-[#28c840]"></div><div class="ml-2 flex-1 bg-white/5 rounded-lg px-3 py-2 font-mono text-[12px]">🔒 https://'+d.url+'</div><button onclick="closeModal()" class="btn-ghost rounded-lg w-9 h-9">✕</button></div><div class="p-8 md:p-12 text-center" style="background:linear-gradient(135deg,'+d.color+'22,transparent)"><div class="font-mono text-[10px] tracking-[.3em]" style="color:'+d.color+'">'+d.tag+'</div><h3 class="font-bold text-4xl md:text-5xl mt-3">'+d.name+'</h3><p class="text-mute max-w-lg mx-auto mt-3">'+d.desc+'</p><div class="flex flex-wrap justify-center gap-2 mt-6">'+liveAction+repoAction+'<button onclick="toast(\'Traffic audit exported.\')" class="btn-ghost rounded-xl px-6 py-3 text-sm">Traffic Audit</button></div><div class="grid grid-cols-1 sm:grid-cols-3 gap-2 max-w-md mx-auto mt-8 font-mono text-[11px]">'+statsHtml+'</div></div>')}
+const register=d.register?DOMAIN_REGISTERS[d.register]:null;
+openModal('<div class="flex items-center gap-2 px-5 py-4 border-b border-white/10"><div class="browser-dot bg-[#ff5f57]"></div><div class="browser-dot bg-[#febc2e]"></div><div class="browser-dot bg-[#28c840]"></div><div class="ml-2 flex-1 bg-white/5 rounded-lg px-3 py-2 font-mono text-[12px]">🔒 https://'+d.url+'</div><button onclick="closeModal()" class="btn-ghost rounded-lg w-9 h-9">✕</button></div><div class="p-8 md:p-12 text-center" style="background:linear-gradient(135deg,'+d.color+'22,transparent)"><div class="font-mono text-[10px] tracking-[.3em]" style="color:'+d.color+'">'+d.tag+'</div><h3 class="font-bold text-4xl md:text-5xl mt-3">'+d.name+'</h3><p class="text-mute max-w-lg mx-auto mt-3">'+d.desc+'</p><div class="flex flex-wrap justify-center gap-2 mt-6">'+liveAction+repoAction+'<button onclick="toast(\'Traffic audit exported.\')" class="btn-ghost rounded-xl px-6 py-3 text-sm">Traffic Audit</button></div><div class="grid grid-cols-1 sm:grid-cols-3 gap-2 max-w-md mx-auto mt-8 font-mono text-[11px]">'+statsHtml+'</div></div>'+renderDomainRegister(register))}
 /* ============ INSTITUTE ASSET — ZIAA PATENTS & CONCEPTS ============ */
 let patentStatus='all',instituteTab='patents';
 function patentTone(s){return s==='ISSUED PATENT'?'text-lime border-lime/40':s==='DEFENSIVE PUBLICATION'?'text-cy border-cy/40':s==='UNDER EXAMINATION'?'text-amber-300 border-amber-300/40':'text-viol border-viol/40'}
