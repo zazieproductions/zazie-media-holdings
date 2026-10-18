@@ -257,6 +257,12 @@ const $=id=>document.getElementById(id);
    root-absolute asset path such as "/embeds/..." would resolve outside the site. */
 function siteAsset(path){const value=String(path==null?'':path);if(value[0]!=='/'||value[1]==='/')return value;return new URL(value.slice(1),document.baseURI).href}
 function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+/* Only committed repository pictures are shown; projects without one keep their text cards. */
+function repositoryPicture(repo){
+const image=repo&&repo.gallery&&repo.gallery[0];if(!image)return '';
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+return '<figure class="repo-picture"><a href="'+esc(siteAsset(image.url))+'" target="_blank" rel="noopener noreferrer" aria-label="View full screenshot of '+esc(repo.displayName)+'"><img src="'+esc(siteAsset(image.url))+'" alt="'+esc(image.alt)+'" width="'+image.width+'" height="'+image.height+'" loading="lazy" decoding="async"></a><figcaption>ACTUAL REPOSITORY SCREENSHOT <a href="'+esc(image.sourceUrl)+'" target="_blank" rel="noopener noreferrer">SOURCE ↗</a></figcaption></figure>';
+}
 function renderCodeHoldings(){
 const grid=$('codeHoldingsGrid');if(!grid)return;
 const snap=globalThis.ZMH_REPOS&&Array.isArray(globalThis.ZMH_REPOS.repositories)?globalThis.ZMH_REPOS.repositories:[];
@@ -271,6 +277,7 @@ const launch=d&&d.embed?'<a href="repo.html?id='+p.id+'#live" class="btn-lime ro
 return '<article id="code-holding-'+p.id+'" tabindex="-1" aria-labelledby="code-title-'+p.id+'" class="card-line rounded-2xl bg-panel p-6 card-hover flex flex-col">'
 +'<div class="font-mono text-[10px] tracking-[.16em] text-emerald-300">'+p.category+'</div>'
 +'<h3 id="code-title-'+p.id+'" class="font-bold text-xl mt-3"><a href="'+(d?'repo.html?id='+p.id:(p.systemsAnchor||p.repo))+'" class="hover:text-lime transition">'+p.name+'</a></h3>'
++repositoryPicture(d)
 +'<p class="text-mute text-sm leading-relaxed mt-3">'+p.summary+'</p>'
 +stats
 +(p.systems?'<div class="card-line rounded-xl bg-black/30 p-4 mt-4"><div class="font-mono text-[9px] tracking-widest text-cy mb-2">SYSTEMS / CODE IDENTIFIED</div><ul class="space-y-2 text-[11px] text-mute leading-relaxed">'+p.systems.map(system=>'<li>• '+system+'</li>').join('')+'</ul></div>':'')

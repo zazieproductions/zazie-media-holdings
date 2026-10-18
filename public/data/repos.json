@@ -259,7 +259,8 @@
         },
         "dependencies": 0,
         "devDependencies": 0
-      }
+      },
+      "gallery": []
     },
     {
       "id": "signal-rot",
@@ -568,7 +569,8 @@
         },
         "dependencies": 1,
         "devDependencies": 11
-      }
+      },
+      "gallery": []
     },
     {
       "id": "noetic",
@@ -831,7 +833,21 @@
         },
         "dependencies": 7,
         "devDependencies": 14
-      }
+      },
+      "gallery": [
+        {
+          "file": "preview-1.jpg",
+          "bytes": 105181,
+          "width": 1200,
+          "height": 690,
+          "transcoded": true,
+          "url": "art/repos/noetic/preview-1.jpg",
+          "alt": "NOETIC COGNITIVE COMMAND DECK — project preview",
+          "sourcePath": "docs/images/project-preview.png",
+          "sourceUrl": "https://github.com/zazieproductions/NOETIC-Cognitive-Command-Deck/blob/main/docs/images/project-preview.png",
+          "blobSha": "0d9e5f9fc012e83b93dfce2deb6063982a6f11ea"
+        }
+      ]
     },
     {
       "id": "backlink-tracker",
@@ -1010,7 +1026,8 @@
         }
       ],
       "pages": null,
-      "package": null
+      "package": null,
+      "gallery": []
     },
     {
       "id": "sonogenesis",
@@ -1256,7 +1273,21 @@
         },
         "dependencies": 6,
         "devDependencies": 8
-      }
+      },
+      "gallery": [
+        {
+          "file": "preview-1.jpg",
+          "bytes": 131965,
+          "width": 1200,
+          "height": 675,
+          "transcoded": true,
+          "url": "art/repos/sonogenesis/preview-1.jpg",
+          "alt": "SONOGENESIS — screenshot world",
+          "sourcePath": "docs/images/screenshot-world.png",
+          "sourceUrl": "https://github.com/zazieproductions/Sonogenesis-Bioacoustic-Aquarium/blob/main/docs/images/screenshot-world.png",
+          "blobSha": "e830e18d4178dc2035b14496d218b1b36a1013a9"
+        }
+      ]
     },
     {
       "id": "auralis",
@@ -1393,7 +1424,8 @@
         },
         "dependencies": 5,
         "devDependencies": 9
-      }
+      },
+      "gallery": []
     },
     {
       "id": "umbra-score",
@@ -1701,7 +1733,8 @@
         },
         "dependencies": 8,
         "devDependencies": 15
-      }
+      },
+      "gallery": []
     },
     {
       "id": "prompt-forge",
@@ -1873,7 +1906,8 @@
         }
       ],
       "pages": null,
-      "package": null
+      "package": null,
+      "gallery": []
     },
     {
       "id": "cinecontract",
@@ -1988,7 +2022,8 @@
         }
       ],
       "pages": null,
-      "package": null
+      "package": null,
+      "gallery": []
     },
     {
       "id": "uiua-resonance",
@@ -2147,7 +2182,8 @@
         }
       ],
       "pages": null,
-      "package": null
+      "package": null,
+      "gallery": []
     },
     {
       "id": "chimera",
@@ -2350,7 +2386,8 @@
         },
         "dependencies": 7,
         "devDependencies": 12
-      }
+      },
+      "gallery": []
     },
     {
       "id": "agon-signal",
@@ -2676,7 +2713,21 @@
         },
         "dependencies": 6,
         "devDependencies": 21
-      }
+      },
+      "gallery": [
+        {
+          "file": "preview-1.jpg",
+          "bytes": 41158,
+          "width": 1200,
+          "height": 675,
+          "transcoded": true,
+          "url": "art/repos/agon-signal/preview-1.jpg",
+          "alt": "AGON // SIGNAL ENGINE — agon signal engine preview",
+          "sourcePath": "docs/images/agon-signal-engine-preview.png",
+          "sourceUrl": "https://github.com/zazieproductions/synthx-7-modular-synthesis-terminal/blob/main/docs/images/agon-signal-engine-preview.png",
+          "blobSha": "3816084f62750ff3887acadbafd738100f24a197"
+        }
+      ]
     },
     {
       "id": "void-oculus",
@@ -2936,7 +2987,21 @@
           "path": "/"
         }
       },
-      "package": null
+      "package": null,
+      "gallery": [
+        {
+          "file": "preview-1.jpg",
+          "bytes": 68340,
+          "width": 1200,
+          "height": 675,
+          "transcoded": true,
+          "url": "art/repos/void-oculus/preview-1.jpg",
+          "alt": "VOID//OCULUS — void oculus preview",
+          "sourcePath": "void-oculus-preview.png",
+          "sourceUrl": "https://github.com/zazieproductions/void-oculus/blob/main/void-oculus-preview.png",
+          "blobSha": "aebca35ed49e2e48723e092f00fe54cbff0ebddd"
+        }
+      ]
     },
     {
       "id": "noise-wall",
@@ -3224,7 +3289,8 @@
         },
         "dependencies": 5,
         "devDependencies": 13
-      }
+      },
+      "gallery": []
     },
     {
       "id": "aether-v9",
@@ -3501,7 +3567,8 @@
         },
         "dependencies": 7,
         "devDependencies": 12
-      }
+      },
+      "gallery": []
     }
   ]
 }
