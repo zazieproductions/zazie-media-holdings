@@ -24,6 +24,8 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
+      # Builds dist/ and then runs the suite, including the assertions against
+      # the build output in tests/dist.test.cjs.
       - run: npm run check
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
@@ -40,3 +42,14 @@ jobs:
       - name: Deploy built site
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # Uploading the artifact is not the same as serving it: with Pages configured
+  # as "Deploy from a branch", the site keeps publishing the raw repository and
+  # this job is what fails.
+  verify:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify the published site serves the build
+        run: node scripts/verify-pages.mjs https://zazieproductions.github.io/zazie-media-holdings/ --wait

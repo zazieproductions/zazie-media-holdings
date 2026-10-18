@@ -209,7 +209,9 @@ async function syncRepo(entry, account) {
       await mkdir(outDir, { recursive: true });
       await writeFile(path.join(EMBED_DIR, entry.embed.output), bytes);
       record.embed = {
-        url: `/embeds/${entry.embed.output}`,
+        // Repository-relative: the site is published under /zazie-media-holdings/,
+        // so a root-absolute "/embeds/..." would resolve outside the subpath.
+        url: `embeds/${entry.embed.output}`,
         label: entry.embed.label || 'SOURCE-SYNCED BUILD',
         sourcePath: entry.embed.sourcePath,
         sourceUrl: `${record.url}/blob/${record.defaultBranch}/${encodeURI(entry.embed.sourcePath)}`,

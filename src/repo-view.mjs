@@ -12,6 +12,17 @@ marked.setOptions({ gfm: true, breaks: false });
 const DATA_URL = 'data/repos.json';
 const TABS = ['readme', 'files', 'commits', 'live'];
 
+/**
+ * Resolve a site asset path against the page the site is served from.
+ * The site is published under a repository subpath (/zazie-media-holdings/),
+ * where a root-absolute "/embeds/..." would point at the wrong origin path.
+ */
+export function siteAsset(path) {
+  const value = String(path == null ? '' : path);
+  if (!value.startsWith('/') || value.startsWith('//')) return value;
+  return new URL(value.slice(1), document.baseURI).href;
+}
+
 const state = {
   data: null,
   repo: null,
@@ -432,7 +443,7 @@ async function toggleCommitFiles(sha) {
 /* ------------------------------------------------------------------ */
 
 function liveSource(repo) {
-  if (repo.embed) return { kind: 'embedded', src: repo.embed.url, label: repo.embed.label || 'SOURCE-SYNCED BUILD' };
+  if (repo.embed) return { kind: 'embedded', src: siteAsset(repo.embed.url), label: repo.embed.label || 'SOURCE-SYNCED BUILD' };
   if (repo.demoUrl) return { kind: 'external', src: repo.demoUrl, label: 'LIVE DEPLOYMENT' };
   return null;
 }
@@ -653,7 +664,7 @@ function renderProvenance(repo) {
       ${factRow('BLOB SHA', escapeHtml(shortSha(repo.embed.blobSha)))}
       ${factRow('SYNCED', escapeHtml(formatDate(repo.embed.syncedAt, { short: true })))}
     </dl>
-    <a href="${escapeHtml(repo.embed.url.replace(/index\.html$/, 'PROVENANCE.txt'))}" target="_blank" rel="noopener noreferrer" class="font-mono text-[10px] text-lime hover:underline inline-block mt-3">PROVENANCE.TXT ↗</a>`;
+    <a href="${escapeHtml(siteAsset(repo.embed.url.replace(/index\.html$/, 'PROVENANCE.txt')))}" target="_blank" rel="noopener noreferrer" class="font-mono text-[10px] text-lime hover:underline inline-block mt-3">PROVENANCE.TXT ↗</a>`;
 }
 
 function renderSwitcher(repo) {

@@ -211,6 +211,9 @@ const INSTAGRAM={handle:"WellMeaningNeurotypicals",url:"https://www.instagram.co
 
 /* ============ HELPERS ============ */
 const $=id=>document.getElementById(id);
+/* The site is published under a repository subpath (/zazie-media-holdings/), so a
+   root-absolute asset path such as "/embeds/..." would resolve outside the site. */
+function siteAsset(path){const value=String(path==null?'':path);if(value[0]!=='/'||value[1]==='/')return value;return new URL(value.slice(1),document.baseURI).href}
 function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
 function renderCodeHoldings(){
 const grid=$('codeHoldingsGrid');if(!grid)return;
@@ -287,17 +290,22 @@ function simulateTrade(a){toast(a==='ACQUIRE'?'Diligence opened: distressed synt
 /* ============ COUNTERS + REVEAL ============ */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const el=e.target;const t=parseFloat(el.dataset.target),dec=parseInt(el.dataset.dec||0);let v=0;const st=t/40;const iv=setInterval(()=>{v+=st;if(v>=t){v=t;clearInterval(iv)}el.textContent=v.toFixed(dec)},30);io.unobserve(el)}}),{threshold:.5});
 document.querySelectorAll('.counter').forEach(el=>io.observe(el));
-gsap.registerPlugin(ScrollTrigger);document.querySelectorAll('.reveal').forEach(el=>{gsap.to(el,{opacity:1,y:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}})});
+/* The reveal animation depends on GSAP from a CDN. If it is unavailable, show the
+   content instead of leaving it stuck at opacity:0 — a dead CDN must not blank the page. */
+if(typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined'){gsap.registerPlugin(ScrollTrigger);document.querySelectorAll('.reveal').forEach(el=>{gsap.to(el,{opacity:1,y:0,duration:.8,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}})})}
+else{document.querySelectorAll('.reveal').forEach(el=>{el.style.opacity='1';el.style.transform='none'})}
 
 /* ============ CHARTS ============ */
 let growthChart;
 function initCharts(){
+/* Chart.js is loaded from a CDN; without it the page must still render everything else. */
+if(typeof Chart==='undefined')return;
 Chart.defaults.color='#9a9ab0';Chart.defaults.borderColor='rgba(255,255,255,.08)';Chart.defaults.font.family='JetBrains Mono';
 new Chart($('mixChart'),{type:'doughnut',data:{labels:['Sync & Licensing','Digital Products','Streaming','Domains & Ads'],datasets:[{data:[32,24,21,23],backgroundColor:['#e6ff4a','#8b7cff','#ff3ea5','#5cf2ff'],borderWidth:0}]},options:{cutout:'68%',plugins:{legend:{display:false}}}});
 growthChart=new Chart($('growthChart'),{type:'line',data:{labels:['2019','2020','2021','2022','2023','2024','2025','2026'],datasets:[{label:'Revenue $K',data:[12,38,71,140,220,390,620,940],borderColor:'#e6ff4a',backgroundColor:'rgba(230,255,74,.1)',fill:true,tension:.4,pointRadius:3}]},options:{plugins:{legend:{display:false}},scales:{y:{grid:{color:'rgba(255,255,255,.06)'}}}}});
 new Chart($('instaChart'),{type:'bar',data:{labels:['Jan','Feb','Mar','Apr','May','Jun'],datasets:[{data:[1.1,1.4,1.8,1.6,2.4,2.7],backgroundColor:'#ff3ea5',borderRadius:6}]},options:{plugins:{legend:{display:false},title:{display:true,text:'MONTHLY VIEWS (M)',color:'#9a9ab0',font:{size:10}}},scales:{y:{display:false},x:{grid:{display:false}}}}});
 }
-function updateGrowth(k){const d={rev:[12,38,71,140,220,390,620,940],assets:[2,5,9,14,21,28,34,41],audience:[0.5,1.2,3,8,15,28,44,57]};growthChart.data.datasets[0].data=d[k];growthChart.update();toast('Growth view: '+k.toUpperCase())}
+function updateGrowth(k){const d={rev:[12,38,71,140,220,390,620,940],assets:[2,5,9,14,21,28,34,41],audience:[0.5,1.2,3,8,15,28,44,57]};if(!growthChart){toast('Growth view: '+k.toUpperCase());return}growthChart.data.datasets[0].data=d[k];growthChart.update();toast('Growth view: '+k.toUpperCase())}
 setTimeout(initCharts,600);
 
 /* ============ FILMS ============ */
@@ -676,7 +684,7 @@ return;
 }
 if(!LAUNCH.selected||!LAUNCH.items.some(r=>r.id===LAUNCH.selected)){LAUNCH.selected=LAUNCH.items[0].id;LAUNCH.loaded=false}
 const active=LAUNCH.items.find(r=>r.id===LAUNCH.selected);
-const source=active.embed?active.embed.url:active.demoUrl;
+const source=siteAsset(active.embed?active.embed.url:active.demoUrl);
 const external=!active.embed;
 const tabs=LAUNCH.items.map(r=>{const on=r.id===active.id;return '<button role="tab" aria-selected="'+on+'" onclick="launchBaySelect(\''+r.id+'\')" class="chip '+(on?'tab-active':'hover:border-lime')+'">'+launchEsc(r.displayName)+(r.embed?'':' <span class="opacity-60">EXT</span>')+'</button>'}).join('');
 const stage=LAUNCH.loaded

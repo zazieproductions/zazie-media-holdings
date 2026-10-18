@@ -23,7 +23,7 @@ test('the site embeds the real repository dossier page', () => {
   assert.match(repoHtml, /id="commitList"/);
   assert.match(repoHtml, /id="liveStage"/);
   assert.match(repoHtml, /id="repoTelemetry"/);
-  assert.match(repoHtml, /type="module" src="\/src\/repo-view\.mjs"/);
+  assert.match(repoHtml, /type="module" src="\.\/src\/repo-view\.mjs"/);
   assert.match(repoHtml, /role="tablist"/);
   assert.match(html, /id="launchBayBody"/);
   assert.match(html, /REAL REPOSITORY BUILDS/);
