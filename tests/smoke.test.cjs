@@ -101,7 +101,7 @@ test('GitHub software and research candidates are surfaced with rights context',
   const renderFunction = js.match(/function renderCodeHoldings\(\)\{[\s\S]*?\n\}/);
   assert.ok(renderFunction, 'expected the holdings card renderer');
   const grid = { innerHTML: '' };
-  new Function('$', 'CODE_HOLDINGS', `${renderFunction[0]}; renderCodeHoldings();`)(
+  new Function('$', 'CODE_HOLDINGS', `${js.match(/function repositoryPicture\(repo\)\{[\s\S]*?\n\}/)[0]}; ${renderFunction[0]}; renderCodeHoldings();`)(
     (id) => id === 'codeHoldingsGrid' ? grid : null,
     holdings,
   );

@@ -17,7 +17,7 @@
  * unauthenticated requests (60/hour, which is not enough for a full sync).
  */
 import { execFileSync } from 'node:child_process';
-import { mkdir, readFile, writeFile, rm } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, rm, stat } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
@@ -26,8 +26,21 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const MANIFEST_PATH = path.join(ROOT, 'data', 'repos.manifest.json');
 const DATA_DIR = path.join(ROOT, 'public', 'data');
 const EMBED_DIR = path.join(ROOT, 'public', 'embeds');
+const GALLERY_DIR = path.join(ROOT, 'public', 'art', 'repos');
 const OUTPUT_PATH = path.join(DATA_DIR, 'repos.json');
 const API = 'https://api.github.com';
+
+/* ---- repository gallery (real screenshots vendored from the repos) ---- */
+const RASTER = /\.(png|jpe?g|gif|webp)$/i;
+/* Icons, badges and QR codes are repository chrome, not pictures of the work. */
+const NOT_A_PICTURE = /(favicon|apple-touch|maskable|icon[-_.]|logo|badge|qr[-_.]|spinner|cursor|favicon)/i;
+const GALLERY_MAX = 1;
+const GALLERY_WIDTH = 1200;
+const GALLERY_QUALITY = 80;
+const MIN_SOURCE_BYTES = 20_000;
+const MAX_SOURCE_BYTES = 8_000_000;
+/* Without an image encoder we only keep sources that are already web-sized. */
+const MAX_UNTRANSCODED_BYTES = 400_000;
 
 const token = resolveToken();
 if (!token) {
@@ -89,6 +102,135 @@ function languageBreakdown(languages) {
     .sort((a, b) => b[1] - a[1])
     .slice(0, 8)
     .map(([name, bytes]) => ({ name, bytes, percent: Math.round((bytes / total) * 1000) / 10 }));
+}
+
+/* ImageMagick (or GraphicsMagick) transcodes multi-megabyte repository PNGs into
+   web-sized stills. CI never runs this script, so a missing encoder must not
+   fail the sync: candidates then fall back to their original bytes when those
+   are already small enough, and are skipped otherwise. */
+function resolveImageEncoder() {
+  for (const bin of ['magick', 'convert']) {
+    try {
+      execFileSync(bin, ['-version'], { stdio: ['ignore', 'ignore', 'ignore'] });
+      return bin;
+    } catch {
+      /* try the next binary */
+    }
+  }
+  return null;
+}
+const IMAGE_ENCODER = resolveImageEncoder();
+
+function readmeImageRefs(markdown) {
+  if (!markdown) return [];
+  const refs = [
+    ...markdown.matchAll(/!\[[^\]]*\]\(\s*([^)\s]+)/g),
+    ...markdown.matchAll(/<img[^>]+src=["']([^"'\s]+)/g),
+  ].map((match) => match[1]);
+  return refs.filter((ref) => !/^(?:[a-z]+:|\/\/)/i.test(ref) && !ref.startsWith('#'));
+}
+
+function scoreGalleryCandidate(entry, readmeOrder) {
+  const name = path.basename(entry.path);
+  let score = 0;
+  const inReadme = readmeOrder.indexOf(entry.path);
+  if (inReadme >= 0) score += 60 + Math.max(0, 12 - inReadme * 2);
+  if (/screenshot|preview|capture|hero|splash|demo/i.test(name)) score += 30;
+  if (/detail|interface|screen|desktop|panel/i.test(name)) score += 12;
+  if (/social|og[-_]|chart|diagram|fig[-_]|graph|plot|schema/i.test(name)) score -= 35;
+  if (/^docs\//i.test(entry.path)) score += 6;
+  return score;
+}
+
+function selectGalleryCandidates(tree, markdown, limit = GALLERY_MAX) {
+  const order = readmeImageRefs(markdown)
+    .map((ref) => decodeURIComponent(ref.replace(/^\.\//, '')))
+    .map((ref) => {
+      const hit = (tree || []).find((item) => item.type === 'file' && (item.path === ref || item.path.endsWith(`/${ref}`)));
+      return hit ? hit.path : null;
+    })
+    .filter(Boolean);
+  const candidates = (tree || []).filter(
+    (item) =>
+      item.type === 'file' &&
+      RASTER.test(item.path) &&
+      !NOT_A_PICTURE.test(item.path) &&
+      !/node_modules|\.git\//i.test(item.path) &&
+      typeof item.size === 'number' &&
+      item.size >= MIN_SOURCE_BYTES &&
+      item.size <= MAX_SOURCE_BYTES,
+  );
+  return candidates
+    .map((item) => ({ ...item, score: scoreGalleryCandidate(item, order) }))
+    .sort((a, b) => b.score - a.score || order.indexOf(a.path) - order.indexOf(b.path) || a.path.localeCompare(b.path))
+    .slice(0, limit);
+}
+
+async function transcodeOrCopy(buffer, sourcePath, outBase) {
+  const ext = path.extname(sourcePath).toLowerCase();
+  if (IMAGE_ENCODER) {
+    const out = `${outBase}.jpg`;
+    try {
+      execFileSync(
+        IMAGE_ENCODER,
+        [
+          '-',
+          '-background',
+          '#0a0a13',
+          '-alpha',
+          'remove',
+          '-alpha',
+          'off',
+          '-resize',
+          `${GALLERY_WIDTH}x>`,
+          '-quality',
+          String(GALLERY_QUALITY),
+          '-strip',
+          out,
+        ],
+        { input: buffer, stdio: ['pipe', 'ignore', 'pipe'], maxBuffer: 64 * 1024 * 1024 },
+      );
+      const dims = execFileSync(IMAGE_ENCODER === 'magick' ? 'magick' : 'identify', [...(IMAGE_ENCODER === 'magick' ? ['identify'] : []), '-format', '%w %h', out], { encoding: 'utf8' })
+        .trim()
+        .split(/\s+/)
+        .map(Number);
+      const bytes = (await stat(out)).size;
+      return { file: path.basename(out), bytes, width: dims[0] || null, height: dims[1] || null, transcoded: true };
+    } catch {
+      /* fall through to the raw-bytes path */
+    }
+  }
+  if (ext === '.gif' || buffer.length > MAX_UNTRANSCODED_BYTES) return null;
+  const out = `${outBase}${ext}`;
+  await writeFile(out, buffer);
+  const bytes = (await stat(out)).size;
+  return { file: path.basename(out), bytes, width: null, height: null, transcoded: false };
+}
+
+async function syncGallery(record) {
+  const base = `/repos/${record.fullName}`;
+  const tree = await api(`${base}/git/trees/${encodeURIComponent(record.defaultBranch)}?recursive=1`);
+  if (tree?.truncated) throw new Error('Gallery tree was truncated');
+  const candidates = selectGalleryCandidates((tree?.tree || []).map(item => ({
+    ...item, type: item.type === 'blob' ? 'file' : item.type,
+  })), record.readme?.markdown);
+  const dir = path.join(GALLERY_DIR, record.id);
+  await mkdir(dir, { recursive: true });
+  const gallery = [];
+  for (const candidate of candidates) {
+    const response = await api(`${base}/git/blobs/${candidate.sha}`);
+    const buffer = Buffer.from(response.content.replace(/\n/g, ''), 'base64');
+    const image = await transcodeOrCopy(buffer, candidate.path, path.join(dir, `preview-${gallery.length + 1}`));
+    if (!image) continue;
+    gallery.push({
+      ...image, url: `art/repos/${record.id}/${image.file}`,
+      alt: `${record.displayName} — ${path.basename(candidate.path, path.extname(candidate.path)).replace(/[-_]/g, ' ')}`,
+      sourcePath: candidate.path,
+      sourceUrl: `${record.url}/blob/${record.defaultBranch}/${candidate.path.split('/').map(encodeURIComponent).join('/')}`,
+      blobSha: candidate.sha,
+    });
+  }
+  return gallery;
 }
 
 async function syncRepo(entry, account) {
@@ -252,6 +394,12 @@ async function syncRepo(entry, account) {
     }
   }
 
+  try {
+    record.gallery = await syncGallery(record);
+  } catch (error) {
+    record.gallery = [];
+    record.errors.push(`Gallery sync: ${error.message}`);
+  }
   return record;
 }
 
@@ -318,7 +466,16 @@ async function main() {
   }
 }
 
-main().catch((error) => {
+async function galleryOnly() {
+  const snapshot = JSON.parse(await readFile(OUTPUT_PATH, 'utf8'));
+  for (const record of snapshot.repositories) {
+    record.gallery = await syncGallery(record);
+    console.log(`${record.id}: ${record.gallery.length} pictures`);
+  }
+  await writeFile(OUTPUT_PATH, `${JSON.stringify(snapshot, null, 2)}\n`);
+}
+
+(process.argv.includes('--gallery-only') ? galleryOnly() : main()).catch((error) => {
   console.error(error);
   process.exit(1);
 });
