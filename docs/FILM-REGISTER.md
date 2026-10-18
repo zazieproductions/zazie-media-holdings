@@ -149,7 +149,7 @@ Each failed layer degrades instead of showing a broken image, so a missing local
 |---|---|---|---|
 | `public/art/films/phantom-requiem.jpg` | Phantom Requiem | The artist's own repository [`zazie-horror-portfolio`](https://github.com/zazieproductions/zazie-horror-portfolio) — `images/posters/phantom-requiem-1200.jpg`, the same key art published at `horror.zazieproductions.com/images/posters/phantom-requiem-640.jpg`. 600 × 800, 54 KB | `https://filmfreeway-production-storage-01-connector.filmfreeway.com/press_kits/posters/002/812/588/thumb/9b059d372c-poster.jpg?1719843157` |
 | `public/art/films/beyond-the-silken-threads.jpg` | Beyond The Silken Threads | The key art published on the artist's Stage 32 profile — `stage32.com/sites/stage32.com/files/imdb/461256_555965.jpeg`. 800 × 1217, 217 KB | `https://filmfreeway-production-storage-01-connector.filmfreeway.com/press_kits/posters/003/090/667/thumb/ed14aebed1-poster.jpg?1743856815` |
-| `public/art/films/deaf-orphans-of-streamcast.jpg` | Deaf Orphans of Streamcast | The FilmFreeway press-kit poster for the project — `press_kits/posters/002/836/923/thumb/5ae1802a0a-poster.jpg`. 400 × 552, 64 KB | same as layer 1 |
+| `public/art/films/deaf-orphans-of-streamcast.jpg` | Deaf Orphans of Streamcast | Artist-provided poster uploaded 2026-10-18 — *Deaf Orphans of Streamcast Poster-2* (566 × 800, 97 KB, JPEG quality 82, sRGB). Replaces the FilmFreeway press-kit poster previously used as layer 1 | `https://filmfreeway-production-storage-01-connector.filmfreeway.com/press_kits/posters/002/836/923/thumb/5ae1802a0a-poster.jpg?1719843157` |
 | *(no local file)* | Sepsis | — | `https://newmediartspace.info/exhibitions/2024_ripples/images/ripples-Zazie-animation-v3.jpg` |
 
 ### Refreshing or replacing a cover
